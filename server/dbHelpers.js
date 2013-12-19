@@ -11,7 +11,7 @@ MongoClient.connect("mongodb://localhost:27017/presDb", function(err, presDb) {
   if(err) {
     console.log("Something went wrong while trying to connect.");
   } else{
-    console.log("We are connected");
+    console.log("We are connected to the database");
   }
 
   db = presDb;
