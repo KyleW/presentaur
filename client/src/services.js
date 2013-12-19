@@ -1,24 +1,24 @@
-app.service('sharedProperties', function () {
+app.factory('sharedProperties', [function () {
 
   var presenterQueue = [];
 
   return {
-    queuePresenter = function () {
+    queuePresenter: function () {
       presentation.push(speaker);
     },
-    removePresenter = function (speaker) {
+    removePresenter: function (speaker) {
       for (var i = 0; i < presenterQueue.length; i++) {
         if (presenterQueue[i].id === speaker.id) {
           presenterQueue.splice(i, 1);
         }
-      };
+      }
     },
-    updateQueue = function (presenters) {
+    updateQueue: function (presenters) {
       presenterQueue = presenters;
     },
-    getQueue = function () {
+    getQueue: function () {
       return presenterQueue;
     }
   }
 
-})
+}]);

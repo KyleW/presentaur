@@ -1,22 +1,33 @@
-app.controller('LoginController', ['$scope', function ($scope) {
+app.controller('LoginController', function ($scope, $http) {
   $scope.name = 'Create New Meeting'
-}])
-.controller('SignupController', ['$scope', function ($scope, sharedProperties) {
+  $scope.createMeeting = function () {
+    // some post to 
+  }
+})
+.controller('SignupController', function ($scope, sharedProperties) {
   $scope.name = 'Sign Up For Meeting'
-  $scope.presenters = [];
+  $scope.queue = sharedProperties.getQueue();
   $scope.addPresenter = function () {
-    $scope.presenters.push();
+    $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
+    sharedProperties.updateQueue($scope.queue);
   };
   $scope.speaker = {
     name: '',
     url: ''
   }
-}])
-.controller('DjController', ['$scope', function ($scope, sharedProperties) {
+})
+.controller('DjController', function ($scope, sharedProperties) {
   $scope.name = 'DJ Dashboard';
-  $scope.setPresenter = sharedProperties.setPresenter()
-}])
-.controller('PresentController', ['$scope', function ($scope, sharedProperties) {
+  $scope.queuePresenter = function () {
+    sharedProperties.queuePresenter();
+  };
+  $scope.remove = function (who) {
+    sharedProperties.removePresenter(who);
+  };
+})
+.controller('PresentController', function ($scope, sharedProperties) {
   $scope.name = 'Presentation View';
-  $scope.presenter = sharedProperties.getPresenter();
-}])
+  $scope.queue = sharedProperties.getQueue();
+  $scope.current = 0
+  $scope.presentation = $scope.queue[0];
+})
