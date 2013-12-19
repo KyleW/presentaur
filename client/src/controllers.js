@@ -1,15 +1,20 @@
 app.controller('LoginController', ['$scope', function ($scope) {
   $scope.name = 'Create New Meeting'
 }])
-
-app.controller('SubmitController', ['$scope', function ($scope) {
+.controller('SignupController', ['$scope', function ($scope) {
   $scope.name = 'Sign Up For Meeting'
+  $scope.presenters = [];
+  $scope.addPresenter = function () {
+    $scope.presenters.push();
+  };
+  $scope.speaker = {
+    name: '',
+    url: ''
+  }
 }])
-
-app.controller('DashboardController', ['$scope', function ($scope) {
+.controller('DjController', ['$scope', function ($scope) {
   $scope.name = 'DJ Dashboard'
 }])
-
-app.controller('PresenterController', ['$scope', function ($scope) {
+.controller('PresentController', ['$scope', function ($scope) {
   $scope.name = 'Presentation View'
 }])

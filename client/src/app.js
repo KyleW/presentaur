@@ -4,13 +4,13 @@ var app = angular.module('myApp', ['ngRoute'])
     controller: 'LoginController',
     templateUrl: 'templates/login.html'
   }).when('/signup', {
-    controller: 'LoginController'
-
+    controller: 'SignupController',
+    template: 'templates/signup.html'
   }).when('/dj', {
-    controller: 'LoginController'
+    controller: 'DjController'
 
   }).when('/present', {
-    controller: 'LoginController'
+    controller: 'PresentController'
 
   }).when('/404', {
     templateUrl: 'templates/404.html'
