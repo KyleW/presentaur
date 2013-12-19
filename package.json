@@ -1,0 +1,23 @@
+{
+  "name": "presentaur",
+  "version": "0.0.0",
+  "description": "presentaur ==========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KyleW/presentaur.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/KyleW/presentaur/issues"
+  },
+  "homepage": "https://github.com/KyleW/presentaur",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "express": "~3.4.7"
+  }
+}
