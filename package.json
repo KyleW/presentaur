@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KyleW/presentaur",
   "dependencies": {
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "express": "~3.4.7"
   }
 }
