@@ -1,11 +1,13 @@
 var express = require('express');
 var url = require('url');
+var path = require('path');
 var server = express();
 
-
+server.configure(function(){
+  server.use(express.static('client'));
+});
 
 server.get('/', function (req, res) {
-  console.log(req.route)
   res.sendfile(url.resolve(__dirname, './client/index.html'));
 });
 

@@ -5,7 +5,7 @@ var app = angular.module('myApp', ['ngRoute'])
     templateUrl: 'templates/login.html'
   }).when('/signup', {
     controller: 'SignupController',
-    template: 'templates/signup.html'
+    templateUrl: 'templates/signup.html'
   }).when('/dj', {
     controller: 'DjController'
 
@@ -20,4 +20,4 @@ var app = angular.module('myApp', ['ngRoute'])
 
 app.run(function ($rootScope) {
   $rootScope.title = "Presentaur"
-})
+});
