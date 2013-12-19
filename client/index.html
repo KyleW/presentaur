@@ -7,11 +7,18 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-socket-io/socket.js"></script>
   <script src="src/app.js"></script>
+  <script src="src/services.js"></script>
   <script src="src/controllers.js"></script>
 
 </head>
 <body>
   <h1>{{ title }}</h1>
+  <ul>
+    <li><a href="#/">Make a new meeting</a></li>
+    <li><a href="#/signup">Signup for a meeting</a></li>
+    <li><a href="#/dj">DJ your meeting</a></li>
+    <li><a href="#/present">Present your meeting</a></li>
+  </ul>
   <div ng-view>
   </div>
 </body>
