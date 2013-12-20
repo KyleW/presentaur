@@ -1,27 +1,38 @@
-app.controller('LoginController', function ($scope, $http) {
+app
+// -- Splash page.  Will handle authentication for DJs.
+.controller('LoginController', function ($scope, $http) {
   $scope.name = 'Create New Meeting'
   $scope.createMeeting = function () {
     // some post to server to get it in a database
   }
 })
+// -- Form for signing up to present at a meeting.
 .controller('SignupController', function ($scope, sharedProperties) {
   $scope.name = 'Sign Up For Meeting'
   $scope.queue = sharedProperties.getQueue();
   $scope.addPresenter = function () {
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
     sharedProperties.updateQueue($scope.queue);
+    $scope.speaker = {name: '', url: ''};
   };
+  // $scope.addUrlSlot = function () {
+  //   console.log($scope.speaker.url)
+  //   if ($scope.speaker.url.indexOf('') === -1){
+  //     $scope.speaker.url.push('');
+  //   }
+  // };
   $scope.speaker = {
     name: '',
     url: ''
   }
 })
+// -- Dashboard for DJing/MCing a meeting.
 .controller('DjController', function ($scope, sharedProperties) {
   $scope.queue = sharedProperties.getQueue();
   $scope.name = 'DJ Dashboard';
   $scope.remove = function (speaker) {
-    queue.splice(presenterQueue.indexOf(speaker), 1);
-    sharedProperties.updateQueue(queue);
+    $scope.queue.splice($scope.queue.indexOf(speaker), 1);
+    sharedProperties.updateQueue($scope.queue);
   };
   $scope.moveSpeaker = function (speaker, direction) {
     var temp;
@@ -43,6 +54,7 @@ app.controller('LoginController', function ($scope, $http) {
     $scope.queue = sharedProperties.getQueue();
   }
 })
+// -- 
 .controller('PresentController', function ($scope, sharedProperties) {
   $scope.name = 'Presentation View';
   $scope.queue = sharedProperties.getQueue();

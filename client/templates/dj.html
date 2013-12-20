@@ -3,8 +3,8 @@
 <h2>Presenters:</h2>
 
 <div ng-repeat="speaker in queue">
-  <h3>{{ speaker.name }}:</h3><span>{{ speaker.url }}</span>
-  <span class="clickable" ng-click="remove(speaker)"> X </span>
-  <span class="clickable" ng-click="moveSpeaker(speaker, 'up')"> ^ </span>
-  <span class="clickable" ng-click="moveSpeaker(speaker, 'down')"> v </span>
+  <h3>{{ speaker.name }}</h3>
+  <h3 class="clickable" ng-click="remove(speaker)"> X </h3>
+  <h3 class="clickable" ng-click="moveSpeaker(speaker, 'up')"> ^ </h3>
+  <h3 class="clickable" ng-click="moveSpeaker(speaker, 'down')"> v </h3>
 </div>
