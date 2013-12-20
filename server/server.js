@@ -1,7 +1,9 @@
+// require('./initializeDB.js')();
 var express = require('express');
 var url = require('url');
 var path = require('path');
 var server = express();
+var dbHelpers = require('./dbHelpers.js');
 
 server.configure(function(){
   server.use(express.static('client'));
