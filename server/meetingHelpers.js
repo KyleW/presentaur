@@ -19,12 +19,12 @@ module.exports = {
 // }
 
   create: function(req, res){
+    console.log(req.data);
     var name = req.body;
-    console.log('Adding meeting named: ' + JSON.stringify(name));
+    console.log('Adding meeting named: ' + name);
   // FIXME: changes needed
   // 1. needs to grab name of meeting from req and insert into function
-    var newId = dbHelpers.createMeeting(JSON.stringify(name));  //createMeeting returns new meetings ID
-  // res.sendMeeting(db.requestMeeting());
+    var newId = dbHelpers.createMeeting(JSON.parse(name));  //createMeeting returns new meetings ID
     console.log('The meeting named: ' + name + ' has been assigned the id: ' + newId);
     res.send(newId);
   },
