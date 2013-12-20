@@ -49,6 +49,9 @@ module.exports.createMeeting = function(meetingName){
       console.log("new meeting created");
     }
   });
+
+  return 1;
+  //return meeting id
 };
 
 module.exports.updateMeeting = function(meetingId,doc){
@@ -65,14 +68,16 @@ module.exports.updateMeeting = function(meetingId,doc){
 
 module.exports.getMeeting = function(meetingId){
   checkConnection();
-  return presDb.meetings.findOne({_id: meetingId});
+  // return db.collection('meetings').findOne({_id: meetingId});
+  console.log("got request on db helpers");
+  return db.collection('meetings').findOne({meetingName:"Test Meeting"});
+
 };
 
 
 
 
 // Speaker List
-
 module.exports.getSpeakerList = function(meetingNumber){
   checkConnection();
 
@@ -86,7 +91,6 @@ module.exports.setSpeakerList = function(meetingNumber){
 
 
 // finding meetings associated with users
-
 module.exports.findMeetingBySpeaker = function(){
   checkConnection();
 
