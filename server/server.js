@@ -6,8 +6,9 @@ var io = require('socket.io').listen(server);
 var url = require('url');
 var path = require('path');
 var dbHelpers = require('./dbHelpers.js');
+var meeting = require('./meetingHelpers');
 
-var route = require('./router.js')
+var route = require('./router.js');
 
 server.listen(3000);
 
@@ -24,19 +25,19 @@ io.sockets.on('connection', function (socket) {
 });
 
 
+// Static files
 app.get('/', function (req, res) {
   res.sendfile(url.resolve(__dirname, './client/index.html'));
 });
 
-app.post('/meeting/new', function(req, res){
-  db.updateMeeting();
-  res.sendMeeting(db.requestMeeting());
-})
 
-app.get('/meeting/:id', function(req, res){
-  res.send()//meeting info)
-});
+// Meetings
+app.post('/meeting/new', meeting.create);
 
+app.get('/meeting/:id', meeting.get);
+
+
+// Users
 app.post('/user/new', function(req,res){
 
 });
