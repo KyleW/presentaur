@@ -1,14 +1,11 @@
 app.factory('sharedProperties', [function () {
 
-  var presenterQueue = [];
+  // var presenterQueue = [];
+
+  // placeholder for testing purposes;
+  var presenterQueue = [{name:'Bones Malone', url:'http://www.farm2.me'}, {name:'Spiderman', url:'http://www.spid.er/man'}, {name:'Eric Hannum', url:'http://www.dook.ly'}]
 
   return {
-    queuePresenter: function () {
-      presentation.push(speaker);
-    },
-    removePresenter: function (speaker) {
-      presenterQueue.splice(presenterQueue.indexOf(speaker), 1);
-    },
     updateQueue: function (presenters) {
       presenterQueue = presenters;
     },

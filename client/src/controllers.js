@@ -19,12 +19,29 @@ app.controller('LoginController', function ($scope, $http) {
 .controller('DjController', function ($scope, sharedProperties) {
   $scope.queue = sharedProperties.getQueue();
   $scope.name = 'DJ Dashboard';
-  $scope.queuePresenter = function () {
-    sharedProperties.queuePresenter();
+  $scope.remove = function (speaker) {
+    queue.splice(presenterQueue.indexOf(speaker), 1);
+    sharedProperties.updateQueue(queue);
   };
-  $scope.remove = function (who) {
-    sharedProperties.removePresenter(who);
-  };
+  $scope.moveSpeaker = function (speaker, direction) {
+    var temp;
+    var position = $scope.queue.indexOf(speaker);
+    if (direction === 'up') {
+      if (position > 0) {
+        temp = $scope.queue[position-1];
+        $scope.queue[position-1] = $scope.queue[position];
+        $scope.queue[position] = temp;
+      }
+    } else {
+      if (position < $scope.queue.length-1){
+        temp = $scope.queue[position+1];
+        $scope.queue[position+1] = $scope.queue[position];
+        $scope.queue[position] = temp;
+      }
+    }
+    sharedProperties.updateQueue($scope.queue);
+    $scope.queue = sharedProperties.getQueue();
+  }
 })
 .controller('PresentController', function ($scope, sharedProperties) {
   $scope.name = 'Presentation View';
