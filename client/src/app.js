@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute'])
+var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/', {
     controller: 'LoginController',
