@@ -1,12 +1,12 @@
-<h1>Sign Up To Be A Presenter</h1>
+<h2>Sign Up To Be A Presenter</h2>
 
-<div ng-repeate="presenter in presenters">
-  <h3>Name: {{ presenter.name }}</h3>
-  <h3>Presenting: {{ presenter.url }}</h3>
+<div ng-repeat="speaker in queue">
+  <h3>Name: {{ speaker.name }}</h3>
+  <h3>Presenting: {{ speaker.url }}</h3>
 </div>
 
-<form ng-submit="addPresenter()">
-  <input name="name" type="text" placeholder="Your name" ng-model="speaker.name" required>
+<form ng-submit="addPresenter()" novalidate>
+  <input type="text" placeholder="Your name" ng-model="speaker.name" required>
   <input type="url" placeholder="URL of you presentation" ng-model="speaker.url" required>
   <input type="submit" value="Sign Up">
 </form>
