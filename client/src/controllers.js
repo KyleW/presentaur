@@ -1,25 +1,30 @@
 app
 // -- Splash page.  Will handle authentication for DJs.
+// -- Currently handles creation of new meetings.
 .controller('LoginController', function ($scope, $http) {
   $scope.name = 'Create New Meeting';
   $scope.meetingName = '';
+  $scope.meetingId = '';
   $scope.createMeeting = function () {
     $http({
       url: '/meeting/new',
       method: 'POST',
-      meetingName: $scope.meetingName
+      data: {
+        meetingName: $scope.meetingName
+      }
     })
     .success(function (data) {
       $scope.meetingName = '';
-      console.log('SUCCESS: recieved', data);
+      console.log('SUCCESS! recieved:', data);
     })
     .error(function (data) {
-      console.log('ERROR: recieved', data);
+      console.log('ERROR! recieved:', data);
     });
   };
 })
 // -- Form for signing up to present at a meeting.
-.controller('SignupController', function ($scope, sharedProperties) {
+.controller('SignupController', function ($scope, $location, sharedProperties) {
+  console.log($location);
   $scope.name = 'Sign Up For Meeting';
   $scope.queue = sharedProperties.getQueue();
   $scope.addPresenter = function () {
@@ -27,6 +32,7 @@ app
     sharedProperties.updateQueue($scope.queue);
     $scope.speaker = {name: '', url: ''};
   };
+  // -- this was an attempt to handle each speaker having an array of urls
   // $scope.addUrlSlot = function () {
   //   console.log($scope.speaker.url)
   //   if ($scope.speaker.url.indexOf('') === -1){
@@ -66,7 +72,7 @@ app
     $scope.queue = sharedProperties.getQueue();
   };
 })
-// -- 
+// -- Container page for slideshows to overlay presentaur functionality
 .controller('PresentController', function ($scope, sharedProperties) {
   $scope.name = 'Presentation View';
   $scope.queue = sharedProperties.getQueue();
