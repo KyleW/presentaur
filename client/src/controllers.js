@@ -1,14 +1,22 @@
 app
 // -- Splash page.  Will handle authentication for DJs.
 .controller('LoginController', function ($scope, $http) {
-  $scope.name = 'Create New Meeting'
+  $scope.name = 'Create New Meeting';
+  $scope.meetingName = '';
   $scope.createMeeting = function () {
-    // some post to server to get it in a database
-  }
+    $http({method: 'POST', meetingName: $scope.meetingName})
+    .success(function (data) {
+      $scope.meetingName = '';
+      console.log('SUCCESS: recieved', data);
+    })
+    .error(function (data) {
+      console.log('ERROR: recieved', data);
+    });
+  };
 })
 // -- Form for signing up to present at a meeting.
 .controller('SignupController', function ($scope, sharedProperties) {
-  $scope.name = 'Sign Up For Meeting'
+  $scope.name = 'Sign Up For Meeting';
   $scope.queue = sharedProperties.getQueue();
   $scope.addPresenter = function () {
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
@@ -24,7 +32,7 @@ app
   $scope.speaker = {
     name: '',
     url: ''
-  }
+  };
 })
 // -- Dashboard for DJing/MCing a meeting.
 .controller('DjController', function ($scope, sharedProperties) {
@@ -52,7 +60,7 @@ app
     }
     sharedProperties.updateQueue($scope.queue);
     $scope.queue = sharedProperties.getQueue();
-  }
+  };
 })
 // -- 
 .controller('PresentController', function ($scope, sharedProperties) {
@@ -60,4 +68,4 @@ app
   $scope.queue = sharedProperties.getQueue();
   $scope.current = 0
   $scope.presentation = $scope.queue[0];
-})
+});
