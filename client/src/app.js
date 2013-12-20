@@ -16,8 +16,8 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
     templateUrl: 'templates/404.html'
   })
   .otherwise({redirectTo: '/404'});
-}])
+}]);
 
 app.run(function ($rootScope) {
-  $rootScope.title = "Presentaur"
+  $rootScope.title = "Presentaur";
 });
