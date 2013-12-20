@@ -6,8 +6,8 @@ var io = require('socket.io').listen(server);
 var url = require('url');
 var path = require('path');
 var dbHelpers = require('./dbHelpers.js');
-
 var route = require('./router.js');
+
 
 server.listen(3000);
 
