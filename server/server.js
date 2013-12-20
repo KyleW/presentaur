@@ -6,6 +6,7 @@ var io = require('socket.io').listen(server);
 var url = require('url');
 var path = require('path');
 var dbHelpers = require('./dbHelpers.js');
+var meeting = require('./meetingHelpers');
 
 var route = require('./router.js');
 
@@ -31,20 +32,9 @@ app.get('/', function (req, res) {
 
 
 // Meetings
-app.post('/meeting/new', function(req, res){
-  // FIXME: changes needed
-  // 1. needs to grab name of meeting from req and insert into function
- 
-  var newId = dbHelpers.createMeeting("Test3");  //createMeeting returns new meetings ID
-  // res.sendMeeting(db.requestMeeting());
-});
+app.post('/meeting/new', meeting.create);
 
-app.get('/meeting/:id', function(req, res){
-  console.log("recieved get request");
-  var test = dbHelpers.getMeeting(1);
-  console.log(test);
-  // res.send();//meeting info)
-});
+app.get('/meeting/:id', meeting.get);
 
 
 // Users
