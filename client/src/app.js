@@ -7,11 +7,11 @@ var app = angular.module('myApp', ['ngRoute'])
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
   }).when('/dj', {
-    controller: 'DjController'
-
+    controller: 'DjController',
+    templateUrl: 'templates/dj.html'
   }).when('/present', {
-    controller: 'PresentController'
-
+    controller: 'PresentController',
+    templateUrl: 'templates/present.html'
   }).when('/404', {
     templateUrl: 'templates/404.html'
   })

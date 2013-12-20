@@ -1,9 +1,11 @@
+// require('./initializeDB.js')();
 var express = require('express');
 var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var url = require('url');
 var path = require('path');
+var dbHelpers = require('./dbHelpers.js');
 
 var route = require('./router.js')
 
