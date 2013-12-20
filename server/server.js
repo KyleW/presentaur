@@ -32,12 +32,10 @@ app.get('/', function (req, res) {
 
 // Meetings
 app.post('/meeting/new', function(req, res){
-  // FIXME: two changes needed
+  // FIXME: changes needed
   // 1. needs to grab name of meeting from req and insert into function
-  // 2. currently returns nothing. needs to return id of meeting(objectId?).
-
-  console.log("recieved a post request at /meeting/new");
-  dbHelpers.createMeeting("Test Meeting");
+ 
+  var newId = dbHelpers.createMeeting("Test3");  //createMeeting returns new meetings ID
   // res.sendMeeting(db.requestMeeting());
 });
 

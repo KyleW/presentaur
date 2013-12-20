@@ -40,33 +40,48 @@ var checkConnection = function(){
 module.exports.createMeeting = function(meetingName){
   checkConnection();
 
-  var doc = {meetingName: meetingName};
+  var doc = {meetingName: meetingName, speakers:[]};
+  var newId;
 
   db.collection('meetings').insert(doc, {w:1}, function(err, result) {
     if(err){
       console.log("Insert failed: ", err);
     } else {
-      console.log("new meeting created");
+      console.log("new meeting created ",result);
+      newId = result._id;
     }
   });
 
-  return 1;
-  //return meeting id
+  return newId;
 };
 
 module.exports.updateMeeting = function(meetingId,doc){
   checkConnection();
+  var newId;
   db.collection('meetings').update({meetingId:meetingId}, doc, {w:1}, function(err, result) {
     if(err){
       console.log(err);
     } else {
       console.log("Meeting updated.");
+      console.log(result);
+      newId = result._id;
     }
   });
+  return newId;
 };
 
 
 module.exports.getMeeting = function(meetingId){
+  checkConnection();
+  // return db.collection('meetings').findOne({_id: meetingId});
+  console.log("got request on db helpers");
+  return db.collection('meetings').findOne({meetingName:"Test Meeting"});
+
+};
+
+
+
+module.exports.getMeetingId = function(meetingId){
   checkConnection();
   // return db.collection('meetings').findOne({_id: meetingId});
   console.log("got request on db helpers");
