@@ -4,7 +4,11 @@ app
   $scope.name = 'Create New Meeting';
   $scope.meetingName = '';
   $scope.createMeeting = function () {
-    $http({method: 'POST', meetingName: $scope.meetingName})
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      meetingName: $scope.meetingName
+    })
     .success(function (data) {
       $scope.meetingName = '';
       console.log('SUCCESS: recieved', data);
@@ -66,6 +70,6 @@ app
 .controller('PresentController', function ($scope, sharedProperties) {
   $scope.name = 'Presentation View';
   $scope.queue = sharedProperties.getQueue();
-  $scope.current = 0
+  $scope.current = 0;
   $scope.presentation = $scope.queue[0];
 });
