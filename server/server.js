@@ -10,6 +10,7 @@ var meeting = require('./meetingHelpers');
 
 var route = require('./router.js');
 
+
 server.listen(3000);
 
 app.configure(function(){
