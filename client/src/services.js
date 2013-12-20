@@ -7,11 +7,7 @@ app.factory('sharedProperties', [function () {
       presentation.push(speaker);
     },
     removePresenter: function (speaker) {
-      for (var i = 0; i < presenterQueue.length; i++) {
-        if (presenterQueue[i].id === speaker.id) {
-          presenterQueue.splice(i, 1);
-        }
-      }
+      presenterQueue.splice(presenterQueue.indexOf(speaker), 1);
     },
     updateQueue: function (presenters) {
       presenterQueue = presenters;

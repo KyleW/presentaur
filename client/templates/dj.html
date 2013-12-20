@@ -1,1 +1,8 @@
 <h2>DJ Controll Pannel</h2>
+
+<h2>Presenters:</h2>
+
+<div ng-repeat="speaker in queue">
+  <h3>{{ speaker.name }}:</h3><span>{{ speaker.url }}</span>
+  <span class="clickable" ng-click="remove(speaker)"> X </span>
+</div>

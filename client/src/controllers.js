@@ -1,7 +1,7 @@
 app.controller('LoginController', function ($scope, $http) {
   $scope.name = 'Create New Meeting'
   $scope.createMeeting = function () {
-    // some post to 
+    // some post to server to get it in a database
   }
 })
 .controller('SignupController', function ($scope, sharedProperties) {
@@ -17,6 +17,7 @@ app.controller('LoginController', function ($scope, $http) {
   }
 })
 .controller('DjController', function ($scope, sharedProperties) {
+  $scope.queue = sharedProperties.getQueue();
   $scope.name = 'DJ Dashboard';
   $scope.queuePresenter = function () {
     sharedProperties.queuePresenter();
