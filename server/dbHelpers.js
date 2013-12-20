@@ -101,8 +101,6 @@ module.exports.getMeetingById = function(meetingId){
 
 
 
-
-
 //////////////////////////////////////////////////////////////////
 
 
@@ -110,7 +108,6 @@ module.exports.getMeetingById = function(meetingId){
 // Figure out check connection
 // Figure out aSync issue on response
 // Hanging open connection?
-
 
 
 // BELOW THIS POINT IS JUST STUBS. Not working yet
