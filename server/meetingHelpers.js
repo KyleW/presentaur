@@ -14,10 +14,13 @@ module.exports = {
 
   create: function(req, res){
 
+    speakers = req.body.speakers || [];
+    meetingname = req.body.meetingName;
+
     // FIXME: needs to grab name of meeting from req and insert into function
 
     console.log(req.body.meetingName);
-    var doc = req.body;
+    var doc = {meetingname: meetingname, speakers: speakers};
     console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
@@ -39,7 +42,7 @@ module.exports = {
     console.log("recieved get request");
     dbHelpers.checkConnection();
 
-    var id = req.params.id;  //THIS LINE MIGHT NOT WORK
+    var id = req.params.id;
 
     console.log("retrieving meeting with criteria: ", id);
     console.log('type of id: ', (typeof id));
