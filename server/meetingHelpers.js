@@ -14,10 +14,13 @@ module.exports = {
 
   create: function(req, res){
 
+    speakers = req.body.speakers || [];
+    meetingname = req.body.meetingName;
+
     // FIXME: needs to grab name of meeting from req and insert into function
 
     console.log(req.body.meetingName);
-    var doc = {meetingname: req.body.meetingName, speakers: []};
+    var doc = {meetingname: meetingname, speakers: speaker};
     console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
