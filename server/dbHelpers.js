@@ -18,7 +18,7 @@ MongoClient.connect("mongodb://localhost:27017/presDb", function(err, presDb) {
   module.exports.db.createCollection('meetings', function(err, collection) {
     if(err){console.log("error creating meetings collection: ", err);}
   });
-  
+
   module.exports.db.createCollection('users', function(err, collection) {
     if(err){console.log("error creating meetings collection: ", err);}
   });
@@ -37,7 +37,7 @@ module.exports.checkConnection = function(){
 
 
 
-// //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 
 // // Figure out escaping
@@ -46,9 +46,6 @@ module.exports.checkConnection = function(){
 
 
 // // BELOW THIS POINT IS JUST STUBS. Not working yet
-
-
-
 
 
 // // Speaker List

@@ -1,7 +1,10 @@
 
 //docs are here: http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
 
-var MongoClient = require('mongodb').MongoClient;
+var mongo = require('mongodb');
+var BSON =  mongo.BSONPure;
+var MongoClient = mongo.MongoClient;
+
 dbHelpers = require('./dbHelpers');
 
 
@@ -14,19 +17,18 @@ module.exports = {
     // FIXME: needs to grab name of meeting from req and insert into function
 
     console.log(req.body.meetingName);
-    var name = req.body.meetingName;
-    console.log('Adding meeting named: ' + name);
+    var doc = req.body;
+    console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
 
-    var doc = {meetingName: name, speakers:[]};
     dbHelpers.db.collection('meetings', function (err, collection){
-      collection.insert(doc, {w:1}, function(err, result) {
+      collection.save(doc, {w:1}, function(err, result) {
         if(err){
           console.log("Insert failed: ", err);
         } else {
-          console.log('The meeting named: ' + result[0].meetingName + ' has been assigned the id: ' + result[0]._id);
-          res.send(JSON.stringify(result[0]));
+          console.log('The meeting named: ' + result.meetingName + ' has been assigned the id: ' + result._id);
+          res.send(JSON.stringify(result));
         }
       });
     });
@@ -37,38 +39,22 @@ module.exports = {
     console.log("recieved get request");
     dbHelpers.checkConnection();
 
-    var doc = req.body;  //THIS LINE MIGHT NOT WORK
+    var id = req.params.id;  //THIS LINE MIGHT NOT WORK
 
-    console.log("retrieving meeting with criteria: ", doc);
+    console.log("retrieving meeting with criteria: ", id);
+    console.log('type of id: ', (typeof id));
 
     dbHelpers.db.collection('meetings',function(err,collection){
-      collection.find(doc,function(err,result){
+      collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
         else {
-          console.log("Found the meeting you're looking for" , result.toArray());
-          res.send(JSON.stringify(result.toArray()));
+          console.log("Found the meeting you're looking for" , result);
+          res.send(JSON.stringify(result));
         }
       });
     });
   },
 
-
-  update: function(req, res){
-    console.log("Received request to update meeting");
-    dbHelpers.checkConnection();
-
-    var doc = req.body;  //THIS LINE MIGHT NOT WORK
-
-    dbHelpers.db.collection('meetings',function(err,collection){
-      collection.update({_id: doc._id}, doc, function(err,result){
-        if(err) {console.log("Failed to update meeting ",err);}
-        else {
-          console.log("Found the meeting you're looking for" , result[0]);
-          res.send(JSON.stringify(result[0]));
-        }
-      });
-    });
-  }
 
 };
 
