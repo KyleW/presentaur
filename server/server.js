@@ -18,6 +18,7 @@ server.listen(3000);
 
 app.configure(function(){
   app.use(express.static('client'));
+  app.use(express.bodyParser());
 });
 
 
