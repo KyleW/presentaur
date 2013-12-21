@@ -37,7 +37,7 @@ module.exports.checkConnection = function(){
 
 
 
-// //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 
 // // Figure out escaping
@@ -46,9 +46,6 @@ module.exports.checkConnection = function(){
 
 
 // // BELOW THIS POINT IS JUST STUBS. Not working yet
-
-
-
 
 
 // // Speaker List
