@@ -22,17 +22,37 @@ app
     });
   };
 })
-// -- Gives you likn to send out to speakers, access your dashboard, and view presentation
+// -- Gives you links to send out to speakers, access your dashboard, and view presentation
 .controller('AccountController', function ($scope, sharedMethods) {
   $scope.meeting = sharedMethods.getMeeting();
   console.log($scope.meeting);
 })
 // -- Form for signing up to present at a meeting.
-.controller('SignupController', function ($scope, $location, sharedMethods) {
+.controller('SignupController', function ($scope, $http, $location, sharedMethods) {
   $scope.queue = sharedMethods.getQueue();
+  $scope.meetingId = $location.path().split('/')[2];
+  console.log($scope.meetingId);
+  $http({
+    url: '/meet/' + $scope.meetingId,
+    method: 'GET'
+  })
+  .success(function (data) {
+    console.log(data);
+    sharedMethods.updateMeeting(data);
+  })
+  .error(function (data) {
+
+  });
   $scope.addPresenter = function () {
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
     sharedMethods.updateQueue($scope.queue);
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: $scope.meeting
+    });
+
     $scope.speaker = {name: '', url: ''};
   };
   // -- this was an attempt to handle each speaker having an array of urls
