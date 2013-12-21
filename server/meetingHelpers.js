@@ -41,11 +41,11 @@ module.exports = {
     console.log("retrieving meeting with criteria: ", doc);
 
     dbHelpers.db.collection('meetings',function(err,collection){
-      collection.find(doc,function(err,result){
+      collection.find(doc).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
         else {
-          console.log("Found the meeting you're looking for" , result.toArray());
-          res.send(JSON.stringify(result.toArray()));
+          console.log("Found the meeting you're looking for" , result);
+          res.send(JSON.stringify(result));
         }
       });
     });
