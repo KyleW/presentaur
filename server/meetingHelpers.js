@@ -14,14 +14,13 @@ module.exports = {
     // FIXME: needs to grab name of meeting from req and insert into function
 
     console.log(req.body.meetingName);
-    var name = req.body.meetingName;
-    console.log('Adding meeting named: ' + name);
+    var doc = req.body;
+    console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
 
-    var doc = {meetingName: name, speakers:[]};
     dbHelpers.db.collection('meetings', function (err, collection){
-      collection.insert(doc, {w:1}, function(err, result) {
+      collection.save(doc, {w:1}, function(err, result) {
         if(err){
           console.log("Insert failed: ", err);
         } else {
@@ -52,23 +51,6 @@ module.exports = {
     });
   },
 
-
-  update: function(req, res){
-    console.log("Received request to update meeting");
-    dbHelpers.checkConnection();
-
-    var doc = req.body;  //THIS LINE MIGHT NOT WORK
-
-    dbHelpers.db.collection('meetings',function(err,collection){
-      collection.update({_id: doc._id}, doc, function(err,result){
-        if(err) {console.log("Failed to update meeting ",err);}
-        else {
-          console.log("Found the meeting you're looking for" , result[0]);
-          res.send(JSON.stringify(result[0]));
-        }
-      });
-    });
-  }
 
 };
 
