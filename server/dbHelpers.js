@@ -38,23 +38,6 @@ module.exports.checkConnection = function(){
 
 // Manage Meetings
 
-// module.exports.createMeeting = function(meetingName, res){
-
-
-//   db.collection('meetings', function (err, collection){
-//     collection.insert(doc, {w:1}, function(err, result) {
-//       if(err){
-//         console.log("Insert failed: ", err);
-//       } else {
-//         console.log("new meeting created ",result);
-//         res.send(result._id);
-//       }
-//     });
-// //   });
-// // };
-
-
-
 // module.exports.updateMeeting = function(meetingId,doc){
 
 //   checkConnection();
@@ -75,24 +58,6 @@ module.exports.checkConnection = function(){
 //   });
 // };
 
-
-// module.exports.getMeetingById = function(meetingId){
-
-//   checkConnection();
-//   var meeting;
-
-//   db.collection('meetings', function (err, collection){
-//     collection.findOne({_id: meetingId},function(err,item){
-//       if(err){ console.log("Looking for that meeting failed ",err);}
-//       else {
-//         console.log("Found the meeting you're looking for ", item);
-//         meeting = item;
-//       }
-//     });
-//   });
-  
-//   return meeting;
-// };
 
 
 
