@@ -25,7 +25,7 @@ module.exports = {
           console.log("Insert failed: ", err);
         } else {
           console.log('The meeting named: ' + result[0].meetingName + ' has been assigned the id: ' + result[0]._id);
-          res.send(result[0]._id);
+          res.send(JSON.stringify(result[0]));
         }
       });
     });

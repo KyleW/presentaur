@@ -1,4 +1,4 @@
-app.factory('sharedProperties', [function () {
+app.factory('sharedMethods', [function () {
 
   // var presenterQueue = [];
 
