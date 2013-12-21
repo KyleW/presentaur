@@ -36,72 +36,12 @@ module.exports.checkConnection = function(){
 
 
 
-// Manage Meetings
-
-// module.exports.createMeeting = function(meetingName, res){
-
-
-//   db.collection('meetings', function (err, collection){
-//     collection.insert(doc, {w:1}, function(err, result) {
-//       if(err){
-//         console.log("Insert failed: ", err);
-//       } else {
-//         console.log("new meeting created ",result);
-//         res.send(result._id);
-//       }
-//     });
-// //   });
-// // };
-
-
-
-// module.exports.updateMeeting = function(meetingId,doc){
-
-//   checkConnection();
-//   var updatedMeeting;
-
-//   db.collection('meetings', function (err, collection){
-//     collection.update({meetingId:meetingId},doc, {w:1}, function(err, result) {
-//       if(err){
-//         console.log("Update failed: ", err);
-//       } else {
-//         console.log("meeting updated ",result);
-//         updatedMeeting = result;
-//       }
-//     });
-
-//     return updatedMeeting;
-
-//   });
-// };
-
-
-// module.exports.getMeetingById = function(meetingId){
-
-//   checkConnection();
-//   var meeting;
-
-//   db.collection('meetings', function (err, collection){
-//     collection.findOne({_id: meetingId},function(err,item){
-//       if(err){ console.log("Looking for that meeting failed ",err);}
-//       else {
-//         console.log("Found the meeting you're looking for ", item);
-//         meeting = item;
-//       }
-//     });
-//   });
-  
-//   return meeting;
-// };
-
-
 
 // //////////////////////////////////////////////////////////////////
 
 
 // // Figure out escaping
 // // Figure out check connection
-// // Figure out aSync issue on response
 // // Hanging open connection?
 
 
