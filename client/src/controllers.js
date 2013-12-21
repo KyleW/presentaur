@@ -36,14 +36,17 @@ app
   })
   .success(function (data) {
     console.log(data);
+    console.log(data[0].speakers);
+
     sharedMethods.updateMeeting(data);
+    $scope.queue = data[0].speakers;
   })
   .error(function (data) {
     console.log('ERROR');
   });
-  $scope.queue = sharedMethods.getQueue();
   console.log($scope.meetingId);
   $scope.addPresenter = function () {
+    console.log($scope);
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
     sharedMethods.updateQueue($scope.queue);
 
