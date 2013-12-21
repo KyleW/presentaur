@@ -4,13 +4,16 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
   $routeProvider.when('/', {
     controller: 'LoginController',
     templateUrl: 'templates/login.html'
-  }).when('/signup', {
+  }).when('/account/:id', {
+    controller: 'AccountController',
+    templateUrl: 'templates/account.html'
+  }).when('/signup/:id', {
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
-  }).when('/dj', {
+  }).when('/dj/:id', {
     controller: 'DjController',
     templateUrl: 'templates/dj.html'
-  }).when('/present', {
+  }).when('/present/:id', {
     controller: 'PresentController',
     templateUrl: 'templates/present.html'
   }).when('/404', {
@@ -21,4 +24,5 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
 
 app.run(function ($rootScope) {
   $rootScope.title = "Presentaur";
+  $rootScope.id = '';
 });
