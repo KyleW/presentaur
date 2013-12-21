@@ -1,4 +1,3 @@
-// require('./initializeDB.js')();  ------Is this still needed?
 var express = require('express');
 var app = require('express')();
 var server = require('http').createServer(app);
@@ -12,6 +11,13 @@ var meeting = require('./meetingHelpers');
 var user = require('./userHelpers');
 var presentation = require('./presentationHelpers');
 var route = require('./router.js');
+var flash = require('connect-flash');
+
+
+// Auth modules
+var passport = require('passport');
+var GoogleStrategy = require('passport-google').Strategy;
+var auth = require ('./auth.js');
 
 
 server.listen(3000);
@@ -52,4 +58,24 @@ app.post('/presentation/new', presentation.create);
 
 app.get('/presentation/:id', presentation.get);
 
+app.post('/login',passport.authenticate('local',
+  {
+    successFlash: 'Welcome!',
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  }));
 
+
+
+// Redirect the user to Google for authentication.  When complete, Google
+// will redirect the user back to the application at
+//     /auth/google/return
+app.get('/auth/google', passport.authenticate('google'));
+
+// Google will redirect the user to this URL after authentication.  Finish
+// the process by verifying the assertion.  If valid, the user will be
+// logged in.  Otherwise, authentication has failed.
+app.get('/auth/google/return',
+  passport.authenticate('google', { successRedirect: '/',
+                                    failureRedirect: '/login' }));
