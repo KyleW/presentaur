@@ -36,37 +36,12 @@ module.exports.checkConnection = function(){
 
 
 
-// Manage Meetings
-
-// module.exports.updateMeeting = function(meetingId,doc){
-
-//   checkConnection();
-//   var updatedMeeting;
-
-//   db.collection('meetings', function (err, collection){
-//     collection.update({meetingId:meetingId},doc, {w:1}, function(err, result) {
-//       if(err){
-//         console.log("Update failed: ", err);
-//       } else {
-//         console.log("meeting updated ",result);
-//         updatedMeeting = result;
-//       }
-//     });
-
-//     return updatedMeeting;
-
-//   });
-// };
-
-
-
 
 // //////////////////////////////////////////////////////////////////
 
 
 // // Figure out escaping
 // // Figure out check connection
-// // Figure out aSync issue on response
 // // Hanging open connection?
 
 
