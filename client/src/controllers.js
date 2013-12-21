@@ -95,8 +95,10 @@ app
   };
 })
 // -- Container page for slideshows to overlay presentaur functionality
-.controller('PresentController', function ($scope, sharedMethods) {
+.controller('PresentController', function ($scope, $sce, sharedMethods) {
   $scope.queue = sharedMethods.getQueue();
-  $scope.current = 0;
-  $scope.presentation = $scope.queue[0];
+  $scope.speaker = $scope.queue[0];
+  console.log($scope.speaker);
+  $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+  $scope.speakerName = $scope.speaker.name;
 });
