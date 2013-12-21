@@ -17,6 +17,7 @@ var route = require('./router.js');
 server.listen(3000);
 
 app.configure(function(){
+  app.use(express.bodyParser());
   app.use(express.static('client'));
 });
 
