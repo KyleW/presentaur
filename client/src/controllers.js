@@ -31,7 +31,7 @@ app
 .controller('SignupController', function ($scope, $http, $location, sharedMethods) {
   $scope.meetingId = $location.path().split('/')[2];
   $http({
-    url: '/meet/' + $scope.meetingId,
+    url: '/meeting/' + $scope.meetingId,
     method: 'GET'
   })
   .success(function (data) {
@@ -70,7 +70,7 @@ app
 // -- Dashboard for DJing/MCing a meeting.
 .controller('DjController', function ($scope, sharedMethods) {
   $http({
-    url: '/meet/' + $scope.meetingId,
+    url: '/meeting/' + $scope.meetingId,
     method: 'GET'
   })
   .success(function (data) {
