@@ -13,8 +13,8 @@ module.exports = {
 
     // FIXME: needs to grab name of meeting from req and insert into function
 
-    console.log(req.data);
-    var name = req.body;
+    console.log(req.body.meetingName);
+    var name = req.body.meetingName;
     console.log('Adding meeting named: ' + name);
 
     dbHelpers.checkConnection();
