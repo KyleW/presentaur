@@ -18,6 +18,7 @@ module.exports = {
     console.log('Adding meeting named: ' + name);
 
     dbHelpers.checkConnection();
+
     var doc = {meetingName: name, speakers:[]};
     dbHelpers.db.collection('meetings', function (err, collection){
       collection.insert(doc, {w:1}, function(err, result) {
@@ -25,17 +26,48 @@ module.exports = {
           console.log("Insert failed: ", err);
         } else {
           console.log('The meeting named: ' + result[0].meetingName + ' has been assigned the id: ' + result[0]._id);
-          res.send(result[0]._id);
+          res.send(JSON.stringify(result[0]));
         }
       });
     });
   },
 
+
   get: function(req, res){
     console.log("recieved get request");
-    var test = dbHelpers.getMeeting(1);
-    console.log(test);
-    // res.send();//meeting info)
+    dbHelpers.checkConnection();
+
+    var doc = req.body;  //THIS LINE MIGHT NOT WORK
+
+    console.log("retrieving meeting with criteria: ", doc);
+
+    dbHelpers.db.collection('meetings',function(err,collection){
+      collection.find(doc,function(err,result){
+        if(err) {console.log("Looking for meeting failed ",err);}
+        else {
+          console.log("Found the meeting you're looking for" , result.toArray());
+          res.send(JSON.stringify(result.toArray()));
+        }
+      });
+    });
+  },
+
+
+  update: function(req, res){
+    console.log("Received request to update meeting");
+    dbHelpers.checkConnection();
+
+    var doc = req.body;  //THIS LINE MIGHT NOT WORK
+
+    dbHelpers.db.collection('meetings',function(err,collection){
+      collection.update({_id: doc._id}, doc, function(err,result){
+        if(err) {console.log("Failed to update meeting ",err);}
+        else {
+          console.log("Found the meeting you're looking for" , result[0]);
+          res.send(JSON.stringify(result[0]));
+        }
+      });
+    });
   }
 
 };
