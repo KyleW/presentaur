@@ -4,6 +4,9 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
   $routeProvider.when('/', {
     controller: 'LoginController',
     templateUrl: 'templates/login.html'
+  }).when('/account/:id', {
+    controller: 'AccountController',
+    templateUrl: 'templates/account.html'
   }).when('/signup/:id', {
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
@@ -21,4 +24,5 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
 
 app.run(function ($rootScope) {
   $rootScope.title = "Presentaur";
+  $rootScope.id = '';
 });
