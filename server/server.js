@@ -1,3 +1,4 @@
+module.exports = function(){
 var express = require('express');
 var app = require('express')();
 var server = require('http').createServer(app);
@@ -79,3 +80,4 @@ app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return',
   passport.authenticate('google', { successRedirect: '/',
                                     failureRedirect: '/login' }));
+}
