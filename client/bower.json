@@ -1,9 +1,11 @@
 {
   "name": "presentaur",
-  "version": "0.0.0",
-  "homepage": "https://github.com/KyleW/presentaur",
+  "version": "0.1.0",
+  "homepage": "http://presentaur.herokuapp.com",
   "authors": [
-    "Brannon Lucas <brannonlucas@gmail.com>"
+    "Brannon Lucas <brannonlucas@gmail.com>",
+    "Kyle Warneck <kyle.warneck@gmail.com>",
+    "Eric Hannum <ehannum@gmail.com"
   ],
   "description": "presentation app",
   "license": "MIT",
