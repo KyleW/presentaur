@@ -2,7 +2,7 @@
   "name": "presentaur",
   "version": "0.0.0",
   "description": "presentaur ==========",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/KyleW/presentaur/issues"
   },
-  "homepage": "https://github.com/KyleW/presentaur",
+  "homepage": "presentaur.herokuapp.com",
   "dependencies": {
     "socket.io": "~0.9.16",
     "express": "~3.4.7",
@@ -23,5 +23,8 @@
     "passport": "~0.1.17",
     "passport-google": "~0.3.0",
     "connect-flash": "~0.1.1"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
