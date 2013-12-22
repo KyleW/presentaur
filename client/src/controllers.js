@@ -26,6 +26,7 @@ app
 .controller('AccountController', function ($scope, sharedMethods) {
   $scope.meeting = sharedMethods.getMeeting();
 })
+
 // -- Form for signing up to present at a meeting.
 .controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
@@ -66,8 +67,9 @@ app
     url: ''
   };
 })
+
 // -- Dashboard for DJing/MCing a meeting.
-.controller('DjController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+.controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $http({
     url: '/meeting/' + $rootScope.id,
@@ -106,9 +108,15 @@ app
   $scope.updatePresentation = function () {
     // something about sockets.
   };
+  $scope.next = function () {
+    $scope.queue.shift();
+    sharedMethods.updateQueue($scope.queue);
+    socket.emit('next presentation');
+  };
 })
+
 // -- Container page for slideshows to overlay presentaur functionality
-.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, sharedMethods) {
+.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $http({
     url: '/meeting/' + $rootScope.id,
@@ -125,9 +133,19 @@ app
     console.log('ERROR');
   });
   $scope.frameSize = 'windowed';
-  $scope.buttonMode = 'Enter Fullscreen'
+  $scope.buttonMode = 'Enter Fullscreen';
   $scope.toggleFullscreen = function () {
     $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
     $scope.buttonMode = $scope.buttonMode === 'Enter Fullscreen' ? 'Exit Fullscreen' : 'Enter Fullscreen';
-  }
+  };
+
+  //socket.io stuff
+
+  socket.on('next presentation', function () {
+    $scope.queue.shift();
+    $scope.speaker = $scope.queue[0];
+    $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+    $scope.speakerName = $scope.speaker.name;
+    console.log($scope.speaker, $scope.speakerName, $scope.presentation);
+  });
 });
