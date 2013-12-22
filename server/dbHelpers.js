@@ -4,8 +4,15 @@
 var MongoClient = require('mongodb').MongoClient;
 
 
+var mongoUri = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost:27017/presDb';
+  // 'mongodb://localhost/mydb';
+
+
+
 // Connect to the db
-MongoClient.connect("mongodb://localhost:27017/presDb", function(err, presDb) {
+MongoClient.connect(mongoUri, function(err, presDb) {
   if(err) {
     console.log("Something went wrong while trying to connect.");
   } else{
