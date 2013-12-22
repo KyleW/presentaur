@@ -1,7 +1,7 @@
 app
 // -- Splash page.  Will handle authentication for DJs.
-.controller('LoginController', function ($scope, $http) {
-  $scope.name = 'Create New Meeting';
+// -- Currently handles creation of new meetings.
+.controller('LoginController', function ($rootScope, $scope, $http, $location, sharedMethods) {
   $scope.meetingName = '';
   $scope.createMeeting = function () {
     $http({
@@ -12,23 +12,53 @@ app
       }
     })
     .success(function (data) {
+      $rootScope.id = data._id;
+      sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
-      console.log('SUCCESS: recieved', data);
+      $location.url('/account/' + $rootScope.id);
     })
     .error(function (data) {
-      console.log('ERROR: recieved', data);
+      console.log('ERROR! recieved:', data);
     });
   };
 })
+// -- Gives you links to send out to speakers, access your dashboard, and view presentation
+.controller('AccountController', function ($scope, sharedMethods) {
+  $scope.meeting = sharedMethods.getMeeting();
+  console.log($scope.meeting);
+})
 // -- Form for signing up to present at a meeting.
-.controller('SignupController', function ($scope, sharedProperties) {
-  $scope.name = 'Sign Up For Meeting';
-  $scope.queue = sharedProperties.getQueue();
+.controller('SignupController', function ($scope, $http, $location, sharedMethods) {
+  $scope.meetingId = $location.path().split('/')[2];
+  $http({
+    url: '/meeting/' + $scope.meetingId,
+    method: 'GET'
+  })
+  .success(function (data) {
+    console.log(data);
+    console.log(data[0].speakers);
+
+    sharedMethods.updateMeeting(data);
+    $scope.queue = data[0].speakers;
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+  console.log($scope.meetingId);
   $scope.addPresenter = function () {
+    console.log($scope);
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
-    sharedProperties.updateQueue($scope.queue);
+    sharedMethods.updateQueue($scope.queue);
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: $scope.meeting
+    });
+
     $scope.speaker = {name: '', url: ''};
   };
+  // -- this was an attempt to handle each speaker having an array of urls
   // $scope.addUrlSlot = function () {
   //   console.log($scope.speaker.url)
   //   if ($scope.speaker.url.indexOf('') === -1){
@@ -41,12 +71,22 @@ app
   };
 })
 // -- Dashboard for DJing/MCing a meeting.
-.controller('DjController', function ($scope, sharedProperties) {
-  $scope.queue = sharedProperties.getQueue();
-  $scope.name = 'DJ Dashboard';
+.controller('DjController', function ($scope, sharedMethods) {
+  $http({
+    url: '/meeting/' + $scope.meetingId,
+    method: 'GET'
+  })
+  .success(function (data) {
+    console.log(data);
+    sharedMethods.updateMeeting(data);
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+  $scope.queue = sharedMethods.getQueue();
   $scope.remove = function (speaker) {
     $scope.queue.splice($scope.queue.indexOf(speaker), 1);
-    sharedProperties.updateQueue($scope.queue);
+    sharedMethods.updateQueue($scope.queue);
   };
   $scope.moveSpeaker = function (speaker, direction) {
     var temp;
@@ -64,14 +104,15 @@ app
         $scope.queue[position] = temp;
       }
     }
-    sharedProperties.updateQueue($scope.queue);
-    $scope.queue = sharedProperties.getQueue();
+    sharedMethods.updateQueue($scope.queue);
+    $scope.queue = sharedMethods.getQueue();
   };
 })
-// --
-.controller('PresentController', function ($scope, sharedProperties) {
-  $scope.name = 'Presentation View';
-  $scope.queue = sharedProperties.getQueue();
-  $scope.current = 0;
-  $scope.presentation = $scope.queue[0];
+// -- Container page for slideshows to overlay presentaur functionality
+.controller('PresentController', function ($scope, $sce, sharedMethods) {
+  $scope.queue = sharedMethods.getQueue();
+  $scope.speaker = $scope.queue[0];
+  console.log($scope.speaker);
+  $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+  $scope.speakerName = $scope.speaker.name;
 });
