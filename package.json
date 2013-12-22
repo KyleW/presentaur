@@ -2,7 +2,7 @@
   "name": "presentaur",
   "version": "0.0.0",
   "description": "presentaur ==========",
-  "main": "./server/server.js",
+  "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -21,7 +21,7 @@ var GoogleStrategy = require('passport-google').Strategy;
 var auth = require ('./auth.js');
 
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 
 app.configure(function(){
   app.use(express.bodyParser());
