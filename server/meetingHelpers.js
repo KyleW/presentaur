@@ -4,9 +4,7 @@
 var mongo = require('mongodb');
 var BSON =  mongo.BSONPure;
 var MongoClient = mongo.MongoClient;
-
-dbHelpers = require('./dbHelpers');
-
+var dbHelpers = require('./dbHelpers');
 
 
 
@@ -14,17 +12,13 @@ module.exports = {
 
   create: function(req, res){
 
+    // Formatting document for insertion
     var id = (!req.body._id) ? null : new BSON.ObjectID(req.body._id);
     var speakers = req.body.speakers || [];
     var meetingname = req.body.meetingName;
-
-    console.log(req.body.meetingName);
-
     var doc = {meetingName: meetingname, speakers: speakers, _id: id};
 
     console.log('Adding meeting named: ' + doc.meetingName);
-
-    dbHelpers.checkConnection();
 
     dbHelpers.db.collection('meetings', function (err, collection){
       collection.save(doc, {w:1}, function (err, result) {
@@ -41,8 +35,6 @@ module.exports = {
 
   get: function(req, res){
     console.log("recieved get request");
-    dbHelpers.checkConnection();
-
     var id = req.params.id;
 
     console.log("retrieving meeting with criteria: ", id);
