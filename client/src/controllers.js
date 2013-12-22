@@ -25,30 +25,26 @@ app
 // -- Gives you links to send out to speakers, access your dashboard, and view presentation
 .controller('AccountController', function ($scope, sharedMethods) {
   $scope.meeting = sharedMethods.getMeeting();
-  console.log($scope.meeting);
 })
 // -- Form for signing up to present at a meeting.
-.controller('SignupController', function ($scope, $http, $location, sharedMethods) {
-  $scope.meetingId = $location.path().split('/')[2];
+.controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+  $rootScope.id = $location.path().split('/')[2];
   $http({
-    url: '/meeting/' + $scope.meetingId,
+    url: '/meeting/' + $rootScope.id,
     method: 'GET'
   })
   .success(function (data) {
-    console.log(data);
-    console.log(data[0].speakers);
-
-    sharedMethods.updateMeeting(data);
+    sharedMethods.updateMeeting(data[0]);
+    $scope.meeting = data[0];
     $scope.queue = data[0].speakers;
   })
   .error(function (data) {
     console.log('ERROR');
   });
-  console.log($scope.meetingId);
   $scope.addPresenter = function () {
-    console.log($scope);
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
     sharedMethods.updateQueue($scope.queue);
+    $scope.meeting = sharedMethods.getMeeting();
 
     $http({
       url: '/meeting/new',
@@ -71,19 +67,19 @@ app
   };
 })
 // -- Dashboard for DJing/MCing a meeting.
-.controller('DjController', function ($scope, sharedMethods) {
+.controller('DjController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+  $rootScope.id = $location.path().split('/')[2];
   $http({
-    url: '/meeting/' + $scope.meetingId,
+    url: '/meeting/' + $rootScope.id,
     method: 'GET'
   })
   .success(function (data) {
-    console.log(data);
-    sharedMethods.updateMeeting(data);
+    sharedMethods.updateMeeting(data[0]);
+    $scope.queue = sharedMethods.getQueue();
   })
   .error(function (data) {
     console.log('ERROR');
   });
-  $scope.queue = sharedMethods.getQueue();
   $scope.remove = function (speaker) {
     $scope.queue.splice($scope.queue.indexOf(speaker), 1);
     sharedMethods.updateQueue($scope.queue);
@@ -107,12 +103,31 @@ app
     sharedMethods.updateQueue($scope.queue);
     $scope.queue = sharedMethods.getQueue();
   };
+  $scope.updatePresentation = function () {
+    // something about sockets.
+  };
 })
 // -- Container page for slideshows to overlay presentaur functionality
-.controller('PresentController', function ($scope, $sce, sharedMethods) {
-  $scope.queue = sharedMethods.getQueue();
-  $scope.speaker = $scope.queue[0];
-  console.log($scope.speaker);
-  $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
-  $scope.speakerName = $scope.speaker.name;
+.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, sharedMethods) {
+  $rootScope.id = $location.path().split('/')[2];
+  $http({
+    url: '/meeting/' + $rootScope.id,
+    method: 'GET'
+  })
+  .success(function (data) {
+    sharedMethods.updateMeeting(data[0]);
+    $scope.queue = sharedMethods.getQueue();
+    $scope.speaker = $scope.queue[0];
+    $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+    $scope.speakerName = $scope.speaker.name;
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+  $scope.frameSize = 'windowed';
+  $scope.buttonMode = 'Enter Fullscreen'
+  $scope.toggleFullscreen = function () {
+    $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
+    $scope.buttonMode = $scope.buttonMode === 'Enter Fullscreen' ? 'Exit Fullscreen' : 'Enter Fullscreen';
+  }
 });

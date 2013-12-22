@@ -1,3 +1,4 @@
 <h2>Presentation Page</h2>
 <div id="effects"></div>
-<iframe ng-src="{{presentation}}" frameborder="1" height="500", width="500"></iframe>
+<iframe ng-src="{{presentation}}" ng-class="frameSize"></iframe>
+<span ng-click="toggleFullscreen()" ng-class="frameSize">{{buttonMode}}</span>
