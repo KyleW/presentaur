@@ -21,6 +21,7 @@ module.exports = {
     console.log(req.body.meetingName);
 
     var doc = {meetingName: meetingname, speakers: speakers, _id: id};
+
     console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
