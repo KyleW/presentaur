@@ -28,11 +28,10 @@ app.configure(function(){
   app.use(express.static('client'));
 });
 
-
+//Socket connections
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  socket.on('next presentation', function(){
+    io.sockets.emit('next presentation');
   });
 });
 
@@ -55,9 +54,7 @@ app.post('/user/new', user.create);
 app.get('user/:id', user.get);
 
 // Presentations
-app.post('/presentation/new', presentation.create);
-
-app.get('/presentation/:id', presentation.get);
+// app.get('/presentation/:id', presentation.connect);
 
 app.post('/login',passport.authenticate('local',
   {

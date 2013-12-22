@@ -14,19 +14,20 @@ module.exports = {
 
   create: function(req, res){
 
-    speakers = req.body.speakers || [];
-    meetingname = req.body.meetingName;
-
-    // FIXME: needs to grab name of meeting from req and insert into function
+    var id = (!req.body._id) ? null : new BSON.ObjectID(req.body._id);
+    var speakers = req.body.speakers || [];
+    var meetingname = req.body.meetingName;
 
     console.log(req.body.meetingName);
-    var doc = {meetingname: meetingname, speakers: speakers};
+
+    var doc = {meetingName: meetingname, speakers: speakers, _id: id};
+
     console.log('Adding meeting named: ' + doc.meetingName);
 
     dbHelpers.checkConnection();
 
     dbHelpers.db.collection('meetings', function (err, collection){
-      collection.save(doc, {w:1}, function(err, result) {
+      collection.save(doc, {w:1}, function (err, result) {
         if(err){
           console.log("Insert failed: ", err);
         } else {
