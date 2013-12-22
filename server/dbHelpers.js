@@ -38,7 +38,6 @@ MongoClient.connect(mongoUri, function(err, presDb) {
 });
 
 
-
 module.exports.checkConnection = function(){
   // if connected return true
   // else open connection
