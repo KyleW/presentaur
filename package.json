@@ -4,7 +4,8 @@
   "description": "presentaur ==========",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,6 @@
   },
   "engines": {
     "node": "0.10.x"
-  }
+  },
+  "subdomain": "presentaur"
 }
