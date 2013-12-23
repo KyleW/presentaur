@@ -1,5 +1,12 @@
 
 
+// Figure out escaping
+// Figure out check connection
+// Hanging open connection?
+
+////////////////////////////////////////////////////////////////////
+
+
 //docs are here: http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
 var MongoClient = require('mongodb').MongoClient;
 
@@ -7,8 +14,6 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoUri = process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
   'mongodb://localhost:27017/presDb';
-  // 'mongodb://localhost/mydb';
-
 
 
 // Connect to the db
@@ -33,7 +38,6 @@ MongoClient.connect(mongoUri, function(err, presDb) {
 });
 
 
-
 module.exports.checkConnection = function(){
   // if connected return true
   // else open connection
@@ -43,43 +47,3 @@ module.exports.checkConnection = function(){
 
 
 
-
-////////////////////////////////////////////////////////////////////
-
-
-// // Figure out escaping
-// // Figure out check connection
-// // Hanging open connection?
-
-
-// // BELOW THIS POINT IS JUST STUBS. Not working yet
-
-
-// // Speaker List
-// module.exports.getSpeakerList = function(meetingNumber){
-//   checkConnection();
-
-// };
-
-// module.exports.setSpeakerList = function(meetingNumber){
-//   checkConnection();
-
-// };
-
-
-
-// // finding meetings associated with users
-// module.exports.findMeetingBySpeaker = function(){
-//   checkConnection();
-
-// };
-
-// module.exports.findMeetingByOwner = function(){
-//   checkConnection();
-
-
-// };
-
-// module.exports.findMeetingByOwnerOrSpeaker = function(){
-//   checkConnection();
-// };
