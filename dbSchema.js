@@ -31,5 +31,4 @@ Meeting Documents take the following form:
   meetingLength: 60   //calculated if we ask for endtime?
 }
 
-make sure to run NPM install mongodb
 */
