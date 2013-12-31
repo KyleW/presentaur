@@ -4,16 +4,13 @@ body {
 
 h3 {
   display: inline-block;
-  -webkit-transition: background-color 2s;
-  -moz-transition: background-color 2s;
-  transition: background-color 2s;
 }
 
 iframe {
-  border: 2px solid #333;
+  background-color: #FFF;
 }
 
-#effects {
+.effects {
   position: absolute;
   top: 0;
   left: 0;
@@ -21,17 +18,50 @@ iframe {
   height: 100%;
   pointer-events: none;
   z-index: 50;
+  background-color: #000;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+  color: white;
+  text-align: center;
+}
+
+.portrait {
+  width: 25%;
+}
+
+.speakername {
+  font-size: 2.5em;
+}
+
+.fadein {
+  opacity: 0;
+}
+
+.fadeout {
+  opacity: 1;
 }
 
 .clickable {
   cursor: pointer;
   color: red;
+  display: inline-block;
 }
 
 iframe.windowed {
-  width: 640px;
-  height: 480px;
-  background-color: #FFF;
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  transform: scale(0.5);
+  margin-left: -250px;
+  margin-right: -250px;
+  margin-top: -200px;
+  margin-bottom: -200px;
+  border: 2px solid #333;
+  width: 1024px;
+  height: 768px;
 }
 
 iframe.fullscreen {
@@ -40,7 +70,6 @@ iframe.fullscreen {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFF;
 }
 
 span.fullscreen {

@@ -30,8 +30,11 @@ app.configure(function(){
 
 //Socket connections
 io.sockets.on('connection', function (socket) {
-  socket.on('next presentation', function(){
-    io.sockets.emit('next presentation');
+  socket.on('fade out', function(){
+    io.sockets.emit('fade out');
+  });
+  socket.on('fade in', function(){
+    io.sockets.emit('fade in');
   });
 });
 
