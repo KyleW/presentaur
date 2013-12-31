@@ -1,5 +1,10 @@
 <h2>Make New Meeting</h2>
 <form ng-submit="createMeeting()">
-  <input ng-model="meetingName" type="text" name="name" placeholder="Name your conference">
-  <input type="submit" value="GO">
+  <span>Name your conference:</span>
+  <input ng-model="meetingName" type="text" name="name"><br />
+  <span>Select a date:</span>
+  <input type="date"><br />
+  <span>Duration:</span>
+  <input type="number">minutes<br />
+  <input type="submit" value="Create">
 </form>

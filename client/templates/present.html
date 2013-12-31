@@ -1,4 +1,9 @@
 <h2>Presentation Page</h2>
-<div id="effects"></div>
+<div class="effects" ng-class="transition">
+  <div class="speakerinfo">
+    <img src="../res/bod.jpg" class="portrait"> <!-- placeholder, replace with image from google or whatever auth stuff -->
+    <h1 class="speakername">{{speakerName}}</h1>
+  </div>
+</div>
 <iframe ng-src="{{presentation}}" ng-class="frameSize"></iframe>
 <span ng-click="toggleFullscreen()" ng-class="frameSize">{{buttonMode}}</span>
