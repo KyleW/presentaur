@@ -27,7 +27,9 @@ app
   $scope.meeting = sharedMethods.getMeeting();
 })
 
+
 // -- Form for signing up to present at a meeting.
+
 .controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $http({
@@ -68,7 +70,9 @@ app
   };
 })
 
+
 // -- Dashboard for DJing/MCing a meeting.
+
 .controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $http({
@@ -108,15 +112,23 @@ app
   $scope.updatePresentation = function () {
     // something about sockets.
   };
-  $scope.next = function () {
+  $scope.fade = true;
+  $scope.fadeout = function () {
     $scope.queue.shift();
     sharedMethods.updateQueue($scope.queue);
-    socket.emit('next presentation');
+    socket.emit('fade out');
+    $scope.fade = false;
+  };
+  $scope.fadein = function () {
+    socket.emit('fade in');
+    $scope.fade = true;
   };
 })
 
+
 // -- Container page for slideshows to overlay presentaur functionality
-.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, socket, sharedMethods) {
+
+.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, $timeout, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $http({
     url: '/meeting/' + $rootScope.id,
@@ -132,6 +144,7 @@ app
   .error(function (data) {
     console.log('ERROR');
   });
+
   $scope.frameSize = 'windowed';
   $scope.buttonMode = 'Enter Fullscreen';
   $scope.toggleFullscreen = function () {
@@ -139,13 +152,21 @@ app
     $scope.buttonMode = $scope.buttonMode === 'Enter Fullscreen' ? 'Exit Fullscreen' : 'Enter Fullscreen';
   };
 
+  $scope.transition = 'fadein';
+
   //socket.io stuff
 
-  socket.on('next presentation', function () {
+  socket.on('fade out', function () {
     $scope.queue.shift();
     $scope.speaker = $scope.queue[0];
-    $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
     $scope.speakerName = $scope.speaker.name;
-    console.log($scope.speaker, $scope.speakerName, $scope.presentation);
+    $timeout(function () {
+      $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+    }, 1000);
+    $scope.transition = 'fadeout';
+  });
+
+  socket.on('fade in', function () {
+    $scope.transition = 'fadein';
   });
 });
