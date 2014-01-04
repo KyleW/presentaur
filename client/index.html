@@ -3,6 +3,7 @@
 <head>
   <title>Presentaur: Demo Like A Centaur</title>
   <link rel="stylesheet" href="res/styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="/socket.io/socket.io.js"></script>
@@ -13,13 +14,11 @@
 
 </head>
 <body>
-  <h1>{{ title }}</h1>
-  <ul>
-    <li><a href="#/">Make a new meeting</a></li>
-    <li><a href="#/signup/{{id}}">Signup for a meeting</a></li>
-    <li><a href="#/dj/{{id}}">DJ your meeting</a></li>
-    <li><a href="#/present/{{id}}">Present your meeting</a></li>
-  </ul>
+  <header>
+    <a href="#/new">New Talk</a>
+    <a href="#/dj/{{id}}">DJ Your Talk</a>
+    <a href="#/present/{{id}}">Begin Talk</a>
+  </header>
   <div ng-view>
   </div>
 </body>
