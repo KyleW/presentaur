@@ -1,9 +1,13 @@
 var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
+
 .config(['$routeProvider', function ($routeProvider) {
   // all of these just append to <div ng-view> in index.html
   $routeProvider.when('/', {
     controller: 'LoginController',
-    templateUrl: 'templates/login.html'
+    templateUrl: 'templates/splash.html'
+  }).when('/new', {
+    controller: 'NewController',
+    templateUrl: 'templates/new.html'
   }).when('/account/:id', {
     controller: 'AccountController',
     templateUrl: 'templates/account.html'
@@ -20,9 +24,8 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
     templateUrl: 'templates/404.html'
   })
   .otherwise({redirectTo: '/404'});
-}]);
+}])
 
-app.run(function ($rootScope) {
-  $rootScope.title = "Presentaur";
+.run(function ($rootScope) {
   $rootScope.id = '';
 });
