@@ -149,6 +149,10 @@ app
     socket.emit('fade in');
     $scope.fade = true;
   };
+  $scope.fullscreen = function () {
+    console.log('fullscreen emitted');
+    socket.emit('fullscreen');
+  };
 })
 
 
@@ -170,14 +174,7 @@ app
   .error(function (data) {
     console.log('ERROR');
   });
-
   $scope.frameSize = 'windowed';
-  $scope.buttonMode = 'Enter Fullscreen';
-  $scope.toggleFullscreen = function () {
-    $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
-    $scope.buttonMode = $scope.buttonMode === 'Enter Fullscreen' ? 'Exit Fullscreen' : 'Enter Fullscreen';
-  };
-
   $scope.transition = 'fadein';
 
   //socket.io stuff
@@ -194,5 +191,10 @@ app
 
   socket.on('fade in', function () {
     $scope.transition = 'fadein';
+  });
+
+  socket.on('fullscreen', function () {
+    console.log('fullscreen triggered');
+    $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
   });
 });
