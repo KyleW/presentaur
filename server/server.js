@@ -36,6 +36,9 @@ io.sockets.on('connection', function (socket) {
   socket.on('fade in', function(){
     io.sockets.emit('fade in');
   });
+  socket.on('fullscreen', function(){
+    io.sockets.emit('fullscreen');
+  });
 });
 
 
