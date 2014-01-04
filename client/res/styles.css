@@ -1,5 +1,43 @@
+/* -- COLORS
+header/text #141E25
+background  #28465B
+
+ -- logo:
+blue        #91E9FF
+green       #C4FFD3
+yellow      #FFC24D
+orange      #FF9B4D
+*/
+
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  padding-top: 60px;
+  background-color: #28465B;
+  margin: 0;
+  color: #141E25;
+}
+
+header {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #141E25;
+}
+
+header a {
+  height: 60px;
+  color: #91E9FF;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 0;
+  position: relative;
+  top: 40%;
 }
 
 h3 {
@@ -8,6 +46,49 @@ h3 {
 
 iframe {
   background-color: #FFF;
+}
+
+form {
+  font-size: 1.2em;
+}
+
+form input {
+  font-size: 1em;
+}
+
+input.submit {
+  background-color: #C4FFD3;
+  border: 3px solid #141E25;
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 3em;
+  color: #FFC24D;
+  margin-left: 60px;
+}
+
+.splash {
+  width: 1024px;
+  height: 408px;
+  margin: 0 auto;
+  background-image: url("splash.png");
+}
+
+.screen {
+  width: 406px;
+  height: 238px;
+  position: relative;
+  top: 37px;
+  left: 123px;
+  padding: 30px;
+}
+
+.info {
+  background-color: #141E25;
+  color: #91E9FF;
+  width: 100%;
+  padding: 50px;
 }
 
 .effects {
@@ -25,6 +106,11 @@ iframe {
   transition: opacity 1s;
   color: white;
   text-align: center;
+}
+
+.speakerinfo {
+  position: relative;
+  top: 30%;
 }
 
 .portrait {
@@ -45,7 +131,7 @@ iframe {
 
 .clickable {
   cursor: pointer;
-  color: red;
+  color: #C4FFD3;
   display: inline-block;
 }
 
@@ -72,12 +158,7 @@ iframe.fullscreen {
   height: 100%;
 }
 
-span.fullscreen {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  font-size: 2em;
-  z-index: 40;
-  cursor: pointer;
-  color: red;
+.speaker {
+  border: 1px solid #C4FFD3;
+  border-radius: 3px;
 }
