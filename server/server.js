@@ -9,9 +9,6 @@ var path = require('path');
 // Server and DB helpers
 var dbHelpers = require('./dbHelpers.js');
 var meeting = require('./meetingHelpers');
-var user = require('./userHelpers');
-var presentation = require('./presentationHelpers');
-var route = require('./router.js');
 var flash = require('connect-flash');
 
 
