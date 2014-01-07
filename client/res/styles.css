@@ -1,6 +1,7 @@
 /* -- COLORS
 header/text #141E25
 background  #28465B
+background-lite #D6D9FF
 
  -- logo:
 blue        #91E9FF
@@ -15,6 +16,19 @@ body {
   background-color: #28465B;
   margin: 0;
   color: #141E25;
+}
+
+.backgroundlite {
+  background-color: #D6F6FF;
+  width: 700px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.yellow {
+  color: #FFC24D;
 }
 
 header {
@@ -62,6 +76,7 @@ input.submit {
   background-color: #C4FFD3;
   border: 3px solid #141E25;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .container {
@@ -99,15 +114,17 @@ input.submit {
   float: left;
   margin: 0px 10px;
   color: white;
+  font-size: 20px;
+  font-family: Arial;
 }
 
 .screen {
-  width: 406px;
+  width: 480px;
   height: 238px;
   position: relative;
   top: 37px;
   left: 123px;
-  padding: 30px;
+  padding: 0 15px;
 }
 
 .info {
@@ -115,6 +132,7 @@ input.submit {
   color: #91E9FF;
   width: 100%;
   padding: 10px 0;
+  border-radius: 3px;
 }
 
 .effects {

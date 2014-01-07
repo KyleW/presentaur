@@ -1,10 +1,43 @@
-<h2>Make New Meeting</h2>
-<form ng-submit="createMeeting()">
-  <span>Name your conference:</span>
-  <input ng-model="meetingName" type="text" name="name"><br />
-  <span>Select a date:</span>
-  <input type="date"><br />
-  <span>Duration:</span>
-  <input type="number">minutes<br />
-  <input type="submit" value="Create">
+  <h1 class='title'>Create a New Presentaur</h1>
+<div class="splash">
+  <div class="screen">
+    <h3>Create a New Presentaur</h3>
+    <form ng-submit="createMeeting()">
+      <span>Name</span><br>
+      <input ng-model="meetingName" type="text" name="name"><br>
+      <span>Date</span><br>
+      <input type="date"><br />
+      <span>Duration</span><br>
+      <input type="number">mins.<br />
+      <input class="submit" type="submit" value="Create">
+    </form>
+
+    <a href="/auth/google">Sign In with Google</a>
+
+  </div>
+</div>
 </form>
+
+<div class="info">
+  <div class='splashband'>
+    <h2>Presentaur allows multiple slideshows to be controlled from one location.</h2>
+    <hr />
+
+  <br>
+
+    <div class='displayblocks'>
+      <div class='displayblock'>
+        <span class='yellow'>1.</span> Create a new Presentaur
+      </div>
+      <div class='displayblock'>
+        <span class='yellow'>2.</span> You will be given a link for your presenters to signup at
+      </div>
+      <div class='displayblock'>
+        <span class='yellow'>3.</span> Once everyone has signed up start your presentaur
+      </div>
+      <div class='displayblock'>
+        <span class='yellow'>4.</span> DJ the presentaur from another computer or your phone
+      </div>
+    </div>
+
+  </div>
