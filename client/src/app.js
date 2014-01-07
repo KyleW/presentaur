@@ -22,6 +22,8 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
     templateUrl: 'templates/present.html'
   }).when('/404', {
     templateUrl: 'templates/404.html'
+  }).when('/test', {
+    templateUrl: 'templates/login.html'
   })
   .otherwise({redirectTo: '/new'});
 }])
