@@ -17,9 +17,6 @@ passport.deserializeUser(function(id, done) {
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
-      console.log("and it returns . . .");
-      console.log(err);
-      console.log(user);
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
@@ -34,11 +31,11 @@ passport.use(new LocalStrategy(
 
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:5000/auth/google/return',
-    realm: 'http://localhost:5000/'
+    returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
+    realm: 'http://presentaur.herokuapp.com'
   },
   function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier }, function(err, user) {
+    User.findOrCreate({ openId: identifier, profile: profile }, function(err, user) {
       done(err, user);
     });
   }
