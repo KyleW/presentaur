@@ -53,22 +53,3 @@ module.exports = {
 
 };
 
-
-
-
-
-  //Example for adding new entry to mongo DB
-//   addWine = function(req, res) {
-//     var wine = req.body;
-//     console.log('Adding wine: ' + JSON.stringify(wine));
-//     db.collection('wines', function(err, collection) {
-//         collection.insert(wine, {safe:true}, function(err, result) {
-//             if (err) {
-//                 res.send({'error':'An error has occurred'});
-//             } else {
-//                 console.log('Success: ' + JSON.stringify(result[0]));
-//                 res.send(result[0]);
-//             }
-//         });
-//     });
-// }
