@@ -1,0 +1,11 @@
+<h1>Your Presentaurs</h1>
+<h2 ng-repeat="meeting in meetings">
+  {{ meeting.meetingName }}
+  <a href="#/dj/{{id}}">DJ</a>
+  <a href="#/present/{{id}}">View</a>
+  <a href="#" ng-click="share()">Invite</a>
+  <form ng-show="sharing" ng-submit="sendEmail()">
+    <input type="email" placeholder="speaker email">
+    <input type="submit" value="Email">
+  </form>
+</h2>

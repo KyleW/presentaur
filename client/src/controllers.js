@@ -41,7 +41,7 @@ app
       $rootScope.id = data._id;
       sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
-      $location.url('/account/' + $rootScope.id);
+      $location.url('/dashboard/' + $rootScope.userid);
     })
     .error(function (data) {
       console.log('ERROR! recieved:', data);
@@ -101,7 +101,30 @@ app
 })
 
 
-// -- Dashboard for DJing/MCing a meeting.
+// -- Dashboard for managing user's meetings.
+
+.controller('DashboardController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
+  $rootScope.userid = $location.path().split('/')[2];
+  $http({
+    url: '/meeting/owner/' + $rootScope.userid,
+    method: 'GET'
+  })
+  .success(function (data) {
+    sharedMethods.updateMeeting(data[0]);
+    $scope.meetings = data[0].meetings;
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+
+  $scope.
+  $scope.share = function () {
+    $scope.sharing = true;
+  };
+})
+
+
+// -- Controller for DJing/MCing a meeting.
 
 .controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
