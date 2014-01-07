@@ -48,10 +48,13 @@ app
     });
   };
 })
+
+
+// -- DEPRECATED.
 // -- Gives you links to send out to speakers, access your dashboard, and view presentation
-.controller('AccountController', function ($scope, sharedMethods) {
-  $scope.meeting = sharedMethods.getMeeting();
-})
+// .controller('AccountController', function ($scope, sharedMethods) {
+//   $scope.meeting = sharedMethods.getMeeting();
+// })
 
 
 // -- Form for signing up to present at a meeting.
@@ -110,16 +113,41 @@ app
     method: 'GET'
   })
   .success(function (data) {
-    sharedMethods.updateMeeting(data[0]);
-    $scope.meetings = data[0].meetings;
+    $scope.meetings = data;
   })
   .error(function (data) {
     console.log('ERROR');
   });
 
-  $scope.
-  $scope.share = function () {
-    $scope.sharing = true;
+  // the create new presentaur form
+  $scope.meetingName = '';
+  $scope.createMeeting = function () {
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: {
+        meetingName: $scope.meetingName
+      }
+    })
+    .success(function (data) {
+      $rootScope.id = data._id;
+      sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
+      $scope.meetingName = '';
+      
+      $http({
+        url: '/meeting/owner/' + $rootScope.userid,
+        method: 'GET'
+      })
+      .success(function (data) {
+        $scope.meetings = data;
+      })
+      .error(function (data) {
+        console.log('ERROR');
+      });
+    })
+    .error(function (data) {
+      console.log('ERROR! recieved:', data);
+    });
   };
 })
 
