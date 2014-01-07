@@ -20,6 +20,7 @@ module.exports = {
 
   findById:function(id , callback){
     console.log("retrieving user with criteria: ", id);
+
     dbHelpers.db.collection('users',function(err,collection){
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,user){
         if(err) {console.log("Looking for a user and failed failed ",err);}
@@ -31,6 +32,23 @@ module.exports = {
     });
   },
 
-  create :function(){}
+  create: function(req, res){
+    var username = req.body.username;
+    var password = req.body.password;
+    var doc = {'username': username, 'password': password};
+
+    console.log('Adding user with username: ' + doc.username);
+
+    dbHelpers.db.collection('users', function (err, collection){
+      collection.save(doc, {w:1}, function (err, result) {
+        if(err){
+          console.log("Insert failed: ", err);
+        } else {
+          console.log('The user named: ' + result.username + ' has been assigned the id: ' + result._id);
+          res.send(JSON.stringify(result));
+        }
+      });
+    });
+  }
 };
 
