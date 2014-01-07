@@ -1,6 +1,7 @@
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
 var User = require('./userHelpers.js');
 
 passport.serializeUser(function(user, done) {
@@ -27,6 +28,18 @@ passport.use(new LocalStrategy(
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
+    });
+  }
+));
+
+
+passport.use(new GoogleStrategy({
+    returnURL: 'http://localhost:5000/auth/google/return',
+    realm: 'http://localhost:5000/'
+  },
+  function(identifier, profile, done) {
+    User.findOrCreate({ openId: identifier }, function(err, user) {
+      done(err, user);
     });
   }
 ));
