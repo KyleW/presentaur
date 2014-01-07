@@ -57,27 +57,19 @@ module.exports = function(){
   app.post('/meeting/new', meeting.create);
   app.get('/meeting/:id', meeting.get);
 
-
-  // Users
-  // app.post('/user/new', user.create);
-  // app.get('user/:id', user.get);
-
-
   // Presentations
   // app.get('/presentation/:id', presentation.connect);
 
 
   // Auth
 
-    // local
+  // local
   app.post('/newUser', user.create);
 
   app.post('/login',
     passport.authenticate('local',{
       successRedirect: '/success',
       failureRedirect: '/fail'
-      // ,
-      // failureFlash: true
      }),
     function(req, res) {
       // If this function gets called, authentication was successful.
@@ -87,21 +79,13 @@ module.exports = function(){
 
 
   // Google
-
-  // Redirect the user to Google for authentication.  When complete, Google
-  // will redirect the user back to the application at
-  //     /auth/google/return
   app.get('/auth/google', passport.authenticate('google'));
-
-  // Google will redirect the user to this URL after authentication.  Finish
-  // the process by verifying the assertion.  If valid, the user will be
-  // logged in.  Otherwise, authentication has failed.
   app.get('/auth/google/return',
     passport.authenticate('google', { successRedirect: '/success',
                                       failureRedirect: '/fail' }));
 
 
-
+  // Logout
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
