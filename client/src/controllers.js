@@ -74,11 +74,12 @@ app
     $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
     sharedMethods.updateQueue($scope.queue);
     $scope.meeting = sharedMethods.getMeeting();
+    sharedMethods.updateMeeting($scope.meeting);
 
     $http({
       url: '/meeting/new',
       method: 'POST',
-      data: $scope.meeting
+      data: sharedMethods.getMeeting()
     });
 
     $scope.speaker = {name: '', url: ''};
@@ -115,6 +116,12 @@ app
   $scope.remove = function (speaker) {
     $scope.queue.splice($scope.queue.indexOf(speaker), 1);
     sharedMethods.updateQueue($scope.queue);
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: sharedMethods.getMeeting()
+    });
   };
   $scope.moveSpeaker = function (speaker, direction) {
     var temp;
@@ -133,10 +140,12 @@ app
       }
     }
     sharedMethods.updateQueue($scope.queue);
-    $scope.queue = sharedMethods.getQueue();
-  };
-  $scope.updatePresentation = function () {
-    // something about sockets.
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: sharedMethods.getMeeting()
+    });
   };
   $scope.fade = true;
   $scope.fadeout = function () {
@@ -144,6 +153,12 @@ app
     sharedMethods.updateQueue($scope.queue);
     socket.emit('fade out');
     $scope.fade = false;
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: sharedMethods.getMeeting()
+    });
   };
   $scope.fadein = function () {
     socket.emit('fade in');
@@ -176,6 +191,7 @@ app
   });
   $scope.frameSize = 'windowed';
   $scope.transition = 'fadein';
+  $scope.started = false;
 
   //socket.io stuff
 
@@ -194,7 +210,6 @@ app
   });
 
   socket.on('fullscreen', function () {
-    console.log('fullscreen triggered');
     $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
   });
 });

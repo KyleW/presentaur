@@ -14,12 +14,12 @@
 
 </head>
 <body>
-  <header>
+  <header ng-hide="{{id}}">
     <a href="#/new">New Talk</a>
     <a href="#/dj/{{id}}">DJ Your Talk</a>
     <a href="#/present/{{id}}">Begin Talk</a>
   </header>
-  <div ng-view>
+  <div class="container" ng-view>
   </div>
 </body>
 </html>
