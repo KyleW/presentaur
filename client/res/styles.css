@@ -1,6 +1,7 @@
 /* -- COLORS
 header/text #141E25
 background  #28465B
+background-lite #D6D9FF
 
  -- logo:
 blue        #91E9FF
@@ -15,6 +16,15 @@ body {
   background-color: #28465B;
   margin: 0;
   color: #141E25;
+}
+
+.backgroundlite {
+  background-color: #D6F6FF;
+  width: 700px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 3px;
 }
 
 header {
@@ -101,7 +111,7 @@ input.submit {
   position: relative;
   top: 37px;
   left: 123px;
-  padding: 30px;
+  padding: 15px;
 }
 
 .info {
