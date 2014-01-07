@@ -131,6 +131,17 @@ input.submit {
   font-family: Arial;
 }
 
+.dashboardMeeting {
+  border: 2px solid #141E25;
+  border-radius: 5px;
+  width: 80%;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #C4FFD3;
+  overflow: hidden;
+  position: relative;
+}
+
 .screen {
   width: 480px;
   height: 238px;
@@ -269,10 +280,9 @@ iframe.fullscreen {
   z-index: 100;
 }
 
-.cc, .cc a {
+.cc {
   font-size: 0.6em;
   text-align: center;
   text-decoration: none;
   color: #28465B;
-  margin-left: 30%;
 }

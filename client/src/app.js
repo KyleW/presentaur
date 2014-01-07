@@ -8,10 +8,13 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
   }).when('/new', {
     controller: 'NewController',
     templateUrl: 'templates/new.html'
-  }).when('/account/:id', {
-    controller: 'AccountController',
-    templateUrl: 'templates/account.html'
-  }).when('/signup/:id', {
+  })
+  // -- DEPRECATED.
+  // .when('/account/:id', {
+  //   controller: 'AccountController',
+  //   templateUrl: 'templates/account.html'
+  // })
+  .when('/signup/:id', {
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
   }).when('/dj/:id', {
