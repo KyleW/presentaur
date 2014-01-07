@@ -1,19 +1,33 @@
+
 var passport = require('passport');
-var GoogleStrategy = require('passport-google').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./userHelpers.js');
 
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
 
-passport.use(new GoogleStrategy({
-    returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
-    realm: 'http://presentaur.herokuapp.com/'
-  },
-  function(identifier, profile, done) {
-    //Use identifier to find or create the user
-    User.findOrCreate({ openId: identifier }, function(err, user) {
-      done(err, user);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      console.log("and it returns . . .");
+      console.log(err);
+      console.log(user);
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (password !== user.password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
     });
-
-    //grab what we want from profile and store it
   }
 ));
-
 
