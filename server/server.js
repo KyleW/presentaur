@@ -71,7 +71,7 @@ module.exports = function(){
   // Auth
   app.post('/login',
     passport.authenticate('local',{
-      successRedirect: '/',
+      successRedirect: '/success',
       failureRedirect: '/fail'
       // ,
       // failureFlash: true
