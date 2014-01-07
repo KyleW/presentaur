@@ -173,7 +173,7 @@ app
     });
   };
   $scope.fadein = function () {
-    if ($scope.speakers.length > 0) {
+    if ($scope.current < $scope.speakers.length) {
       socket.emit('fade in');
       $scope.fade = true;
     }
@@ -184,6 +184,18 @@ app
       $scope.started = true;
       $scope.fade = false;
     }
+  };
+  $scope.startOver = function () {
+    $scope.current = 0;
+    sharedMethods.updateCurrent($scope.current);
+    $scope.queue = $scope.speakers.slice($scope.current);
+    socket.emit('start over');
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: sharedMethods.getMeeting()
+    });
   };
 })
 
@@ -197,7 +209,6 @@ app
     method: 'GET'
   })
   .success(function (data) {
-    console.log(data[0])
     sharedMethods.updateMeeting(data[0]);
     $scope.speakers = sharedMethods.getQueue();
     $scope.speaker = $scope.speakers[0];
@@ -217,7 +228,8 @@ app
   socket.on('fade out', function () {
     $scope.current++;
     sharedMethods.updateCurrent($scope.current);
-    if ($scope.current > 0) {
+    console.log(sharedMethods.getMeeting().current);
+    if ($scope.current < $scope.speakers.length) {
       $scope.speaker = $scope.speakers[$scope.current];
       $scope.speakerName = $scope.speaker.name;
       $timeout(function () {
@@ -239,5 +251,15 @@ app
       $scope.started = true;
       $scope.transition = 'fadeout';
     }
+  });
+
+  socket.on('start over', function () {
+    $scope.current = 0;
+    $scope.frameSize = 'windowed';
+    sharedMethods.updateCurrent(0);
+    $scope.started = false;
+    $scope.speaker = $scope.speakers[$scope.current];
+    $scope.speakerName = $scope.speaker.name;
+    $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
   });
 });
