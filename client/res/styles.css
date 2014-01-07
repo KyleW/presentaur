@@ -280,9 +280,10 @@ iframe.fullscreen {
   z-index: 100;
 }
 
-.cc {
+.cc, .cc a {
   font-size: 0.6em;
   text-align: center;
   text-decoration: none;
   color: #28465B;
+  margin-top: 20px;
 }
