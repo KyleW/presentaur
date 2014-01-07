@@ -16,7 +16,7 @@ module.exports = {
     var id = (!req.body._id) ? null : new BSON.ObjectID(req.body._id);
     var speakers = req.body.speakers || [];
     var meetingname = req.body.meetingName;
-    var doc = {meetingName: meetingname, speakers: speakers, _id: id};
+    var doc = {meetingName: meetingname, speakers: speakers, _id: id, current: 0};
 
     console.log('Adding meeting named: ' + doc.meetingName);
 

@@ -23,7 +23,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  min-width: 435px;
+  min-width: 700px;
   height: 50px;
   background-color: #141E25;
 }
@@ -38,7 +38,7 @@ header a {
   padding-right: 20px;
   line-height: 0;
   position: relative;
-  top: 40%;
+  top: -18%;
 }
 
 h3 {
@@ -68,9 +68,13 @@ input.submit {
   margin: 0 auto;
 }
 
+.logo {
+  margin: 4px;
+}
+
 .title {
-  font-size: 3em;
-  color: #FFC24D;
+  font-size: 3.5em;
+  color: #FF9B4D;
   margin-left: 60px;
 }
 
@@ -91,13 +95,15 @@ input.submit {
 .displayblocks {
   height: 150px;
   margin: 0px auto;
+  text-align: center;
 }
 
 .displayblock {
   width: 250px;
-/*  background-color: grey;*/
-  float: left;
-  margin: 0px 10px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px 20px;
+  margin-bottom: 15px;
   color: white;
 }
 
@@ -236,4 +242,11 @@ iframe.fullscreen {
   width: 120px;
   background-color: #C4FFD3;
   z-index: 100;
+}
+
+.cc, .cc a {
+  font-size: 0.6em;
+  text-align: center;
+  text-decoration: none;
+  color: #28465B;
 }

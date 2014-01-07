@@ -14,6 +14,9 @@ app.factory('sharedMethods', [function () {
     getQueue: function () {
       return meeting.speakers;
     },
+    updateCurrent: function (num) {
+      meeting.current = num;
+    },
     getMeeting: function () {
       return meeting;
     },
@@ -21,7 +24,7 @@ app.factory('sharedMethods', [function () {
       meeting = updated;
     },
     createMeeting: function (name, id) {
-      meeting = {_id: id, meetingName: name, speakers: []};
+      meeting = {_id: id, meetingName: name, speakers: [], current: 0};
     }
   };
 }]);
