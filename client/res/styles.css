@@ -31,6 +31,13 @@ body {
   color: #FFC24D;
 }
 
+.accountbox {
+  background-color: #F4F6FF;
+  padding: 1px 10px 10px 10px;
+  border-radius: 3px;
+  color: #141E25;
+}
+
 header {
   position: fixed;
   z-index: 30;
@@ -86,7 +93,7 @@ input.submit {
 .title {
   font-size: 3em;
   color: #FFC24D;
-  margin-left: 60px;
+  margin-left: 0px;
 }
 
 .splash {
