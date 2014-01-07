@@ -62,13 +62,14 @@ module.exports = function(){
   // app.post('/user/new', user.create);
   // app.get('user/:id', user.get);
 
-  
+
   // Presentations
   // app.get('/presentation/:id', presentation.connect);
-  
 
 
   // Auth
+  app.post('/newUser', user.create);
+
   app.post('/login',
     passport.authenticate('local',{
       successRedirect: '/success',
