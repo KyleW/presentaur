@@ -53,11 +53,13 @@ module.exports = {
 
   findOrCreate: function(user,callback){
     dbHelpers.db.collection('users',function(err,collection){
-      collection.find(user).toArray(function(err,result){
+      console.log("looking for . . . " + user.openId);
+      collection.find({openId: user.openId}).toArray(function(err,result){
         if(err) {console.log("Looking for a user and failed failed ",err);}
         else {
-          if(user.length > 0){
-            callback(err, user[0]);
+          console.log("here's the result "+ result[0]);
+          if(result.length > 0){
+            callback(err, result[0]);
           } else {
             collection.save(user, {w:1}, function (err, result) {
               if(err){
