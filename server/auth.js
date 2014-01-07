@@ -31,8 +31,8 @@ passport.use(new LocalStrategy(
 
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:5000/auth/google/return',
-    realm: 'http://localhost:5000/'
+    returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
+    realm: 'http://presentaur.herokuapp.com'
   },
   function(identifier, profile, done) {
     User.findOrCreate({ openId: identifier, profile: profile }, function(err, user) {
