@@ -27,6 +27,10 @@ body {
   border-radius: 3px;
 }
 
+.yellow {
+  color: #FFC24D;
+}
+
 header {
   position: fixed;
   z-index: 30;
@@ -110,6 +114,8 @@ input.submit {
   float: left;
   margin: 0px 10px;
   color: white;
+  font-size: 20px;
+  font-family: Arial;
 }
 
 .screen {
