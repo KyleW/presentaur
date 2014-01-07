@@ -57,25 +57,19 @@ module.exports = function(){
   app.post('/meeting/new', meeting.create);
   app.get('/meeting/:id', meeting.get);
 
-
-  // Users
-  // app.post('/user/new', user.create);
-  // app.get('user/:id', user.get);
-
-
   // Presentations
   // app.get('/presentation/:id', presentation.connect);
 
 
   // Auth
+
+  // local
   app.post('/newUser', user.create);
 
   app.post('/login',
     passport.authenticate('local',{
       successRedirect: '/success',
       failureRedirect: '/fail'
-      // ,
-      // failureFlash: true
      }),
     function(req, res) {
       // If this function gets called, authentication was successful.
@@ -83,6 +77,15 @@ module.exports = function(){
       // res.redirect('/users/' + req.user.username);
   });
 
+
+  // Google
+  app.get('/auth/google', passport.authenticate('google'));
+  app.get('/auth/google/return',
+    passport.authenticate('google', { successRedirect: '/success',
+                                      failureRedirect: '/fail' }));
+
+
+  // Logout
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
