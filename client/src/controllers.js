@@ -65,14 +65,17 @@ app
   .success(function (data) {
     sharedMethods.updateMeeting(data[0]);
     $scope.meeting = data[0];
-    $scope.queue = data[0].speakers;
+    $scope.current = data[0].current;
+    $scope.speakers = data[0].speakers;
+    $scope.queue = $scope.speakers.slice($scope.current);
+    $scope.meetingName = data[0].meetingName;
   })
   .error(function (data) {
     console.log('ERROR');
   });
   $scope.addPresenter = function () {
-    $scope.queue.push({name: $scope.speaker.name, url:$scope.speaker.url});
-    sharedMethods.updateQueue($scope.queue);
+    $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url});
+    sharedMethods.updateCurrent($scope.current);
     $scope.meeting = sharedMethods.getMeeting();
     sharedMethods.updateMeeting($scope.meeting);
 
@@ -108,14 +111,19 @@ app
   })
   .success(function (data) {
     sharedMethods.updateMeeting(data[0]);
-    $scope.queue = sharedMethods.getQueue();
+    $scope.meeting = data[0];
+    $scope.current = data[0].current;
+    $scope.speakers = data[0].speakers;
+    $scope.queue = $scope.speakers.slice($scope.current);
+    $scope.meetingName = data[0].meetingName;
   })
   .error(function (data) {
     console.log('ERROR');
   });
   $scope.remove = function (speaker) {
-    $scope.queue.splice($scope.queue.indexOf(speaker), 1);
-    sharedMethods.updateQueue($scope.queue);
+    $scope.speakers.splice($scope.speakers.indexOf(speaker), 1);
+    sharedMethods.updateQueue($scope.speakers);
+    $scope.queue = $scope.speakers.slice($scope.current);
 
     $http({
       url: '/meeting/new',
@@ -125,21 +133,22 @@ app
   };
   $scope.moveSpeaker = function (speaker, direction) {
     var temp;
-    var position = $scope.queue.indexOf(speaker);
+    var position = $scope.speakers.indexOf(speaker);
     if (direction === 'up') {
       if (position > 0) {
-        temp = $scope.queue[position-1];
-        $scope.queue[position-1] = $scope.queue[position];
-        $scope.queue[position] = temp;
+        temp = $scope.speakers[position-1];
+        $scope.speakers[position-1] = $scope.speakers[position];
+        $scope.speakers[position] = temp;
       }
     } else {
-      if (position < $scope.queue.length-1){
-        temp = $scope.queue[position+1];
-        $scope.queue[position+1] = $scope.queue[position];
-        $scope.queue[position] = temp;
+      if (position < $scope.speakers.length-1){
+        temp = $scope.speakers[position+1];
+        $scope.speakers[position+1] = $scope.speakers[position];
+        $scope.speakers[position] = temp;
       }
     }
-    sharedMethods.updateQueue($scope.queue);
+    sharedMethods.updateQueue($scope.speakers);
+    $scope.queue = $scope.speakers.slice($scope.current);
 
     $http({
       url: '/meeting/new',
@@ -148,9 +157,12 @@ app
     });
   };
   $scope.fade = true;
+  $scope.started = false;
+
   $scope.fadeout = function () {
-    $scope.queue.shift();
-    sharedMethods.updateQueue($scope.queue);
+    $scope.current++;
+    sharedMethods.updateCurrent($scope.current);
+    $scope.queue = $scope.speakers.slice($scope.current);
     socket.emit('fade out');
     $scope.fade = false;
 
@@ -161,12 +173,17 @@ app
     });
   };
   $scope.fadein = function () {
-    socket.emit('fade in');
-    $scope.fade = true;
+    if ($scope.speakers.length > 0) {
+      socket.emit('fade in');
+      $scope.fade = true;
+    }
   };
   $scope.fullscreen = function () {
-    console.log('fullscreen emitted');
     socket.emit('fullscreen');
+    if (!$scope.started) {
+      $scope.started = true;
+      $scope.fade = false;
+    }
   };
 })
 
@@ -180,11 +197,13 @@ app
     method: 'GET'
   })
   .success(function (data) {
+    console.log(data[0])
     sharedMethods.updateMeeting(data[0]);
-    $scope.queue = sharedMethods.getQueue();
-    $scope.speaker = $scope.queue[0];
+    $scope.speakers = sharedMethods.getQueue();
+    $scope.speaker = $scope.speakers[0];
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
     $scope.speakerName = $scope.speaker.name;
+    $scope.current = data[0].current;
   })
   .error(function (data) {
     console.log('ERROR');
@@ -196,12 +215,17 @@ app
   //socket.io stuff
 
   socket.on('fade out', function () {
-    $scope.queue.shift();
-    $scope.speaker = $scope.queue[0];
-    $scope.speakerName = $scope.speaker.name;
-    $timeout(function () {
-      $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
-    }, 1000);
+    $scope.current++;
+    sharedMethods.updateCurrent($scope.current);
+    if ($scope.current > 0) {
+      $scope.speaker = $scope.speakers[$scope.current];
+      $scope.speakerName = $scope.speaker.name;
+      $timeout(function () {
+        $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
+      }, 1000);
+    } else {
+      $scope.speakerName = '';
+    }
     $scope.transition = 'fadeout';
   });
 
@@ -211,5 +235,9 @@ app
 
   socket.on('fullscreen', function () {
     $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
+    if (!$scope.started) {
+      $scope.started = true;
+      $scope.transition = 'fadeout';
+    }
   });
 });
