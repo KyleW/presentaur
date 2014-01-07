@@ -38,7 +38,7 @@ passport.use(new GoogleStrategy({
     realm: 'http://localhost:5000/'
   },
   function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier }, function(err, user) {
+    User.findOrCreate({ openId: identifier, profile: profile }, function(err, user) {
       done(err, user);
     });
   }
