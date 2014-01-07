@@ -4,4 +4,4 @@ node_modules/passport-google/
 node_modules/passport/
 node_modules/openid/
 node_modules/*
-server/config.js
+# server/config.js
