@@ -59,6 +59,7 @@ module.exports = function(){
   // Meetings
   app.post('/meeting/new', meeting.create);
   app.get('/meeting/:id', meeting.get);
+  app.get('/meeting/owner/:id', meeting.findByOwner);
 
   // Presentations
   // app.get('/presentation/:id', presentation.connect);
