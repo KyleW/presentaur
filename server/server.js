@@ -87,9 +87,9 @@ module.exports = function(){
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/fail' }),
     function(req, res) {
-      console.log(req);
+      console.log(req.user);
       // Successful authentication, redirect home.
-      res.redirect('/success');
+      res.redirect('#/dashboard/'+req.user._id);
   });
 
   // LinkedIn
@@ -97,9 +97,10 @@ module.exports = function(){
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
-      console.log(req);
+      console.log(req.authInfo);
       // Successful authentication, redirect home.
-      res.redirect('/success');
+      res.redirect('#/dashboard/'+req.authInfo._id);
+      // res.redirect('/success');
   });
 
   // Logout
