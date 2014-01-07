@@ -53,7 +53,7 @@ module.exports = {
   },
 
   findByOwner: function(req, res){
-    var owner_id = req.params.owner_id;
+    var owner_id = req.params.id;
     dbHelpers.db.collection('meetings',function(err,collection){
       collection.find({owner_id: owner_id}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
