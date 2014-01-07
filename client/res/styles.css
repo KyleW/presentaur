@@ -38,6 +38,31 @@ body {
   color: #141E25;
 }
 
+.loginbutton {
+  background-color: #C4FFD3;
+  border: 3px solid #141E25;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.loginbutton:hover {
+  background-color: #A1D1AD;
+}
+
+.textcentered {
+  text-align: center;
+}
+
+.loginbuttons {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  margin-bottom: 15px;
+  left: -5px;
+}
+
 header {
   position: fixed;
   z-index: 30;
@@ -132,12 +157,12 @@ input.submit {
 }
 
 .screen {
-  width: 480px;
-  height: 238px;
+  width: 435px;
+  height: 300px;
   position: relative;
   top: 37px;
   left: 123px;
-  padding: 0 15px;
+  padding: 15px;
 }
 
 .info {
