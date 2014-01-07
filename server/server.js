@@ -85,9 +85,22 @@ module.exports = function(){
   // Google
   app.get('/auth/google', passport.authenticate('google'));
   app.get('/auth/google/return',
-    passport.authenticate('google', { successRedirect: '/success',
-                                      failureRedirect: '/fail' }));
+    passport.authenticate('google', {failureRedirect: '/fail' }),
+    function(req, res) {
+      console.log(req);
+      // Successful authentication, redirect home.
+      res.redirect('/success');
+  });
 
+  // LinkedIn
+  app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
+  app.get('/auth/linkedin/return',
+    passport.authenticate('linkedin', { failureRedirect: '/login' }),
+    function(req, res) {
+      console.log(req);
+      // Successful authentication, redirect home.
+      res.redirect('/success');
+  });
 
   // Logout
   app.get('/logout', function(req, res){
