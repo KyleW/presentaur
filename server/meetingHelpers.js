@@ -17,7 +17,8 @@ module.exports = {
     var speakers = req.body.speakers || [];
     var meetingname = req.body.meetingName;
     var current = req.body.current || 0;
-    var doc = {meetingName: meetingname, speakers: speakers, _id: id, current: current};
+    var owner_id = req.body.owner_id;
+    var doc = {meetingName: meetingname, speakers: speakers, _id: id, current: current , owner_id: owner_id};
 
     console.log('Adding meeting named: ' + doc.meetingName);
 
