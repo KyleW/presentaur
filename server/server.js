@@ -8,7 +8,10 @@ var path = require('path');
 
 // Server and DB helpers
 var dbHelpers = require('./dbHelpers.js');
-var meeting = require('./meetingHelpers');
+var meeting = require('./meetingHelpers.js');
+var user = require('./userHelpers.js');
+var presentation = require('./presentationHelpers.js');
+// var route = require('./router.js');
 var flash = require('connect-flash');
 
 
@@ -47,31 +50,28 @@ app.get('/', function (req, res) {
 
 // Meetings
 app.post('/meeting/new', meeting.create);
-
 app.get('/meeting/:id', meeting.get);
 
 
 // Users
 app.post('/user/new', user.create);
-
 app.get('user/:id', user.get);
+
 
 // Presentations
 // app.get('/presentation/:id', presentation.connect);
-
-app.post('/login',passport.authenticate('local',
-  {
-    successFlash: 'Welcome!',
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-  }));
-
+// app.post('/login',passport.authenticate('local',
+//   {
+//     successFlash: 'Welcome!',
+//     successRedirect: '/',
+//     failureRedirect: '/login',
+//     failureFlash: true
+//   }));
 
 
-// Redirect the user to Google for authentication.  When complete, Google
-// will redirect the user back to the application at
-//     /auth/google/return
+// Auth
+
+// Redirect the user to Google for authentication.  When complete, Google will redirect the user back to the application at /auth/google/return
 app.get('/auth/google', passport.authenticate('google'));
 
 // Google will redirect the user to this URL after authentication.  Finish
