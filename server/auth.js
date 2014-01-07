@@ -48,6 +48,7 @@ passport.use(new GoogleStrategy({
 passport.use(new LinkedInStrategy({
     consumerKey: Config.LINKEDIN_API_KEY,
     consumerSecret: Config.LINKEDIN_SECRET_KEY,
+    // callbackURL: "http://localhost:5000/auth/linkedin/return",
     callbackURL: "http://presentaur.herokuapp.com/auth/linkedin/return",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline','picture-url']
   },
