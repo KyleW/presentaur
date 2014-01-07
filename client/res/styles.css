@@ -72,6 +72,7 @@ input.submit {
   background-color: #C4FFD3;
   border: 3px solid #141E25;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .container {
@@ -112,12 +113,12 @@ input.submit {
 }
 
 .screen {
-  width: 406px;
+  width: 480px;
   height: 238px;
   position: relative;
   top: 37px;
   left: 123px;
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .info {
@@ -125,6 +126,7 @@ input.submit {
   color: #91E9FF;
   width: 100%;
   padding: 10px 0;
+  border-radius: 3px;
 }
 
 .effects {
