@@ -17,6 +17,9 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
   }).when('/dj/:id', {
     controller: 'DjController',
     templateUrl: 'templates/dj.html'
+  }).when('/dashboard/:userid', {
+    controller: 'DashboardController',
+    templateUrl: 'templates/dashboard.html'
   }).when('/present/:id', {
     controller: 'PresentController',
     templateUrl: 'templates/present.html'
@@ -32,4 +35,5 @@ var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
 
 .run(function ($rootScope) {
   $rootScope.id = '';
+  $rootScope.userid = '';
 });

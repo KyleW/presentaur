@@ -4,16 +4,16 @@ background  #28465B
 background-lite #D6D9FF
 
  -- logo:
-blue        #91E9FF
+blue        #333
 green       #C4FFD3
-yellow      #FFC24D
+yellow      #FF9B4D
 orange      #FF9B4D
 */
 
 body {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   padding-top: 60px;
-  background-color: #28465B;
+  background-color: #FFF;
   margin: 0;
   color: #141E25;
 }
@@ -28,7 +28,7 @@ body {
 }
 
 .yellow {
-  color: #FFC24D;
+  color: #FF9B4D;
 }
 
 .accountbox {
@@ -46,12 +46,12 @@ header {
   width: 100%;
   min-width: 700px;
   height: 50px;
-  background-color: #141E25;
+  background-color: #DFDAEC;
 }
 
 header a {
   height: 60px;
-  color: #91E9FF;
+  color: #333;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   text-decoration: none;
   font-size: 1.2em;
@@ -80,7 +80,7 @@ form input {
 }
 
 input.submit {
-  background-color: #FFC24D;
+  background-color: #C4FFD3;
   border: 3px solid #141E25;
   border-radius: 5px;
   margin-top: 10px;
@@ -98,6 +98,7 @@ input.submit {
   font-size: 3.5em;
   color: #FF9B4D;
   margin-left: 60px;
+  text-shadow: 2px 3px #333;
 }
 
 .splash {
@@ -126,7 +127,7 @@ input.submit {
   vertical-align: top;
   margin: 0px 20px;
   margin-bottom: 15px;
-  color: white;
+  color: #333;
   font-size: 20px;
   font-family: Arial;
 }
@@ -141,8 +142,8 @@ input.submit {
 }
 
 .info {
-  background-color: #141E25;
-  color: #91E9FF;
+  background-color: #DFDAEC;
+  color: #333;
   width: 100%;
   padding: 10px 0;
   border-radius: 3px;
@@ -218,7 +219,7 @@ iframe.fullscreen {
 .djcontainer {
   max-width: 500px;
   min-width: 335px;
-  background-color: #141E25;
+  background-color: #DFDAEC;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 100px;
@@ -227,11 +228,11 @@ iframe.fullscreen {
 }
 
 .djcontainer h2 {
-  color: #FFC24D;
+  color: #FF9B4D;
 }
 
 .djcontainer h2.clickable {
-  background-color: #91E9FF;
+  background-color: #333;
   padding: 6px;
   border-radius: 6px;
   color: #141E25;
@@ -274,5 +275,4 @@ iframe.fullscreen {
   text-align: center;
   text-decoration: none;
   color: #28465B;
-  margin-left: 30%;
 }
