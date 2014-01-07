@@ -44,6 +44,9 @@ module.exports = function(){
     socket.on('fullscreen', function(){
       io.sockets.emit('fullscreen');
     });
+    socket.on('start over', function(){
+      io.sockets.emit('start over');
+    });
   });
 
 
