@@ -23,6 +23,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  min-width: 435px;
   height: 50px;
   background-color: #141E25;
 }
@@ -46,6 +47,7 @@ h3 {
 
 iframe {
   background-color: #FFF;
+  z-index: 40;
 }
 
 form {
@@ -60,6 +62,10 @@ input.submit {
   background-color: #C4FFD3;
   border: 3px solid #141E25;
   border-radius: 5px;
+}
+
+.container {
+  margin: 0 auto;
 }
 
 .title {
@@ -151,7 +157,7 @@ input.submit {
 
 .clickable {
   cursor: pointer;
-  color: #C4FFD3;
+  color: #141E25;
   display: inline-block;
 }
 
@@ -178,7 +184,56 @@ iframe.fullscreen {
   height: 100%;
 }
 
+.djcontainer {
+  max-width: 500px;
+  min-width: 335px;
+  background-color: #141E25;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 100px;
+  margin: 0 auto;
+  margin-top: -100px;
+}
+
+.djcontainer h2 {
+  color: #FFC24D;
+}
+
+.djcontainer h2.clickable {
+  background-color: #91E9FF;
+  padding: 6px;
+  border-radius: 6px;
+  color: #141E25;
+  display: inline-block;
+}
+
+.speakers {
+  height: 300px;
+  overflow-y: auto;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .speaker {
-  border: 1px solid #C4FFD3;
-  border-radius: 3px;
+  border: 2px solid #141E25;
+  border-radius: 5px;
+  width: 80%;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #C4FFD3;
+  overflow: hidden;
+  position: relative;
+}
+
+.controls {
+  position: absolute;
+  right: 10px;
+  top: -15px;
+  font-size: 1.6em;
+  line-height: 0;
+  height: 120px;
+  width: 120px;
+  background-color: #C4FFD3;
+  z-index: 100;
 }
