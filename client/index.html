@@ -2,8 +2,6 @@
 <html ng-app="myApp">
 <head>
   <title>Presentaur: Demo Like A Centaur</title>
-
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="res/styles.css">
   <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <script src="bower_components/angular/angular.js"></script>
@@ -17,7 +15,14 @@
 </head>
 <body>
   <header>
-    <!-- <img src="res/presentaur-icon.png"> -->
+    <div class="logo" style="display:inline-block;">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="40px" height="40px" viewBox="-346 256 100 100" xml:space="preserve">
+        <g transform="scale(0.4 0 0)">
+          <circle fill="#91E9FF" cx="-316.286" cy="264.201" r="8.126"/>
+          <path fill="#91E9FF" d="M-253.854,324.834V309.37c0-5.143-5.184-9.333-10.329-9.333h-28.868v8.594c0.006,2-0.874,3.664-2.414,4.559  c-0.759,0.438-1.631,0.658-2.501,0.658c-0.867,0-1.735-0.218-2.492-0.653c-1.548-0.891-2.435-2.557-2.435-4.563v-8.594h-2.508  l0.004-14.814l4.248,0.011v14.803h-0.007v8.594c0,1.391,0.557,2.477,1.565,3.058c0.991,0.57,2.268,0.566,3.255-0.003  c1.002-0.581,1.551-1.666,1.547-3.051v-8.598h-0.002v-15.514c0-6.443-3.801-10.503-11.735-10.503l-19.806-0.006  c-6.792,0-11.253,3.658-11.253,10.542v24.951c0,4.847,6.406,4.847,6.406,0v-24.283h3.939l-0.01,65.891  c0,2.513,2.04,4.553,4.553,4.553c2.521,0,4.096-2.04,4.096-4.553l0.007-27.465l4.205,0.03l-0.013,27.559  c0,2.514,1.916,4.429,4.432,4.429c2.514,0,4.554-2.04,4.554-4.553l0.008-27.198h18.96l3.795,6.499l-7.94,18.926  c-1.152,2.03-0.434,4.581,1.57,5.715c2.03,1.154,4.582,0.435,5.739-1.591l9.267-21.829v-6.957l4.143,6.522v20.279  c0,2.312,1.878,4.185,4.187,4.185c2.312,0,4.208-1.873,4.208-4.185v-23.424l-3.467-5.426v-18.386l4.464,5.276v15.312H-253.854z"/>
+        </g>
+      </svg>
+    </div>
     <a href="#/new">New Presentaur</a>
     <a href="#/dj/{{id}}">DJ Your Presentaur</a>
     <a href="#/present/{{id}}">Begin Presentaur</a>
