@@ -75,6 +75,26 @@ input.submit {
   background-image: url("splash.png");
 }
 
+.splashband {
+  text-align: center;
+  width: 95%;
+  margin: 0px auto;
+  height: auto;
+}
+
+.displayblocks {
+  height: 150px;
+  margin: 0px auto;
+}
+
+.displayblock {
+  width: 250px;
+/*  background-color: grey;*/
+  float: left;
+  margin: 0px 10px;
+  color: white;
+}
+
 .screen {
   width: 406px;
   height: 238px;
@@ -88,7 +108,7 @@ input.submit {
   background-color: #141E25;
   color: #91E9FF;
   width: 100%;
-  padding: 50px;
+  padding: 10px 0;
 }
 
 .effects {
