@@ -3,6 +3,7 @@
   <div class="container">
     <div ng-repeat="meeting in hosting" class="dashboardMeeting">
       <div class="meetingName">
+        <span>Hosting</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>date: {{meeting.date}}</span><br />
@@ -15,7 +16,8 @@
       </div>
     </div>
     <div ng-repeat="meeting in both" class="dashboardMeeting">
-      <div class="meetingName">
+      <div class="meetingName both">
+        <span>Hosting/Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>date: {{meeting.date}}</span><br />
@@ -29,6 +31,7 @@
     </div>
     <div ng-repeat="meeting in speaking" class="dashboardMeeting">
       <div class="meetingName speaking">
+        <span>Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>date: {{meeting.date}}</span><br />
