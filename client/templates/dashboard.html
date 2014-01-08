@@ -1,7 +1,7 @@
 <div class="dashboard">
   <h1>Your Presentaurs</h1>
   <div class="container">
-    <div ng-repeat="meeting in meetings" class="dashboardMeeting">
+    <div ng-repeat="meeting in hosting" class="dashboardMeeting">
       <div class="meetingName">
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
@@ -10,8 +10,31 @@
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">DJ</a>
         <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}">Invite</a>
+        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
         <a href="#/signup/{{meeting._id}}">Sign Up</a>
+      </div>
+    </div>
+    <div ng-repeat="meeting in both" class="dashboardMeeting">
+      <div class="meetingName">
+        <span class="name">{{ meeting.meetingName }}</span><br />
+        <span>speakers: {{meeting.speakers.length}}</span><br />
+        <span>date: {{meeting.date}}</span><br />
+      </div>
+      <div class="meetingControls">
+        <a href="#/dj/{{meeting._id}}">DJ</a>
+        <a href="#/present/{{meeting._id}}">View</a><br />
+        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
+        <a href="#">Edit</a>
+      </div>
+    </div>
+    <div ng-repeat="meeting in speaking" class="dashboardMeeting">
+      <div class="meetingName speaking">
+        <span class="name">{{ meeting.meetingName }}</span><br />
+        <span>speakers: {{meeting.speakers.length}}</span><br />
+        <span>date: {{meeting.date}}</span><br />
+      </div>
+      <div class="meetingControls">
+        <a href="#">Edit</a>
       </div>
     </div>
   </div>
