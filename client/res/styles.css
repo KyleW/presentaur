@@ -11,7 +11,7 @@ orange      #FF9B4D
 */
 
 body {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   padding-top: 60px;
   background-color: #28465B;
   margin: 0;
@@ -27,8 +27,28 @@ body {
   border-radius: 3px;
 }
 
-.yellow {
+h1, h2, h3, h4 {
   color: #FF9B4D;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.yellow {
+<<<<<<< HEAD
+  color: #FF9B4D;
+=======
+  color: #FFC24D;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.orange {
+  color: #FF9B4D;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.black {
+  color: #141E25;
+  font-family: Helvetica, Arial, sans-serif;
+>>>>>>> master
 }
 
 .accountbox {
@@ -156,15 +176,64 @@ input.submit {
   font-family: Arial;
 }
 
-.dashboardMeeting {
-  border: 2px solid #141E25;
-  border-radius: 5px;
+.dashboard {
   width: 80%;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #C4FFD3;
+  height: 100%;
+  color: #FFC24D;
+  margin: 0 auto;
+}
+
+.dashboardMeeting {
+  text-align: center;
+  display: inline-block;
   overflow: hidden;
-  position: relative;
+  margin: 5px;
+  color: #28465B;
+  width: 220px;
+}
+
+.dashboardMeeting a {
+  text-decoration: none;
+  color: #FFC24D;
+  padding: 10px;
+  line-height: 1.5em;
+}
+
+.meetingName {
+  display: block;
+  overflow: hidden;
+  background-color: #91E9FF;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 150px;
+  text-align: left;
+}
+
+.meetingName .name {
+  font-size: 1.2em;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.meetingControls {
+  text-align: center;
+  display: block;
+  background-color: #141E25;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dashboardNewMeeting {
+  color: #91E9FF;
+  padding: 20px 10% 100px 10%;
+  background-color: #141E25;
+  margin-top: 30px;
+  display: block;
 }
 
 .screen {

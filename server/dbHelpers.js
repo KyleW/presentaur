@@ -1,12 +1,4 @@
 
-
-// Figure out escaping
-// Figure out check connection
-// Hanging open connection?
-
-////////////////////////////////////////////////////////////////////
-
-
 //docs are here: http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
 var MongoClient = require('mongodb').MongoClient;
 

@@ -34,7 +34,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   .otherwise({redirectTo: '/new'});
 }])
 
-.run(function ($rootScope, $cookies, $cookieStore, $http) {
+.run(function ($rootScope, $cookies, $cookieStore, $http, $location) {
   $rootScope.id = '';
   $rootScope.userid = $cookieStore.get('userid') || '';
   $rootScope.loggedIn = false;
@@ -44,14 +44,18 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
       method: 'GET'
     })
     .success(function (data) {
-      console.log(data);
-      $rootScope.user = data[0].profile;
-      $rootScope.username = data[0].profile.name.givenName;
-      console.log('Already logged in as', $rootScope.username);
+      $rootScope.user = data[0];
+      $rootScope.username = data[0].name.givenName;
       $rootScope.loggedIn = true;
     })
     .error(function (data) {
       console.log('ERROR');
     });
   }
+  $rootScope.logout = function () {
+    $cookieStore.remove('userid');
+    $location.url('/');
+  $rootScope.userid = '';
+  $rootScope.loggedIn = false;
+  };
 });
