@@ -45,14 +45,13 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     })
     .success(function (data) {
       console.log(data);
-      $rootScope.user = data;
-      $rootScope.username = data.name;
+      $rootScope.user = data[0].profile;
+      $rootScope.username = data[0].profile.name.givenName;
+      console.log('Already logged in as', $rootScope.username);
+      $rootScope.loggedIn = true;
     })
     .error(function (data) {
       console.log('ERROR');
     });
-  } else {
-
-    console.log('Already logged in as', $rootScope.username);
   }
 });
