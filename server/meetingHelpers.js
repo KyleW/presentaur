@@ -63,9 +63,9 @@ module.exports = {
 
   findBySpeaker: function(req, res){
     var speaker_id = req.params.id;
-    console.log(speaker_id);
+    console.log("speaker id ------------- ", speaker_id);
     dbHelpers.db.collection('meetings', function(err, collection){
-      collection.find({speakers: [{user_id: speaker_id}]}).toArray(function(err, result){
+      collection.find({'speakers.user_id': speaker_id}).toArray(function(err, result){
         if(err) { console.log("Looking for speakers in meeting failed ", err); }
         else {
           res.send(JSON.stringify(result));
