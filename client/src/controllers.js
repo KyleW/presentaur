@@ -62,6 +62,7 @@ app
 .controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $scope.speakers = [];
+
   $http({
     url: '/meeting/' + $rootScope.id,
     method: 'GET'
@@ -81,7 +82,7 @@ app
     console.log('ERROR');
   });
   $scope.addPresenter = function () {
-    $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url});
+    $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
     $scope.meeting = sharedMethods.getMeeting();
     sharedMethods.updateMeeting($scope.meeting);
@@ -141,6 +142,7 @@ app
       console.log('ERROR');
     });
   };
+
   $scope.getUserMeetings();
 
   // the create new presentaur form
@@ -159,7 +161,7 @@ app
       $rootScope.id = data._id;
       sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
-      
+
       $scope.getUserMeetings();
     })
     .error(function (data) {

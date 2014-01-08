@@ -33,6 +33,9 @@ h1, h2, h3, h4 {
 }
 
 .yellow {
+<<<<<<< HEAD
+  color: #FF9B4D;
+=======
   color: #FFC24D;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
@@ -45,6 +48,7 @@ h1, h2, h3, h4 {
 .black {
   color: #141E25;
   font-family: Helvetica, Arial, sans-serif;
+>>>>>>> master
 }
 
 .accountbox {
