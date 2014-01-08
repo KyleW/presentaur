@@ -1,0 +1,19 @@
+<h1>Your Presentaurs</h1>
+<h3 ng-repeat="meeting in meetings" class="dashboardMeeting">
+  {{ meeting.meetingName }}
+  <div class="controlls">
+    <a href="#/dj/{{id}}">DJ</a>
+    <a href="#/present/{{id}}">View</a>
+    <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}?body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting.id}}">Invite</a>
+  </div>
+</h3>
+<h3>Create a New Presentaur</h3>
+<form ng-submit="createMeeting()">
+  <span>Name</span><br>
+  <input ng-model="meetingName" type="text" name="name"><br>
+  <span>Date</span><br>
+  <input type="date"><br />
+  <span>Duration</span><br>
+  <input type="number">mins.<br />
+  <input class="submit" type="submit" value="Create">
+</form>
