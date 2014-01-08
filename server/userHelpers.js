@@ -15,6 +15,19 @@ module.exports = {
     });
   },
 
+
+  get: function(req, res){
+    var id = req.params.id;
+    dbHelpers.db.collection('users',function(err,collection){
+      collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,result){
+        if(err) {console.log("Looking for meeting failed ",err);}
+        else {
+          res.send(JSON.stringify(result));
+        }
+      });
+    });
+  },
+
   findById:function(id, callback){
     dbHelpers.db.collection('users',function(err,collection){
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,user){
@@ -53,7 +66,7 @@ module.exports = {
               if(err){
                console.log("Insert failed: ", err);
               } else {
-                console.log('Could not find user. Added a new one user' + result);
+                // console.log('Could not find user. Added a new one user' + result);
                 callback(err, result);
               }
             });
