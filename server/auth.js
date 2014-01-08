@@ -43,7 +43,7 @@ passport.use(new GoogleStrategy({
     var newUser = {
       displayName: profile.displayName,
       name: profile.name,
-      email: profile.emails[0].value,
+      email: profile.emails[0].value.toLowerCase(),
       headline: null,
       pictureUrl: null
     };
@@ -65,7 +65,7 @@ passport.use(new LinkedInStrategy({
     var newUser = {
       displayName: profile.displayName,
       name: profile.name,
-      email: profile.emails[0].value,
+      email: profile.emails[0].value.toLowerCase(),
       headline: profile._json.headline,
       pictureUrl: profile._json.pictureUrl
     };
