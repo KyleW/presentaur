@@ -26,17 +26,15 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   }).when('/present/:id', {
     controller: 'PresentController',
     templateUrl: 'templates/present.html'
-  }).when('/404', {
-    templateUrl: 'templates/404.html'
   }).when('/newUser', {
     templateUrl: 'templates/createUser.html'
   })
-  .otherwise({redirectTo: '/new'});
+  .otherwise({redirectTo: '/'});
 }])
 
 .run(function ($rootScope, $cookies, $cookieStore, $http, $location) {
   $rootScope.id = '';
-  $rootScope.userid = $cookieStore.get('userid') || '';
+  $rootScope.userid = $cookieStore.get('userid') || null;
   $rootScope.loggedIn = false;
   if (!!$rootScope.userid) {
     $http({
@@ -50,12 +48,13 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     })
     .error(function (data) {
       console.log('ERROR');
+      $cookieStore.remove('userid');
     });
   }
   $rootScope.logout = function () {
     $cookieStore.remove('userid');
     $location.url('/');
-  $rootScope.userid = '';
-  $rootScope.loggedIn = false;
+    $rootScope.userid = '';
+    $rootScope.loggedIn = false;
   };
 });

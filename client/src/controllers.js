@@ -28,6 +28,11 @@ app
 // -- Currently handles creation of new meetings.
 
 .controller('NewController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
+  $cookieStore.put('userid', $rootScope.userid);
   $scope.meetingName = '';
   $scope.createMeeting = function () {
     $http({
@@ -59,7 +64,7 @@ app
 
 // -- Form for signing up to present at a meeting.
 
-.controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+.controller('SignupController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $scope.speakers = [];
 
@@ -81,6 +86,7 @@ app
   .error(function (data) {
     console.log('ERROR');
   });
+
   $scope.addPresenter = function () {
     $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
@@ -93,17 +99,10 @@ app
       data: sharedMethods.getMeeting()
     });
 
-    $scope.speaker = {name: '', url: ''};
+    $scope.speaker = {name: $rootScope.username || '', url: ''};
   };
-  // -- this was an attempt to handle each speaker having an array of urls
-  // $scope.addUrlSlot = function () {
-  //   console.log($scope.speaker.url)
-  //   if ($scope.speaker.url.indexOf('') === -1){
-  //     $scope.speaker.url.push('');
-  //   }
-  // };
   $scope.speaker = {
-    name: '',
+    name: $rootScope.username || '',
     url: ''
   };
 })
@@ -113,7 +112,10 @@ app
 
 .controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
-  $rootScope.loggedIn = true;
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
   $cookieStore.put('userid', $rootScope.userid);
 
   $http({
@@ -127,7 +129,10 @@ app
   })
   .error(function (data) {
     console.log('ERROR');
+    $location.url('/');
   });
+
+  $scope.both = [];
 
   $scope.getUserMeetings = function () {
     $http({
@@ -136,7 +141,26 @@ app
     })
     .success(function (data) {
       console.log('Fetched meetings:', data);
-      $scope.meetings = data;
+      $scope.hosting = data;
+    })
+    .error(function (data) {
+      console.log('ERROR');
+    });
+
+    $http({
+      url: '/meeting/speaker/' + $rootScope.userid,
+      method: 'GET'
+    })
+    .success(function (data) {
+      console.log('Fetched meetings:', data);
+      $scope.speaking = data;
+      for (var i = 0; i < $scope.speaking.length; i++) {
+        for (var j = 0; j < $scope.hosting.length; j++) {
+          if ($scope.hosting[j].user_id === $scope.speaking[i].user_id) {
+            $scope.both.push($scope.speaking.splice(i, 1));
+          }
+        }
+      }
     })
     .error(function (data) {
       console.log('ERROR');
