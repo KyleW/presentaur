@@ -106,8 +106,9 @@ app
 
 // -- Dashboard for managing user's meetings.
 
-.controller('DashboardController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
+.controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
+  console.log($rootScope.userid);
   $http({
     url: '/meeting/owner/' + $rootScope.userid,
     method: 'GET'

@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'btford.socket-io'])
+var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
 
 .config(['$routeProvider', function ($routeProvider) {
   // all of these just append to <div ng-view> in index.html
