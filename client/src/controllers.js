@@ -59,7 +59,7 @@ app
 
 // -- Form for signing up to present at a meeting.
 
-.controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+.controller('SignupController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $scope.speakers = [];
   $http({
@@ -81,7 +81,7 @@ app
     console.log('ERROR');
   });
   $scope.addPresenter = function () {
-    $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url});
+    $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
     $scope.meeting = sharedMethods.getMeeting();
     sharedMethods.updateMeeting($scope.meeting);
@@ -94,13 +94,6 @@ app
 
     $scope.speaker = {name: '', url: ''};
   };
-  // -- this was an attempt to handle each speaker having an array of urls
-  // $scope.addUrlSlot = function () {
-  //   console.log($scope.speaker.url)
-  //   if ($scope.speaker.url.indexOf('') === -1){
-  //     $scope.speaker.url.push('');
-  //   }
-  // };
   $scope.speaker = {
     name: '',
     url: ''
@@ -112,7 +105,10 @@ app
 
 .controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
-  $rootScope.loggedIn = true;
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
   $cookieStore.put('userid', $rootScope.userid);
 
   $http({
@@ -126,6 +122,7 @@ app
   })
   .error(function (data) {
     console.log('ERROR');
+    $location.url('/');
   });
 
   $scope.getUserMeetings = function () {
@@ -135,12 +132,25 @@ app
     })
     .success(function (data) {
       console.log('Fetched meetings:', data);
-      $scope.meetings = data;
+      $scope.hosting = data;
+    })
+    .error(function (data) {
+      console.log('ERROR');
+    });
+
+    $http({
+      url: '/meeting/speaker/' + $rootScope.userid,
+      method: 'GET'
+    })
+    .success(function (data) {
+      console.log('Fetched meetings:', data);
+      $scope.speaking = data;
     })
     .error(function (data) {
       console.log('ERROR');
     });
   };
+
   $scope.getUserMeetings();
 
   // the create new presentaur form
