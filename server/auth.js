@@ -34,14 +34,14 @@ passport.use(new LocalStrategy(
 
 
 passport.use(new GoogleStrategy({
-    // returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
-    // realm: 'http://presentaur.herokuapp.com'
     returnURL: 'http://localhost:5000/auth/google/return',
     realm: 'http://localhost:5000'
+    // returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
+    // realm: 'http://presentaur.herokuapp.com'
   },
   function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier, profile: profile }, function(err, user) {
-      done(err, user);
+    User.findOrCreate(profile, function(err, user) {
+      return done(err, user);
     });
   }
 ));
@@ -50,12 +50,13 @@ passport.use(new GoogleStrategy({
 passport.use(new LinkedInStrategy({
     consumerKey: Config.LINKEDIN_API_KEY,
     consumerSecret: Config.LINKEDIN_SECRET_KEY,
-    callbackURL: "http://presentaur.herokuapp.com/auth/linkedin/return",
+    callbackURL: "http://localhost:5000/auth/linkedin/return",
+    // callbackURL: "http://presentaur.herokuapp.com/auth/linkedin/return",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline','picture-url']
   },
   function(token, tokenSecret, profile, done) {
     console.log(profile);
-    User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+    User.findOrCreate(profile, function (err, user) {
       return done(err, user);
     });
   }

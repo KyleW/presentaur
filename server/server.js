@@ -81,9 +81,9 @@ module.exports = function(){
       // res.redirect('/users/' + req.user.username);
   });
 
-
   // Google
   app.get('/auth/google', passport.authenticate('google'));
+
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/fail' }),
     function(req, res) {
@@ -94,13 +94,13 @@ module.exports = function(){
 
   // LinkedIn
   app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
+
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
-      console.log(req.authInfo);
+      console.log("Linkedin new user._id ",req.user._id);
       // Successful authentication, redirect home.
-      res.redirect('#/dashboard/'+req.authInfo._id);
-      // res.redirect('/success');
+      res.redirect('#/dashboard/'+req.user._id);
   });
 
   // Logout
