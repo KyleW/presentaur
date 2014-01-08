@@ -42,6 +42,13 @@ module.exports = {
     });
   },
 
+  remove: function(req, res){
+    var id = req.params.id;
+    dbHelpers.db.collection('meetings', function(err, collection){
+      collection.remove({_id: id});
+    });
+  },
+
   findByOwner: function(req, res){
     var owner_id = req.params.id;
     dbHelpers.db.collection('meetings',function(err,collection){
