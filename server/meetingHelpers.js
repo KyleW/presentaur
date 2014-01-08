@@ -42,11 +42,30 @@ module.exports = {
     });
   },
 
+  remove: function(req, res){
+    var id = req.params.id;
+    dbHelpers.db.collection('meetings', function(err, collection){
+      collection.remove({_id: id});
+    });
+  },
+
   findByOwner: function(req, res){
     var owner_id = req.params.id;
     dbHelpers.db.collection('meetings',function(err,collection){
       collection.find({owner_id: owner_id}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
+        else {
+          res.send(JSON.stringify(result));
+        }
+      });
+    });
+  },
+
+  findBySpeaker: function(req, res){
+    var speaker_id = req.params.id;
+    dbHelpers.db.collection('meetings', function(err, collection){
+      collection.find({speakers: [{user_id: speaker_id}]}).toArray(function(err, result){
+        if(err) { console.log("Looking for speakers in meeting failed ", err); }
         else {
           res.send(JSON.stringify(result));
         }
