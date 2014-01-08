@@ -10,7 +10,7 @@ module.exports = function(){
   var dbHelpers = require('./dbHelpers.js');
   var meeting = require('./meetingHelpers.js');
   var user = require('./userHelpers.js');
-  var presentation = require('./presentationHelpers.js');
+  // var presentation = require('./presentationHelpers.js');
   // var route = require('./router.js');
   // var flash = require('connect-flash');
 
