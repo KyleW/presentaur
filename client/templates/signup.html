@@ -1,16 +1,20 @@
-<h2>Sign up to be a presenter at<br />{{ meetingName }}</h2>
+<div class="container eighty">
+  <h2>Sign up to be a presenter at<br />{{ meetingName }}</h2>
 
-<div ng-repeat="presenter in speakers">
-  <h3>Name: {{ presenter.name }}</h3>
-  <p>Presenting: {{ presenter.url }}</p>
+  <div ng-repeat="presenter in speakers">
+    <hr />
+    <h3>Name: {{ presenter.name }}</h3>
+    <p>Presenting: {{ presenter.url }}</p>
+  </div>
+  <hr />
+
+  <form ng-submit="addPresenter()">
+    <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true" ng-hide="loggedIn">
+    <span ng-hide="loggedIn">or login with:</span>
+    <a ng-hide="loggedIn" href="auth/google">Google</a>
+    <a ng-hide="loggedIn" href="auth/linkedin">Linkedin</a>
+    <span ng-show="loggedIn">Sign up as {{username}}</span>
+    <input type="url" placeholder="Url of your presentation" ng-model="speaker.url" ng-required="true" style="width:250px">
+    <input type="submit" value="Sign Up">
+  </form>
 </div>
-
-<form ng-submit="addPresenter()" novalidate>
-  <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true" ng-hide="loggedIn">
-  <span ng-hide="loggedIn">or login with:</span>
-  <a ng-hide="loggedIn" href="auth/google">Google</a>
-  <a ng-hide="loggedIn" href="auth/linkedin">Linkedin</a>
-  <span ng-show="loggedIn">Sign up as {{username}}</span>
-  <input type="url" placeholder="Url of your presentation" ng-model="speaker.url" ng-required="true" style="width:250px">
-  <input type="submit" value="Sign Up">
-</form>
