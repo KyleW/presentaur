@@ -81,9 +81,9 @@ module.exports = function(){
       // res.redirect('/users/' + req.user.username);
   });
 
-
   // Google
   app.get('/auth/google', passport.authenticate('google'));
+
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/fail' }),
     function(req, res) {
@@ -94,6 +94,7 @@ module.exports = function(){
 
   // LinkedIn
   app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
+
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
