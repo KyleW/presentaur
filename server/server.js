@@ -89,6 +89,7 @@ module.exports = function(){
   app.get('/meeting/:id', meeting.get);
   app.get('/meeting/owner/:id', meeting.findByOwner);
   app.get('/meeting/speaker/:id', meeting.findBySpeaker);
+  app.delete('/meeting/:id', meeting.remove);
 
   // Presentations
   // app.get('/presentation/:id', presentation.connect);
