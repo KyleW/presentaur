@@ -41,17 +41,20 @@ app
       $rootScope.id = data._id;
       sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
-      $location.url('/account/' + $rootScope.id);
+      $location.url('/dashboard/' + $rootScope.userid);
     })
     .error(function (data) {
       console.log('ERROR! recieved:', data);
     });
   };
 })
+
+
+// -- DEPRECATED.
 // -- Gives you links to send out to speakers, access your dashboard, and view presentation
-.controller('AccountController', function ($scope, sharedMethods) {
-  $scope.meeting = sharedMethods.getMeeting();
-})
+// .controller('AccountController', function ($scope, sharedMethods) {
+//   $scope.meeting = sharedMethods.getMeeting();
+// })
 
 
 // -- Form for signing up to present at a meeting.
@@ -101,7 +104,56 @@ app
 })
 
 
-// -- Dashboard for DJing/MCing a meeting.
+// -- Dashboard for managing user's meetings.
+
+.controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
+  $rootScope.userid = $location.path().split('/')[2];
+  $cookieStore.put('userid', $rootScope.userid);
+  $http({
+    url: '/meeting/owner/' + $rootScope.userid,
+    method: 'GET'
+  })
+  .success(function (data) {
+    $scope.meetings = data;
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+
+  // the create new presentaur form
+  $scope.meetingName = '';
+  $scope.createMeeting = function () {
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: {
+        meetingName: $scope.meetingName
+      }
+    })
+    .success(function (data) {
+      $rootScope.id = data._id;
+      sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
+      $scope.meetingName = '';
+      
+      $http({
+        url: '/meeting/owner/' + $rootScope.userid,
+        method: 'GET'
+      })
+      .success(function (data) {
+        $scope.meetings = data;
+      })
+      .error(function (data) {
+        console.log('ERROR');
+      });
+    })
+    .error(function (data) {
+      console.log('ERROR! recieved:', data);
+    });
+  };
+})
+
+
+// -- Controller for DJing/MCing a meeting.
 
 .controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];

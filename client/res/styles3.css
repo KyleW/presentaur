@@ -1,6 +1,6 @@
 /* -- COLORS
-header/text #141E25
-background  #28465B
+header/text #151515
+background  #333
 background-lite #D6D9FF
 
  -- logo:
@@ -13,9 +13,9 @@ orange      #FF9B4D
 body {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   padding-top: 60px;
-  background-color: #28465B;
+  background-color: #333;
   margin: 0;
-  color: #141E25;
+  color: #151515;
 }
 
 .backgroundlite {
@@ -35,32 +35,7 @@ body {
   background-color: #F4F6FF;
   padding: 1px 10px 10px 10px;
   border-radius: 3px;
-  color: #141E25;
-}
-
-.loginbutton {
-  background-color: #C4FFD3;
-  border: 3px solid #141E25;
-  border-radius: 5px;
-  margin-top: 10px;
-  text-decoration: none;
-  padding: 5px;
-}
-
-.loginbutton:hover {
-  background-color: #A1D1AD;
-}
-
-.textcentered {
-  text-align: center;
-}
-
-.loginbuttons {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  margin-bottom: 15px;
-  left: -5px;
+  color: #151515;
 }
 
 header {
@@ -71,7 +46,7 @@ header {
   width: 100%;
   min-width: 700px;
   height: 50px;
-  background-color: #141E25;
+  background-color: #151515;
 }
 
 header a {
@@ -105,8 +80,8 @@ form input {
 }
 
 input.submit {
-  background-color: #FFC24D;
-  border: 3px solid #141E25;
+  background-color: #C4FFD3;
+  border: 3px solid #151515;
   border-radius: 5px;
   margin-top: 10px;
 }
@@ -156,28 +131,17 @@ input.submit {
   font-family: Arial;
 }
 
-.dashboardMeeting {
-  border: 2px solid #141E25;
-  border-radius: 5px;
-  width: 80%;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #C4FFD3;
-  overflow: hidden;
-  position: relative;
-}
-
 .screen {
-  width: 435px;
-  height: 300px;
+  width: 480px;
+  height: 238px;
   position: relative;
   top: 37px;
   left: 123px;
-  padding: 15px;
+  padding: 0 15px;
 }
 
 .info {
-  background-color: #141E25;
+  background-color: #151515;
   color: #91E9FF;
   width: 100%;
   padding: 10px 0;
@@ -224,7 +188,7 @@ input.submit {
 
 .clickable {
   cursor: pointer;
-  color: #141E25;
+  color: #151515;
   display: inline-block;
 }
 
@@ -254,7 +218,7 @@ iframe.fullscreen {
 .djcontainer {
   max-width: 500px;
   min-width: 335px;
-  background-color: #141E25;
+  background-color: #151515;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 100px;
@@ -270,7 +234,7 @@ iframe.fullscreen {
   background-color: #91E9FF;
   padding: 6px;
   border-radius: 6px;
-  color: #141E25;
+  color: #151515;
   display: inline-block;
 }
 
@@ -283,7 +247,7 @@ iframe.fullscreen {
 }
 
 .speaker {
-  border: 2px solid #141E25;
+  border: 2px solid #151515;
   border-radius: 5px;
   width: 80%;
   padding-left: 20px;
@@ -309,6 +273,5 @@ iframe.fullscreen {
   font-size: 0.6em;
   text-align: center;
   text-decoration: none;
-  color: #28465B;
-  margin-top: 20px;
+  color: #333;
 }
