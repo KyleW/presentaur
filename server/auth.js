@@ -40,8 +40,8 @@ passport.use(new GoogleStrategy({
     // realm: 'http://presentaur.herokuapp.com'
   },
   function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier, profile: profile }, function(err, user) {
-      done(err, user);
+    User.findOrCreate(profile, function(err, user) {
+      return done(err, user);
     });
   }
 ));
@@ -56,7 +56,7 @@ passport.use(new LinkedInStrategy({
   },
   function(token, tokenSecret, profile, done) {
     console.log(profile);
-    User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+    User.findOrCreate(profile, function (err, user) {
       return done(err, user);
     });
   }
