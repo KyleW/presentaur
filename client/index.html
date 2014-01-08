@@ -6,6 +6,7 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="bower_components/angular-socket-io/socket.js"></script>
   <script src="src/app.js"></script>
@@ -14,7 +15,7 @@
 
 </head>
 <body>
-  <header>
+  <header ng-hide="">
     <div class="logo" style="display:inline-block;">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="40px" height="40px" viewBox="-346 256 100 100" xml:space="preserve">
         <g transform="scale(0.4 0 0)">
@@ -24,8 +25,8 @@
       </svg>
     </div>
     <a href="#/new">New Presentaur</a>
-    <a href="#/dj/{{id}}">DJ Your Presentaur</a>
-    <a href="#/present/{{id}}">Begin Presentaur</a>
+    <a href="#/dj/{{id}}">My Presentaurs</a>
+    <a>Welcome, {{username}}</a>
   </header>
   <div class="container" ng-view>
   </div>
