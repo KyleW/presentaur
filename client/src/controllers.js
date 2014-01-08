@@ -61,16 +61,20 @@ app
 
 .controller('SignupController', function ($rootScope, $scope, $http, $location, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
+  $scope.speakers = [];
   $http({
     url: '/meeting/' + $rootScope.id,
     method: 'GET'
   })
   .success(function (data) {
+    console.log(data);
     sharedMethods.updateMeeting(data[0]);
     $scope.meeting = data[0];
-    $scope.current = data[0].current;
-    $scope.speakers = data[0].speakers;
-    $scope.queue = $scope.speakers.slice($scope.current);
+    if (data[0].speakers) {
+      $scope.current = data[0].current;
+      $scope.speakers = data[0].speakers;
+      $scope.queue = $scope.speakers.slice($scope.current);
+    }
     $scope.meetingName = data[0].meetingName;
   })
   .error(function (data) {
@@ -108,26 +112,47 @@ app
 
 .controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
+  $rootScope.loggedIn = true;
   $cookieStore.put('userid', $rootScope.userid);
+
   $http({
-    url: '/meeting/owner/' + $rootScope.userid,
+    url: '/user/' + $rootScope.userid,
     method: 'GET'
   })
   .success(function (data) {
-    $scope.meetings = data;
+    $rootScope.user = data[0];
+    $rootScope.username = data[0].name.givenName;
+    $rootScope.loggedIn = true;
   })
   .error(function (data) {
     console.log('ERROR');
   });
 
+  $scope.getUserMeetings = function () {
+    $http({
+      url: '/meeting/owner/' + $rootScope.userid,
+      method: 'GET'
+    })
+    .success(function (data) {
+      console.log('Fetched meetings:', data);
+      $scope.meetings = data;
+    })
+    .error(function (data) {
+      console.log('ERROR');
+    });
+  };
+  $scope.getUserMeetings();
+
   // the create new presentaur form
   $scope.meetingName = '';
   $scope.createMeeting = function () {
+    console.log('Posting meeting', $scope.meetingName);
     $http({
       url: '/meeting/new',
       method: 'POST',
       data: {
-        meetingName: $scope.meetingName
+        meetingName: $scope.meetingName,
+        owner_id: $rootScope.userid
       }
     })
     .success(function (data) {
@@ -135,16 +160,7 @@ app
       sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
       
-      $http({
-        url: '/meeting/owner/' + $rootScope.userid,
-        method: 'GET'
-      })
-      .success(function (data) {
-        $scope.meetings = data;
-      })
-      .error(function (data) {
-        console.log('ERROR');
-      });
+      $scope.getUserMeetings();
     })
     .error(function (data) {
       console.log('ERROR! recieved:', data);
