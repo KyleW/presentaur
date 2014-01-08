@@ -107,12 +107,17 @@ module.exports = function(){
   });
 
   // Google
-  app.get('/auth/google', passport.authenticate('google'));
+  // app.get('/auth/google', passport.authenticate('google')); //OpenId
+  app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                                            'https://www.googleapis.com/auth/userinfo.email'] })); //OAuth 2
+
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/login' }),
     function(req, res) {
       res.redirect('#/dashboard/'+req.user._id);
   });
+
+
 
   // LinkedIn
   app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
