@@ -36,7 +36,6 @@ module.exports = {
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
         else {
-          console.log("Found the meeting you're looking for" , result);
           res.send(JSON.stringify(result));
         }
       });
@@ -49,7 +48,6 @@ module.exports = {
       collection.find({_id: owner_id}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
         else {
-          console.log("Found the meeting you're looking for" , result);
           res.send(JSON.stringify(result));
         }
       });
