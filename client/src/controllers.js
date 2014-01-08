@@ -130,6 +130,8 @@ app
     $location.url('/');
   });
 
+  $scope.both = [];
+
   $scope.getUserMeetings = function () {
     $http({
       url: '/meeting/owner/' + $rootScope.userid,
@@ -150,6 +152,13 @@ app
     .success(function (data) {
       console.log('Fetched meetings:', data);
       $scope.speaking = data;
+      for (var i = 0; i < $scope.speaking.length; i++) {
+        for (var j = 0; j < $scope.hosting.length; j++) {
+          if ($scope.hosting[j].user_id === $scope.speaking[i].user_id) {
+            $scope.both.push($scope.speaking.splice(i, 1));
+          }
+        }
+      }
     })
     .error(function (data) {
       console.log('ERROR');
