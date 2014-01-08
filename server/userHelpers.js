@@ -56,7 +56,7 @@ module.exports = {
 
   findOrCreate: function(user,callback){
     dbHelpers.db.collection('users',function(err,collection){
-      collection.find(user.email).toArray(function(err,result){
+      collection.find({email: user.email}).toArray(function(err,result){
         if(err) {console.log("Looking for a user and failed failed ",err);}
         else {
           if(result.length > 0){
