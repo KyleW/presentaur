@@ -108,7 +108,24 @@ app
 
 .controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
+  $rootScope.loggedIn = true;
   $cookieStore.put('userid', $rootScope.userid);
+
+  $http({
+    url: '/user/' + $rootScope.userid,
+    method: 'GET'
+  })
+  .success(function (data) {
+    console.log(data);
+    $rootScope.user = data[0];
+    $rootScope.username = data[0].name.givenName;
+    console.log('Already logged in as', $rootScope.username);
+    $rootScope.loggedIn = true;
+  })
+  .error(function (data) {
+    console.log('ERROR');
+  });
+
   $http({
     url: '/meeting/owner/' + $rootScope.userid,
     method: 'GET'
