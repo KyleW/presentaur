@@ -212,6 +212,14 @@ input.submit {
   text-align: left;
 }
 
+.speaking {
+  background-color: #FFC24D;
+}
+
+.both {
+  background-color: #C4FFD3;
+}
+
 .meetingName .name {
   font-size: 1.2em;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
