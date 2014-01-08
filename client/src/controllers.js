@@ -28,6 +28,11 @@ app
 // -- Currently handles creation of new meetings.
 
 .controller('NewController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
+  $cookieStore.put('userid', $rootScope.userid);
   $scope.meetingName = '';
   $scope.createMeeting = function () {
     $http({

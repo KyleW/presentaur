@@ -48,6 +48,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     })
     .error(function (data) {
       console.log('ERROR');
+      $cookieStore.remove('userid');
     });
   }
   $rootScope.logout = function () {
