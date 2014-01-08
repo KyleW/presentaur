@@ -12,7 +12,7 @@ module.exports = function(){
   var user = require('./userHelpers.js');
   var presentation = require('./presentationHelpers.js');
   // var route = require('./router.js');
-  var flash = require('connect-flash');
+  // var flash = require('connect-flash');
 
 
   // Auth modules
@@ -25,8 +25,6 @@ module.exports = function(){
   app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.static('client'));
-    
-    // Auth
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'keyboard cat' }));
     app.use(passport.initialize());
@@ -66,40 +64,29 @@ module.exports = function(){
 
 
   // Auth
+  app.get('/user/:id', user.get);
 
   // local
   app.post('/newUser', user.create);
-
   app.post('/login',
-    passport.authenticate('local',{
-      successRedirect: '/success',
-      failureRedirect: '/fail'
-     }),
+    passport.authenticate('local', { failureRedirect: '/login' }),
     function(req, res) {
-      // If this function gets called, authentication was successful.
-      // `req.user` contains the authenticated user.
-      // res.redirect('/users/' + req.user.username);
+      res.redirect('#/dashboard/'+req.user._id);
   });
 
   // Google
   app.get('/auth/google', passport.authenticate('google'));
-
   app.get('/auth/google/return',
-    passport.authenticate('google', {failureRedirect: '/fail' }),
+    passport.authenticate('google', {failureRedirect: '/login' }),
     function(req, res) {
-      console.log(req.user);
-      // Successful authentication, redirect home.
       res.redirect('#/dashboard/'+req.user._id);
   });
 
   // LinkedIn
   app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
-
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
-      console.log("Linkedin new user._id ",req.user._id);
-      // Successful authentication, redirect home.
       res.redirect('#/dashboard/'+req.user._id);
   });
 
