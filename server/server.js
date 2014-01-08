@@ -12,7 +12,7 @@ module.exports = function(){
   var user = require('./userHelpers.js');
   var presentation = require('./presentationHelpers.js');
   // var route = require('./router.js');
-  var flash = require('connect-flash');
+  // var flash = require('connect-flash');
 
 
   // Auth modules
@@ -25,8 +25,6 @@ module.exports = function(){
   app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.static('client'));
-    
-    // Auth
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'keyboard cat' }));
     app.use(passport.initialize());
@@ -66,6 +64,7 @@ module.exports = function(){
 
 
   // Auth
+  app.get('/user/:id', user.get);
 
   // local
   app.post('/newUser', user.create);
