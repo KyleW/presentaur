@@ -157,6 +157,8 @@ app
 
 .controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
+  var room = $rootScope.id;
+
   $http({
     url: '/meeting/' + $rootScope.id,
     method: 'GET'
@@ -172,6 +174,13 @@ app
   .error(function (data) {
     console.log('ERROR');
   });
+
+  //Socket info to connect to room unique to presentation
+  socket.on('connect', function (data) {
+    socket.emit('dj join', room);
+  });
+
+
   $scope.remove = function (speaker) {
     $scope.speakers.splice($scope.speakers.indexOf(speaker), 1);
     sharedMethods.updateQueue($scope.speakers);
@@ -256,6 +265,8 @@ app
 
 .controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, $timeout, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
+  var room = $rootScope.id;
+
   $http({
     url: '/meeting/' + $rootScope.id,
     method: 'GET'
@@ -276,6 +287,11 @@ app
   $scope.started = false;
 
   //socket.io stuff
+
+  //Connects to room unique to meeting
+  socket.on('connect', function (data) {
+    socket.emit('presentation join', room);
+  });
 
   socket.on('fade out', function () {
     $scope.current++;
