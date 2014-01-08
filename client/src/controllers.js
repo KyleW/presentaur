@@ -85,6 +85,7 @@ app
   .error(function (data) {
     console.log('ERROR');
   });
+
   $scope.addPresenter = function () {
     $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
@@ -97,10 +98,10 @@ app
       data: sharedMethods.getMeeting()
     });
 
-    $scope.speaker = {name: '', url: ''};
+    $scope.speaker = {name: $rootScope.username || '', url: ''};
   };
   $scope.speaker = {
-    name: '',
+    name: $rootScope.username || '',
     url: ''
   };
 })
