@@ -30,7 +30,6 @@ module.exports = {
     var username = req.body.username;
     var password = req.body.password;
     var doc = {'username': username, 'password': password};
-
     dbHelpers.db.collection('users', function (err, collection){
       collection.save(doc, {w:1}, function (err, result) {
         if(err){

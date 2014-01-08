@@ -30,10 +30,8 @@ module.exports = {
     });
   },
 
-
   get: function(req, res){
     var id = req.params.id;
-
     dbHelpers.db.collection('meetings',function(err,collection){
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
