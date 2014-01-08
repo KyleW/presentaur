@@ -109,7 +109,6 @@ app
 .controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.userid = $location.path().split('/')[2];
   $cookieStore.put('userid', $rootScope.userid);
-  console.log($cookieStore.get('userid'));
   $http({
     url: '/meeting/owner/' + $rootScope.userid,
     method: 'GET'

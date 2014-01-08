@@ -34,7 +34,25 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   .otherwise({redirectTo: '/new'});
 }])
 
-.run(function ($rootScope, $cookies, $cookieStore) {
+.run(function ($rootScope, $cookies, $cookieStore, $http) {
   $rootScope.id = '';
   $rootScope.userid = $cookieStore.get('userid') || '';
+  $rootScope.loggedIn = false;
+  if (!!$rootScope.userid) {
+    $http({
+      url: '/user/' + $rootScope.userid,
+      method: 'GET'
+    })
+    .success(function (data) {
+      console.log(data);
+      $rootScope.user = data;
+      $rootScope.username = data.name;
+    })
+    .error(function (data) {
+      console.log('ERROR');
+    });
+  } else {
+
+    console.log('Already logged in as', $rootScope.username);
+  }
 });
