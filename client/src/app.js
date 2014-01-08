@@ -34,7 +34,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   .otherwise({redirectTo: '/new'});
 }])
 
-.run(function ($rootScope) {
+.run(function ($rootScope, $cookies, $cookieStore) {
   $rootScope.id = '';
-  $rootScope.userid = '';
+  $rootScope.userid = $cookieStore.get('userid') || '';
 });
