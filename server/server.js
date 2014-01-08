@@ -10,7 +10,7 @@ module.exports = function(){
   var dbHelpers = require('./dbHelpers.js');
   var meeting = require('./meetingHelpers.js');
   var user = require('./userHelpers.js');
-  var presentation = require('./presentationHelpers.js');
+  // var presentation = require('./presentationHelpers.js');
   // var route = require('./router.js');
   // var flash = require('connect-flash');
 
@@ -25,6 +25,8 @@ module.exports = function(){
   app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.static('client'));
+
+    // Auth
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'keyboard cat' }));
     app.use(passport.initialize());
@@ -33,17 +35,45 @@ module.exports = function(){
 
   //Socket connections
   io.sockets.on('connection', function (socket) {
-    socket.on('fade out', function(){
-      io.sockets.emit('fade out');
+
+    console.log('socket connected ' + socket);
+
+    socket.on('dj join', function(room){
+      socket.set('room', room);
+      console.log('dj is connected to room: ' + room);
+      socket.join(room);
     });
+
+    socket.on('presentation join', function(room){
+      socket.set('room', room);
+      console.log('presentation is connected to room: ' + room);
+      socket.join(room);
+    });
+
+    socket.on('fade out', function(){
+      socket.get('room', function(err, room){
+        io.sockets.in(room).emit('fade out');
+        console.log('fade out was called for clients in room: ' + room);
+      });
+    });
+
     socket.on('fade in', function(){
-      io.sockets.emit('fade in');
+      socket.get('room', function(err, room){
+        io.sockets.in(room).emit('fade in');
+        console.log('fade in was called for clients in room: ' + room);
+      });
     });
     socket.on('fullscreen', function(){
-      io.sockets.emit('fullscreen');
+      socket.get('room', function(err, room){
+        io.sockets.in(room).emit('fullscreen');
+        console.log('fullscreen was called for clients in room: ' + room);
+      });
     });
     socket.on('start over', function(){
-      io.sockets.emit('start over');
+      socket.get('room', function(err, room){
+        io.sockets.in(room).emit('start over');
+        console.log('start over was called for clients in room: ' + room);
+      });
     });
   });
 
