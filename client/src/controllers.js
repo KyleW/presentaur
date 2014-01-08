@@ -67,6 +67,7 @@ app
 .controller('SignupController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   $scope.speakers = [];
+
   $http({
     url: '/meeting/' + $rootScope.id,
     method: 'GET'
@@ -184,7 +185,7 @@ app
       $rootScope.id = data._id;
       sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
-      
+
       $scope.getUserMeetings();
     })
     .error(function (data) {
