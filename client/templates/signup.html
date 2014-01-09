@@ -3,10 +3,13 @@
 
   <div ng-repeat="presenter in speakers">
     <hr />
-    <h3>Name: {{ presenter.name }}</h3>
-    <p>Presenting: {{ presenter.url }}</p>
+    <h3>Name: {{ presenter.name }}</h3><br />
+    <span ng-hide="editing">Presenting: {{ presenter.url }}</span>
+    <form class="edit" ng-show="editing" ng-submit="save()"><input type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px"></form>
+    <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && !editing" ng-click="edit()">Edit</h3>
+    <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && editing" ng-click="save(this)">Save</h3>
   </div>
-  <hr />
+  <hr /><br />
 
   <form ng-submit="addPresenter()">
     <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true" ng-hide="loggedIn">

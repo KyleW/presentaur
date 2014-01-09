@@ -90,8 +90,9 @@ app
   $scope.addPresenter = function () {
     $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
-    $scope.meeting = sharedMethods.getMeeting();
-    sharedMethods.updateMeeting($scope.meeting);
+    // $scope.meeting = sharedMethods.getMeeting();
+    // sharedMethods.updateMeeting($scope.meeting);
+    // what?
 
     $http({
       url: '/meeting/new',
@@ -104,6 +105,20 @@ app
   $scope.speaker = {
     name: $rootScope.username || '',
     url: ''
+  };
+
+  $scope.editing = false;
+  $scope.edit = function () {
+    $scope.editing = true;
+  };
+  $scope.save = function () {
+    $scope.editing = false;
+
+    $http({
+      url: '/meeting/new',
+      method: 'POST',
+      data: sharedMethods.getMeeting()
+    });
   };
 })
 
