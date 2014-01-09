@@ -3,11 +3,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
 .config(['$routeProvider', function ($routeProvider) {
   // all of these just append to <div ng-view> in index.html
   $routeProvider.when('/', {
-    //controller: 'SplashController',
     templateUrl: 'templates/splash.html'
-  }).when('/new', {
-    controller: 'NewController',
-    templateUrl: 'templates/new.html'
   }).when('/signup/:id', {
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
