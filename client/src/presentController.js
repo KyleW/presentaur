@@ -60,9 +60,10 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
   socket.on('start over', function () {
     $scope.current = 0;
     $scope.frameSize = 'windowed';
+    $scope.transition = 'fadeout';
     sharedMethods.updateCurrent(0);
     $scope.started = false;
-    $scope.speaker = $scope.speakers[$scope.current];
+    $scope.speaker = $scope.speakers[0];
     $scope.speakerName = $scope.speaker.name;
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
   });
