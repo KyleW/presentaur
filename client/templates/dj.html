@@ -1,8 +1,8 @@
 <div class="djcontainer">
-  <h2>DJ Control Panel</h2>
-
-  <h2>Presenters:</h2>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<meta name="viewport" content="width=device-width" />
   <div class="speakers">
+    <h2>{{meetingName}}</h2>
     <div class="speaker" ng-repeat="speaker in queue">
       <h3 class="black">{{ speaker.name }}</h3>
       <div class="controls">
@@ -31,6 +31,6 @@
   <br>
   <h2 ng-show="fade" ng-click="fadeout()" class="clickable" style="float: left;">FADE OUT</h2>
   <h2 ng-hide="fade" ng-click="fadein()" class="clickable" style="float: left; margin-right: 20px;">FADE IN</h2>
-  <h2 ng-click="fullscreen()" class="clickable" style="float: right;">FULLSCREEN</h2>
-  <h2 ng-click="startOver()" class="clickable">START OVER</h2>
+  <h2 ng-hide="started" ng-click="begin()" class="clickable" style="float: right;">BEGIN</h2>
+  <h2 ng-show="started" ng-click="startOver()" class="clickable" style="float: right;">RESTART</h2>
 </div>
