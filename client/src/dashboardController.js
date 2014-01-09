@@ -1,13 +1,14 @@
 // -- Dashboard for managing user's meetings.
 
 app.controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
-  $rootScope.userid = $location.path().split('/')[2];
-  if (!$rootScope.userid) {
+  if ($cookies.login !== '1' && $location.path().split('/')[2] !== $rootScope.userid) {
     $location.url('/');
     return;
   }
-  $cookieStore.put('userid', $rootScope.userid);
-
+  delete $cookies.login;
+  $rootScope.userid = $location.path().split('/')[2];
+  $cookies.userid = escape(JSON.stringify($rootScope.userid));
+  $rootScope.loggedIn = true;
   $http({
     url: '/user/' + $rootScope.userid,
     method: 'GET'
@@ -15,7 +16,6 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
   .success(function (data) {
     $rootScope.user = data[0];
     $rootScope.username = data[0].name.givenName;
-    $rootScope.loggedIn = true;
   })
   .error(function (data) {
     console.log('ERROR');
@@ -46,7 +46,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
         for (var j = 0; j < $scope.hosting.length; j++) {
           if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
             $scope.both.push($scope.speaking.splice(i, 1)[0]);
-            $scope.hosting.splice(j, 1);
+            $scope.hosting.splice(j-1, 1);
             i--;
             j--;
             break;

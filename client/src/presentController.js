@@ -1,6 +1,6 @@
 // -- Container page for slideshows to overlay presentaur functionality
 
-app.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, $timeout, socket, sharedMethods) {
+app.controller('PresentController', function ($rootScope, $scope, $sce, $location, $http, $cookies, $timeout, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   var room = $rootScope.id;
 
