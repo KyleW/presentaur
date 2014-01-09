@@ -1,23 +1,55 @@
 <div class="container eighty">
-  <h2>Sign up to be a presenter at<br />{{ meetingName }}</h2>
+  <span class='sup'>
+    <h2>Add Your <br>
+      Presentation to <br>
+      <span style='font-style: italic; color: #91E9FF; font-weight: 100'>
+        {{ meetingName }}
+      </span>
+     </h2>
+  </span>
 
-  <div ng-repeat="presenter in speakers">
+  <form ng-submit="addPresenter()">
+    <div class='acb'>
+        <div ng-hide='loggedIn'>
+          <span>Name</span>
+          <br>
+          <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
+          <br>
+          <span>or login with:</span>
+          <a class="orange" href="auth/google" ng-click="login()">Google</a> -
+          <a class="orange" href="auth/linkedin" ng-click="login()">Linkedin</a>
+          <br>
+        </div>
+        <span ng-show="loggedIn">You will be presenting as
+        <br>
+        <br>
+        <span class='yellow' style='font-size: 1.3em; font-family: Arial'>
+         {{username}}
+        </span>
+      </span>
+      <br>
+      <br>
+      <div>
+        <span>Presentation URL</span>
+        <input type="url" placeholder="http://www.example.com" ng-model="speaker.url" ng-required="true" style="width:250px">
+        <br>
+        <br>
+        <br>
+        <input class='submit' type="submit" value="Sign Up">
+      </div>
+    </div>
+  </form>
+
+  <div class='presenters' ng-repeat="presenter in speakers">
     <hr />
     <h3>Name: {{ presenter.name }}</h3><br />
     <span ng-hide="editing">Presenting: {{ presenter.url }}</span>
-    <form class="edit" ng-show="editing" ng-submit="save()"><input type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px"></form>
+    <form class="edit" ng-show="editing" ng-submit="save()">
+      <input type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
+    </form>
     <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && !editing" ng-click="edit()">Edit</h3>
     <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && editing" ng-click="save(this)">Save</h3>
   </div>
-  <hr /><br />
+  <br />
 
-  <form ng-submit="addPresenter()">
-    <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true" ng-hide="loggedIn">
-    <span ng-hide="loggedIn">or login with:</span>
-    <a class="orange" ng-hide="loggedIn" href="auth/google" ng-click="login()">Google</a> - 
-    <a class="orange" ng-hide="loggedIn" href="auth/linkedin" ng-click="login()">Linkedin</a>
-    <span ng-show="loggedIn">Sign up as {{username}}</span>
-    <input type="url" placeholder="Url of your presentation" ng-model="speaker.url" ng-required="true" style="width:250px">
-    <input type="submit" value="Sign Up">
-  </form>
 </div>
