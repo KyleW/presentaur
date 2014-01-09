@@ -11,7 +11,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
-    if (err){console.log("unable to find user by id");}
+    if (err){console.log("unable to find user by id ", err);}
     done(err, user);
   });
 });
@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
       pictureUrl: profile._json.picture
     };
     User.findOrCreate(newUser, function(err, user) {
-      if (err){console.log("unable to find or create  a user after logging in with google");}
+      if (err){console.log("unable to find or create  a user after logging in with google ",err);}
       return done(err, user);
     });
   }
@@ -54,7 +54,7 @@ passport.use(new LinkedInStrategy({
       pictureUrl: profile._json.pictureUrl
     };
     User.findOrCreate(newUser, function (err, user) {
-      if (err){console.log("unable to find or create  a user after logging in with LinkedIn");}
+      if (err){console.log("unable to find or create  a user after logging in with LinkedIn ",err);}
       return done(err, user);
     });
   }
