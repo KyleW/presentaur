@@ -13,7 +13,6 @@
   <script src="src/services.js"></script>
   <script src="src/dashboardController.js"></script>
   <script src="src/djController.js"></script>
-  <script src="src/newController.js"></script>
   <script src="src/presentController.js"></script>
   <script src="src/signupController.js"></script>
 
@@ -53,7 +52,6 @@
           <g>
         </svg>
       </a>
-      <a ng-hide="!loggedIn" href="#/new" style="top:-12px;">New Presentaur</a>
       <a ng-hide="!loggedIn" href="#/dashboard/{{userid}}" style="top:-12px;">My Presentaurs</a>
       <div style="float:right;margin-top: 20px" ng-hide="!loggedIn">
         <span style="color:#91E9FF;">{{username}}</span>

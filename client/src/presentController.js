@@ -15,6 +15,7 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
     $scope.speakerName = $scope.speaker.name;
     $scope.current = data[0].current;
+    $scope.meetingName = data[0].meetingName;
   })
   .error(function (data) {
     console.log('ERROR');
@@ -55,6 +56,12 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
       $scope.started = true;
       $scope.transition = 'fadeout';
     }
+  });
+
+  socket.on('begin', function () {
+    $scope.frameSize = 'fullscreen';
+    $scope.started = true;
+    $scope.transition = 'fadeout';
   });
 
   socket.on('start over', function () {
