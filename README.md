@@ -10,4 +10,4 @@ Once the meeting begins, the meeting owner enters DJ mode. The meeting owner see
 Presentaur is live on the web at: http://presentaur.herokuapp.com
 
 The Stack
-Mongo is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
+Presentaur is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
