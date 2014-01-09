@@ -16,8 +16,8 @@
           <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
           <br>
           <span>or login with:</span>
-          <a class="orange" href="auth/google" ng-click="login()">Google</a> -
-          <a class="orange" href="auth/linkedin" ng-click="login()">Linkedin</a>
+          <a class="orange" href="auth/google" ng-click="login(true)">Google</a> -
+          <a class="orange" href="auth/linkedin" ng-click="login(true)">Linkedin</a>
           <br>
         </div>
         <span ng-show="loggedIn">You will be presenting as
@@ -41,14 +41,22 @@
   </form>
 
   <div class='presenters' ng-repeat="presenter in speakers">
-    <hr />
-    <h3>Name: {{ presenter.name }}</h3><br />
-    <span ng-hide="editing">Presenting: {{ presenter.url }}</span>
+    <h3>
+      <span class='su'>Name: {{ presenter.name }}</span>
+    </h3>
+    <br />
+    <span ng-hide="editing">
+      <span class='su'><span style='font-weight: bold'>Presenting: </span>{{ presenter.url }}</span>
+    </span>
     <form class="edit" ng-show="editing" ng-submit="save()">
       <input type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
     </form>
-    <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && !editing" ng-click="edit()">Edit</h3>
-    <h3 class="orange" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && editing" ng-click="save(this)">Save</h3>
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && !editing" ng-click="edit()">
+      Edit
+    </h3>
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && editing" ng-click="save(this)">
+      Save
+    </h3>
   </div>
   <br />
 
