@@ -97,6 +97,11 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
       $scope.fade = false;
     }
   };
+  $scope.begin = function () {
+    $scope.fade = false;
+    $scope.started = true;
+    socket.emit('begin');
+  };
   $scope.startOver = function () {
     $scope.current = 0;
     $scope.fade = true;
