@@ -18,6 +18,12 @@ body {
   color: #141E25;
 }
 
+@media (max-width: 350px) {
+  body {
+    font-size: 0.8em;
+  }
+}
+
 .backgroundlite {
   background-color: #D6F6FF;
   width: 700px;
@@ -353,7 +359,6 @@ iframe.fullscreen {
 
 .djcontainer {
   max-width: 500px;
-  min-width: 300px;
   background-color: #141E25;
   padding-left: 50px;
   padding-right: 50px;
@@ -374,12 +379,33 @@ iframe.fullscreen {
   display: inline-block;
 }
 
-.speakers {
-  height: 300px;
-  overflow-y: auto;
-  width: 90%;
-  max-width: 500px;
-  margin: 0 auto;
+@media (max-width: 350px) {
+  .speakers {
+    height: 400px;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;  }
+}
+
+@media (min-width: 350px) and (max-width: 500px) {
+  .speakers {
+    height: 500px;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 500px) {
+  .speakers {
+    height: 600px;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
 
 .speaker {
@@ -394,14 +420,12 @@ iframe.fullscreen {
 }
 
 .controls {
-  position: absolute;
-  right: 10px;
-  top: -15px;
-  font-size: 1.6em;
+  float: right;
+  margin-top: -16px;
+  font-size: 1.8em;
   line-height: 0;
-  height: 120px;
-  width: 120px;
-  background-color: #C4FFD3;
+  height: 50px;
+  width: 110px;
   z-index: 100;
 }
 
