@@ -403,3 +403,24 @@ iframe.fullscreen {
   color: #28465B;
   margin-top: 20px;
 }
+
+.acb {
+  width: 300px;
+  height: 250px;
+  background-color: #141E25;
+  border-radius: 5px;
+  padding: 30px;
+  float:right;
+  margin-bottom: 20px;
+  border: 2px solid black;
+}
+
+.presenters {
+  clear: both;
+  display: block;
+}
+
+.sup {
+  float: left;
+  font-size: 2.5em;
+}
