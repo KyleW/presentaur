@@ -25,6 +25,12 @@ module.exports = function(){
 
     // Auth
     app.use(express.cookieParser());
+    app.use(function(req,res,next){
+      var lastpage = req.headers.referrer;
+      console.log('lastpage =========== ', req.headers.referer);
+      res.cookie('lastpage', lastpage, { maxAge: 900000, httpOnly: false});
+      next();
+    });
     app.use(express.session({ secret: Config.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
