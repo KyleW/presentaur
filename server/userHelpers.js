@@ -31,7 +31,7 @@ module.exports = {
   findById:function(id, callback){
     dbHelpers.db.collection('users',function(err,collection){
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,user){
-        if(err) {console.log("Looking for a user and failed ",err);}
+        if(err) {console.log("Looking for a user by id and failed ",err);}
         else {
           callback(err, user[0]);
         }
