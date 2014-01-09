@@ -426,7 +426,6 @@ iframe.fullscreen {
   line-height: 0;
   height: 50px;
   width: 110px;
-  z-index: 100;
 }
 
 .cc, .cc a {
