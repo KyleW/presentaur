@@ -46,7 +46,9 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
         for (var j = 0; j < $scope.hosting.length; j++) {
           if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
             $scope.both.push($scope.speaking.splice(i, 1)[0]);
+            $scope.hosting.splice(j, 1);
             i--;
+            j--;
             break;
           }
         }

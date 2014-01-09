@@ -30,7 +30,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   $rootScope.id = '';
   $rootScope.userid = $cookieStore.get('userid') || null;
   $rootScope.loggedIn = false;
-  if (!!$rootScope.userid) {
+  if ($rootScope.userid) {
     $http({
       url: '/user/' + $rootScope.userid,
       method: 'GET'
@@ -42,7 +42,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     })
     .error(function (data) {
       console.log('ERROR');
-      $cookieStore.remove('userid');
+      $rootScope.logout();
     });
   }
   $rootScope.logout = function () {

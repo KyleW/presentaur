@@ -1,8 +1,14 @@
 // -- Controller for DJing/MCing a meeting.
 
-app.controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
+app.controller('DjController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   var room = $rootScope.id;
+
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
+  $cookieStore.put('userid', $rootScope.userid);
 
   $http({
     url: '/meeting/' + $rootScope.id,
@@ -93,8 +99,10 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, s
   };
   $scope.startOver = function () {
     $scope.current = 0;
-    sharedMethods.updateCurrent($scope.current);
-    $scope.queue = $scope.speakers.slice($scope.current);
+    $scope.fade = true;
+    $scope.started = false;
+    sharedMethods.updateCurrent(0);
+    $scope.queue = $scope.speakers;
     socket.emit('start over');
 
     $http({
