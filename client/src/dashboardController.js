@@ -1,7 +1,6 @@
 // -- Dashboard for managing user's meetings.
 
 app.controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
-  //console.log($location.path().split('/')[2], $rootScope.userid, $location.path().split('/')[2] === $rootScope.userid);
   if ($cookies.login !== '1' && $location.path().split('/')[2] !== $rootScope.userid) {
     $location.url('/');
     return;
@@ -47,7 +46,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
         for (var j = 0; j < $scope.hosting.length; j++) {
           if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
             $scope.both.push($scope.speaking.splice(i, 1)[0]);
-            $scope.hosting.splice(j, 1);
+            $scope.hosting.splice(j-1, 1);
             i--;
             j--;
             break;

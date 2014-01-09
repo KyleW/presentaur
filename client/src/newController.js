@@ -5,7 +5,6 @@ app.controller('NewController', function ($rootScope, $scope, $http, $location, 
     $location.url('/');
     return;
   }
-  $cookieStore.put('userid', $rootScope.userid);
   $scope.meetingName = '';
   $scope.createMeeting = function () {
     $http({

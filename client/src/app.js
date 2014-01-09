@@ -31,6 +31,9 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   $rootScope.userid = $cookies.userid || null;
   $rootScope.loggedIn = false;
   if ($rootScope.userid) {
+    $rootScope.loggedIn = true;
+  }
+  if ($rootScope.userid) {
     $rootScope.userid = JSON.parse(unescape($rootScope.userid));
     $http({
       url: '/user/' + $rootScope.userid,
