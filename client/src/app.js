@@ -58,5 +58,6 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     $rootScope.loggedIn = false;
     $location.url('/');
     $rootScope.userid = '';
+    $rootScope.username = '';
   };
 });
