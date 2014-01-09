@@ -4,4 +4,5 @@ node_modules/passport/
 node_modules/openid/
 node_modules/*
 server/config.js
+newrelic_agent.log
 

@@ -81,7 +81,7 @@ module.exports = function(){
   });
 
   app.get('/favicon.ico', function (req, res) {
-    res.sendfile(url.resolve(__dirname, './client/res/favicon.ico'));
+    res.sendfile(url.resolve(__dirname, './favicon.ico'));
   });
 
 
