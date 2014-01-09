@@ -26,7 +26,7 @@
         <a href="#/dj/{{meeting._id}}">DJ</a>
         <a href="#/present/{{meeting._id}}">View</a><br />
         <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
-        <a href="#">Edit</a>
+        <a href="#/signup/{{meeting._id}}">Edit</a>
       </div>
     </div>
     <div ng-repeat="meeting in speaking" class="dashboardMeeting">
@@ -37,7 +37,7 @@
         <span>date: {{meeting.date}}</span><br />
       </div>
       <div class="meetingControls">
-        <a href="#">Edit</a>
+        <a href="#/signup/{{meeting._id}}">Edit</a><br /><a>&nbsp;</a>
       </div>
     </div>
   </div>
