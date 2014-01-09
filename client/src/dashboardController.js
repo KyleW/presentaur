@@ -80,13 +80,19 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
 
   // the create new presentaur form
   $scope.meetingName = '';
+  $scope.endTime = '';
+  $scope.startTime = '';
+  $scope.date = '';
   $scope.createMeeting = function () {
     $http({
       url: '/meeting/new',
       method: 'POST',
       data: {
         meetingName: $scope.meetingName,
-        owner_id: $rootScope.userid
+        owner_id: $rootScope.userid,
+        date: $scope.date,
+        startTime: $scope.startTime,
+        endTime: $scope.endTime
       }
     })
     .success(function (data) {

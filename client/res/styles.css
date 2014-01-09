@@ -89,9 +89,9 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  min-width: 700px;
   height: 50px;
   background-color: #141E25;
+  overflow: hidden;
 }
 
 header a {
@@ -105,6 +105,15 @@ header a {
   line-height: 0;
   position: relative;
   top: -18%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  margin-top: ;
+  width: 100%;
+  height: 50px;
+  background-color: #141E25;
 }
 
 h3 {
@@ -344,7 +353,7 @@ iframe.fullscreen {
 
 .djcontainer {
   max-width: 500px;
-  min-width: 335px;
+  min-width: 300px;
   background-color: #141E25;
   padding-left: 50px;
   padding-right: 50px;
@@ -418,9 +427,19 @@ iframe.fullscreen {
 .presenters {
   clear: both;
   display: block;
+  width: 99%;
+  border-radius: 5px;
+  height: 100px;
+  background-color: #91E9FF;
+  margin-bottom: 10px;
+  padding-left: 15px;
 }
 
 .sup {
   float: left;
   font-size: 2.5em;
+}
+
+.su {
+  color: #28465B;
 }
