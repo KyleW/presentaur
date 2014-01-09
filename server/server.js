@@ -120,8 +120,7 @@ module.exports = function(){
       console.log('lasturl =======+++++++', req.session.lasturl);
       if( req.session.lasturl === 'signup') {
         console.log('________ should redirect to signup page logged in ----------');
-        res.status(200);
-        res.redirect('#/signup/52cdc9c4fdb1f20000709ae0' ); }
+        res.redirect('#/signup/' + JSON.stringify(req.cookies.meetingId)); }
       else { res.redirect('#/dashboard/' + req.user._id); }
   });
 
