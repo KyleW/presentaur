@@ -46,6 +46,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   }
   $rootScope.login = function (submit) {
     submit && ($cookies.submit = $rootScope.id);
+    console.log($cookies.submit);
     $cookies.login = '1';
   };
   $rootScope.logout = function () {
