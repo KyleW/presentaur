@@ -89,9 +89,9 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  min-width: 700px;
   height: 50px;
   background-color: #141E25;
+  overflow: hidden;
 }
 
 header a {
@@ -353,7 +353,7 @@ iframe.fullscreen {
 
 .djcontainer {
   max-width: 500px;
-  min-width: 335px;
+  min-width: 300px;
   background-color: #141E25;
   padding-left: 50px;
   padding-right: 50px;
