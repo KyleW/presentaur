@@ -60,7 +60,7 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
   socket.on('start over', function () {
     $scope.current = 0;
     $scope.frameSize = 'windowed';
-    $scope.transition = 'fadeout';
+    $scope.transition = 'fadein';
     sharedMethods.updateCurrent(0);
     $scope.started = false;
     $scope.speaker = $scope.speakers[0];

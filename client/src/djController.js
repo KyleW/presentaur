@@ -99,6 +99,7 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
   };
   $scope.startOver = function () {
     $scope.current = 0;
+    $scope.fade = true;
     sharedMethods.updateCurrent(0);
     $scope.queue = $scope.speakers;
     socket.emit('start over');
