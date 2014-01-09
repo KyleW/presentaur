@@ -80,6 +80,10 @@ module.exports = function(){
     res.sendfile(url.resolve(__dirname, './client/index.html'));
   });
 
+  app.get('/favicon.ico', function (req, res) {
+    res.sendfile(url.resolve(__dirname, './client/res/favicon.ico'));
+  });
+
 
   // Meetings
   app.post('/meeting/new', meeting.create);
@@ -92,13 +96,6 @@ module.exports = function(){
   // Auth
   app.get('/user/:id', user.get);
 
-  // local
-  app.post('/newUser', user.create);
-  app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
-    function(req, res) {
-      res.redirect('#/dashboard/'+req.user._id);
-  });
 
   // Google
   app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
@@ -119,6 +116,15 @@ module.exports = function(){
     function(req, res) {
       res.redirect('#/dashboard/'+req.user._id);
   });
+
+  // // local
+  // app.post('/newUser', user.create);
+  // app.post('/login',
+  //   passport.authenticate('local', { failureRedirect: '/login' }),
+  //   function(req, res) {
+  //     res.redirect('#/dashboard/'+req.user._id);
+  // });
+
 
   // Logout
   app.get('/logout', function(req, res){

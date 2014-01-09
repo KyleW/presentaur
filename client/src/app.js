@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
 .config(['$routeProvider', function ($routeProvider) {
   // all of these just append to <div ng-view> in index.html
   $routeProvider.when('/', {
-    controller: 'SplashController',
+    //controller: 'SplashController',
     templateUrl: 'templates/splash.html'
   }).when('/new', {
     controller: 'NewController',
@@ -30,11 +30,11 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   $rootScope.id = '';
   $rootScope.userid = $cookies.userid || null;
   $rootScope.loggedIn = false;
-  if ($rootScope.userid) {
+  if ($cookies.userid) {
     $rootScope.loggedIn = true;
   }
-  if ($rootScope.userid) {
-    $rootScope.userid = JSON.parse(unescape($rootScope.userid));
+  if ($cookies.userid) {
+    $rootScope.userid = $rootScope.userid;
     $http({
       url: '/user/' + $rootScope.userid,
       method: 'GET'
@@ -48,11 +48,13 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
       $rootScope.logout();
     });
   }
-  $rootScope.login = function () {
+  $rootScope.login = function (submit) {
+    submit && ($cookies.submit = $rootScope.id);
     $cookies.login = '1';
   };
   $rootScope.logout = function () {
     delete $cookies.userid;
+    delete $cookies.meetingId;
     $rootScope.loggedIn = false;
     $location.url('/');
     $rootScope.userid = '';
