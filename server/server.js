@@ -26,11 +26,10 @@ module.exports = function(){
     // Auth
     app.use(express.cookieParser());
     app.use(function(req,res,next){
-      var lastpage = req.headers.referrer;
-      console.log('lastpage =========== ', req.headers.referer);
-      res.cookie('lastpage', lastpage, { maxAge: 900000, httpOnly: false});
+      console.log(req.cookies.meetingId);
       next();
     });
+    app.use(express.cookieSession({ secret: 'supersecret' }));
     app.use(express.session({ secret: process.env.SESSION_SECRET || Config.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
@@ -107,13 +106,22 @@ module.exports = function(){
   });
 
   // Google
-  app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
-                                            'https://www.googleapis.com/auth/userinfo.email'] })); //OAuth 2
+  app.get('/auth/google',
+    function(req, res, next){
+      // console.log('url ============ ', req.url);
+      req.session.lasturl = req.url.slice(-6);
+      console.log('should be signup ++++++++++ ', req.session.lasturl);
+      return next();
+    },
+    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                                            'https://www.googleapis.com/auth/userinfo.email'] })
+  );
 
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/login' }),
     function(req, res) {
-      res.redirect('#/dashboard/'+req.user._id);
+      if( req.session.lasturl === 'signup') { res.redirect('#/signup/' + req.cookies.meetingId ); }
+      else { res.redirect('#/dashboard/'+req.user._id); }
   });
 
 
@@ -123,7 +131,8 @@ module.exports = function(){
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
-      res.redirect('#/dashboard/'+req.user._id);
+      if( req.session.lasturl === 'signup') { res.redirect('#/signup/' + meeting.id); }
+      else { res.redirect('#/dashboard/'+req.user._id); }
   });
 
   // Logout
