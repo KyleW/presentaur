@@ -8,6 +8,7 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
     $location.url('/');
     return;
   }
+  $rootScope.loggedIn = true;
 
   $http({
     url: '/meeting/' + $rootScope.id,

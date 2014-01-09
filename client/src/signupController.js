@@ -2,7 +2,6 @@
 
 app.controller('SignupController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
-  $cookieStore.put('meetingId', $rootScope.id);
   $scope.speakers = [];
 
   $http({
