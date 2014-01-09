@@ -1,11 +1,8 @@
 
-//docs are here: http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
-
 var mongo = require('mongodb');
 var BSON =  mongo.BSONPure;
 var MongoClient = mongo.MongoClient;
 var dbHelpers = require('./dbHelpers');
-
 
 
 module.exports = {
@@ -22,7 +19,7 @@ module.exports = {
     dbHelpers.db.collection('meetings', function (err, collection){
       collection.save(doc, {w:1}, function (err, result) {
         if(err){
-          console.log("Insert failed: ", err);
+          console.log("Inserting new meeting failed: ", err);
         } else {
           res.send(JSON.stringify(result));
         }
@@ -33,6 +30,7 @@ module.exports = {
   get: function(req, res){
     var id = req.params.id;
     dbHelpers.db.collection('meetings',function(err,collection){
+      if(err) {console.log("Looking for meeting failed ",err);}
       collection.find({_id:new BSON.ObjectID(id)}).toArray(function(err,result){
         if(err) {console.log("Looking for meeting failed ",err);}
         else {
@@ -45,6 +43,7 @@ module.exports = {
   remove: function(req, res){
     var id = req.params.id;
     dbHelpers.db.collection('meetings', function(err, collection){
+      if(err){console.log("Attempting to remove a meeting failed. ", err);}
       collection.remove({_id: id});
     });
   },
@@ -53,7 +52,7 @@ module.exports = {
     var owner_id = req.params.id;
     dbHelpers.db.collection('meetings',function(err,collection){
       collection.find({owner_id: owner_id}).toArray(function(err,result){
-        if(err) {console.log("Looking for meeting failed ",err);}
+        if(err) {console.log("Looking for meeting by owner id failed ",err);}
         else {
           res.send(JSON.stringify(result));
         }
@@ -63,7 +62,6 @@ module.exports = {
 
   findBySpeaker: function(req, res){
     var speaker_id = req.params.id;
-    console.log("speaker id ------------- ", speaker_id);
     dbHelpers.db.collection('meetings', function(err, collection){
       collection.find({'speakers.user_id': speaker_id}).toArray(function(err, result){
         if(err) { console.log("Looking for speakers in meeting failed ", err); }

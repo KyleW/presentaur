@@ -33,49 +33,49 @@ module.exports = function(){
   //Socket connections
   io.sockets.on('connection', function (socket) {
 
-    console.log('socket connected ' + socket);
+    // console.log('socket connected ' + socket);
 
     socket.on('dj join', function(room){
       socket.set('room', room);
-      console.log('dj is connected to room: ' + room);
+      // console.log('dj is connected to room: ' + room);
       socket.join(room);
     });
 
     socket.on('presentation join', function(room){
       socket.set('room', room);
-      console.log('presentation is connected to room: ' + room);
+      // console.log('presentation is connected to room: ' + room);
       socket.join(room);
     });
 
     socket.on('fade out', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('fade out');
-        console.log('fade out was called for clients in room: ' + room);
+        // console.log('fade out was called for clients in room: ' + room);
       });
     });
 
     socket.on('fade in', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('fade in');
-        console.log('fade in was called for clients in room: ' + room);
+        // console.log('fade in was called for clients in room: ' + room);
       });
     });
     socket.on('fullscreen', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('fullscreen');
-        console.log('fullscreen was called for clients in room: ' + room);
+        // console.log('fullscreen was called for clients in room: ' + room);
       });
     });
     socket.on('begin', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('begin');
-        console.log('begin was called for clients in room: ' + room);
+        // console.log('begin was called for clients in room: ' + room);
       });
     });
     socket.on('start over', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('start over');
-        console.log('start over was called for clients in room: ' + room);
+        // console.log('start over was called for clients in room: ' + room);
       });
     });
   });
@@ -87,7 +87,7 @@ module.exports = function(){
   });
 
   app.get('/favicon.ico', function (req, res) {
-    res.sendfile(url.resolve(__dirname, './favicon.ico'));
+    res.sendfile(url.resolve(__dirname, '/favicon.ico'));
   });
 
 
@@ -102,35 +102,26 @@ module.exports = function(){
   // Auth
   app.get('/user/:id', user.get);
 
-
   // Google
-  app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
-                                            'https://www.googleapis.com/auth/userinfo.email'] })); //OAuth 2
+  app.get('/auth/google', passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email']
+  }));
 
   app.get('/auth/google/return',
-    passport.authenticate('google', {failureRedirect: '/login' }),
+    passport.authenticate('google', {failureRedirect: '/' }),
     function(req, res) {
       res.redirect('#/dashboard/'+req.user._id);
   });
-
 
 
   // LinkedIn
   app.get('/auth/linkedin',passport.authenticate('linkedin',{ scope: ['r_basicprofile', 'r_emailaddress']}));
   app.get('/auth/linkedin/return',
-    passport.authenticate('linkedin', { failureRedirect: '/login' }),
+    passport.authenticate('linkedin', { failureRedirect: '/' }),
     function(req, res) {
       res.redirect('#/dashboard/'+req.user._id);
   });
-
-  // // local
-  // app.post('/newUser', user.create);
-  // app.post('/login',
-  //   passport.authenticate('local', { failureRedirect: '/login' }),
-  //   function(req, res) {
-  //     res.redirect('#/dashboard/'+req.user._id);
-  // });
-
 
   // Logout
   app.get('/logout', function(req, res){
