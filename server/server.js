@@ -5,14 +5,12 @@ module.exports = function(){
   var io = require('socket.io').listen(server);
   var url = require('url');
   var path = require('path');
+  var Config = require('./config.js');
 
   // Server and DB helpers
   var dbHelpers = require('./dbHelpers.js');
   var meeting = require('./meetingHelpers.js');
   var user = require('./userHelpers.js');
-  // var presentation = require('./presentationHelpers.js');
-  // var route = require('./router.js');
-  // var flash = require('connect-flash');
 
 
   // Auth modules
@@ -28,7 +26,7 @@ module.exports = function(){
 
     // Auth
     app.use(express.cookieParser());
-    app.use(express.session({ secret: 'keyboard cat' }));
+    app.use(express.session({ secret: Config.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
   });
