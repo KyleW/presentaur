@@ -3,9 +3,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //OAuth 2.0
 var LinkedInStrategy = require('passport-linkedin').Strategy;
-
 var User = require('./userHelpers.js');
-var Config = require('./config.js');
+if(!process.env.DEPLOYED) {var Config = require('./config.js');}
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -35,8 +34,8 @@ passport.use(new LocalStrategy(
 
 // Google OAuth 2.0
 passport.use(new GoogleStrategy({
-    clientID: Config.GOOGLE_CLIENTID,
-    clientSecret: Config.GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENTID || Config.GOOGLE_CLIENTID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || Config.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK || "http://localhost:5000/auth/google/return"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -56,8 +55,8 @@ passport.use(new GoogleStrategy({
 
 
 passport.use(new LinkedInStrategy({
-    consumerKey: Config.LINKEDIN_API_KEY,
-    consumerSecret: Config.LINKEDIN_SECRET_KEY,
+    consumerKey: process.env.LINKEDIN_API_KEY || Config.LINKEDIN_API_KEY,
+    consumerSecret: process.env.LINKEDIN_SECRET_KEY || Config.LINKEDIN_SECRET_KEY,
     callbackURL: process.env.LINKEDIN_CALLBACK || "http://localhost:5000/auth/linkedin/return",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline','picture-url']
   },
