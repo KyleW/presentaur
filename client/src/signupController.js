@@ -27,9 +27,6 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
   $scope.addPresenter = function () {
     $scope.speakers.push({name: $scope.speaker.name, url:$scope.speaker.url, user_id: $rootScope.userid});
     sharedMethods.updateCurrent($scope.current);
-    // $scope.meeting = sharedMethods.getMeeting();
-    // sharedMethods.updateMeeting($scope.meeting);
-    // what?
 
     $http({
       url: '/meeting/new',
