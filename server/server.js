@@ -80,6 +80,10 @@ module.exports = function(){
     res.sendfile(url.resolve(__dirname, './client/index.html'));
   });
 
+  app.get('/favicon.ico', function (req, res) {
+    res.sendfile(url.resolve(__dirname, './client/res/favicon.ico'));
+  });
+
 
   // Meetings
   app.post('/meeting/new', meeting.create);
