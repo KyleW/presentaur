@@ -16,8 +16,8 @@
           <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
           <br>
           <span>or login with:</span>
-          <a class="orange" href="auth/google" ng-click="login()">Google</a> -
-          <a class="orange" href="auth/linkedin" ng-click="login()">Linkedin</a>
+          <a class="orange" href="auth/google" ng-click="login(true)">Google</a> -
+          <a class="orange" href="auth/linkedin" ng-click="login(true)">Linkedin</a>
           <br>
         </div>
         <span ng-show="loggedIn">You will be presenting as
