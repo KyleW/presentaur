@@ -36,9 +36,14 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
 
 .run(function ($rootScope, $cookies, $cookieStore, $http, $location) {
   $rootScope.id = '';
-  $rootScope.userid = $cookieStore.get('userid') || '';
+
+  $rootScope.userid = $cookies.userid || null;
   $rootScope.loggedIn = false;
-  if (!!$rootScope.userid) {
+  if ($rootScope.userid) {
+    $rootScope.loggedIn = true;
+  }
+  if ($rootScope.userid) {
+    $rootScope.userid = JSON.parse(unescape($rootScope.userid));
     $http({
       url: '/user/' + $rootScope.userid,
       method: 'GET'
@@ -46,16 +51,20 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     .success(function (data) {
       $rootScope.user = data[0];
       $rootScope.username = data[0].name.givenName;
-      $rootScope.loggedIn = true;
     })
     .error(function (data) {
       console.log('ERROR');
     });
   }
+  $rootScope.login = function () {
+    $cookies.login = '1';
+  };
   $rootScope.logout = function () {
-    $cookieStore.remove('userid');
+    delete $cookies.userid;
+    $rootScope.loggedIn = false;
     $location.url('/');
-  $rootScope.userid = '';
-  $rootScope.loggedIn = false;
+
+    $rootScope.userid = '';
+
   };
 });

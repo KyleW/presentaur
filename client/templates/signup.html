@@ -14,8 +14,10 @@
   <form ng-submit="addPresenter()">
     <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true" ng-hide="loggedIn">
     <span ng-hide="loggedIn">or login with:</span>
-    <a ng-hide="loggedIn" href="auth/google?source=signup">Google</a>
-    <a ng-hide="loggedIn" href="auth/linkedin?source=signup">Linkedin</a>
+
+    <a class='orange' ng-hide="loggedIn" href="auth/google?source=signup">Google</a>
+    <a class='orange' ng-hide="loggedIn" href="auth/linkedin?source=signup">Linkedin</a>
+
     <span ng-show="loggedIn">Sign up as {{username}}</span>
     <input type="url" placeholder="Url of your presentation" ng-model="speaker.url" ng-required="true" style="width:250px">
     <input type="submit" value="Sign Up">

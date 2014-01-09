@@ -1,6 +1,6 @@
 // -- Splash page.  Will handle authentication for DJs.
 
-app.controller('SplashController', function ($rootScope, $scope, $http, $location, sharedMethods) {
+app.controller('SplashController', function ($rootScope, $scope, $http, $location, $cookies, sharedMethods) {
   $scope.meetingName = '';
   $scope.createMeeting = function () {
     $http({

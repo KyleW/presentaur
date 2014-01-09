@@ -4,11 +4,11 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
   $rootScope.id = $location.path().split('/')[2];
   var room = $rootScope.id;
 
-  if (!$rootScope.userid) {
+  if (!$cookies.userid) {
     $location.url('/');
     return;
   }
-  $cookieStore.put('userid', $rootScope.userid);
+  $rootScope.loggedIn = true;
 
   $http({
     url: '/meeting/' + $rootScope.id,
