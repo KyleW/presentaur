@@ -12,7 +12,6 @@ module.exports = function(){
   var meeting = require('./meetingHelpers.js');
   var user = require('./userHelpers.js');
 
-
   // Auth modules
   var passport = require('passport');
   var auth = require ('./auth.js');
@@ -89,9 +88,6 @@ module.exports = function(){
   app.get('/meeting/speaker/:id', meeting.findBySpeaker);
   app.delete('/meeting/:id', meeting.remove);
 
-  // Presentations
-  // app.get('/presentation/:id', presentation.connect);
-
 
   // Auth
   app.get('/user/:id', user.get);
@@ -105,7 +101,6 @@ module.exports = function(){
   });
 
   // Google
-  // app.get('/auth/google', passport.authenticate('google')); //OpenId
   app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
                                             'https://www.googleapis.com/auth/userinfo.email'] })); //OAuth 2
 
