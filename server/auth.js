@@ -1,6 +1,5 @@
 
 var passport = require('passport');
-// var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //OAuth 2.0
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 var User = require('./userHelpers.js');
@@ -12,24 +11,10 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
+    if (err){console.log("unable to find user by id");}
     done(err, user);
   });
 });
-
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { return done(err); }
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (password !== user.password) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
 
 
 // Google OAuth 2.0
@@ -47,11 +32,11 @@ passport.use(new GoogleStrategy({
       pictureUrl: profile._json.picture
     };
     User.findOrCreate(newUser, function(err, user) {
+      if (err){console.log("unable to find or create  a user after logging in with google");}
       return done(err, user);
     });
   }
 ));
-
 
 
 passport.use(new LinkedInStrategy({
@@ -69,6 +54,7 @@ passport.use(new LinkedInStrategy({
       pictureUrl: profile._json.pictureUrl
     };
     User.findOrCreate(newUser, function (err, user) {
+      if (err){console.log("unable to find or create  a user after logging in with LinkedIn");}
       return done(err, user);
     });
   }
