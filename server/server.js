@@ -5,7 +5,7 @@ module.exports = function(){
   var io = require('socket.io').listen(server);
   var url = require('url');
   var path = require('path');
-  var Config = require('./config.js');
+  if(!process.env.DEPLOYED) {var Config = require('./config.js');}
 
   // Server and DB helpers
   var dbHelpers = require('./dbHelpers.js');
@@ -25,7 +25,7 @@ module.exports = function(){
 
     // Auth
     app.use(express.cookieParser());
-    app.use(express.session({ secret: Config.SESSION_SECRET }));
+    app.use(express.session({ secret: process.env.SESSION_SECRET || Config.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
   });
