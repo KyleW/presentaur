@@ -1,14 +1,31 @@
 // -- Dashboard for managing user's meetings.
 
 app.controller('DashboardController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
-  if ($cookies.login !== '1' && $location.path().split('/')[2] !== $rootScope.userid) {
+  $rootScope.userid = $location.path().split('/')[2];
+  if ($cookies.login !== '1' && $location.path().split('/')[2] !== $cookies.userid) {
     $location.url('/');
     return;
   }
+    $rootScope.userid = $location.path().split('/')[2];
+    $cookies.userid = $rootScope.userid;
   delete $cookies.login;
-  $rootScope.userid = $location.path().split('/')[2];
-  $cookies.userid = escape(JSON.stringify($rootScope.userid));
   $rootScope.loggedIn = true;
+  if ($cookies.submit) {
+    $http({
+      url: '/user/' + $rootScope.userid,
+      method: 'GET'
+    })
+    .success(function (data) {
+      $rootScope.user = data[0];
+      $rootScope.username = data[0].name.givenName;
+    })
+    .error(function (data) {
+      console.log('ERROR');
+      $location.url('/');
+    });
+    $location.url('/signup/' + $cookies.submit);
+    return;
+  }
   $http({
     url: '/user/' + $rootScope.userid,
     method: 'GET'
