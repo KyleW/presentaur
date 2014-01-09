@@ -5,15 +5,12 @@ module.exports = function(){
   var io = require('socket.io').listen(server);
   var url = require('url');
   var path = require('path');
+  var Config = require('./config.js');
 
   // Server and DB helpers
   var dbHelpers = require('./dbHelpers.js');
   var meeting = require('./meetingHelpers.js');
   var user = require('./userHelpers.js');
-  // var presentation = require('./presentationHelpers.js');
-  // var route = require('./router.js');
-  // var flash = require('connect-flash');
-
 
   // Auth modules
   var passport = require('passport');
@@ -28,7 +25,7 @@ module.exports = function(){
 
     // Auth
     app.use(express.cookieParser());
-    app.use(express.session({ secret: 'keyboard cat' }));
+    app.use(express.session({ secret: Config.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
   });
@@ -91,9 +88,6 @@ module.exports = function(){
   app.get('/meeting/speaker/:id', meeting.findBySpeaker);
   app.delete('/meeting/:id', meeting.remove);
 
-  // Presentations
-  // app.get('/presentation/:id', presentation.connect);
-
 
   // Auth
   app.get('/user/:id', user.get);
@@ -107,7 +101,6 @@ module.exports = function(){
   });
 
   // Google
-  // app.get('/auth/google', passport.authenticate('google')); //OpenId
   app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
                                             'https://www.googleapis.com/auth/userinfo.email'] })); //OAuth 2
 
