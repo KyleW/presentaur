@@ -8,7 +8,13 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   }).when('/new', {
     controller: 'NewController',
     templateUrl: 'templates/new.html'
-  }).when('/signup/:id', {
+  })
+  // -- DEPRECATED.
+  // .when('/account/:id', {
+  //   controller: 'AccountController',
+  //   templateUrl: 'templates/account.html'
+  // })
+  .when('/signup/:id', {
     controller: 'SignupController',
     templateUrl: 'templates/signup.html'
   }).when('/dj/:id', {
@@ -20,17 +26,19 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
   }).when('/present/:id', {
     controller: 'PresentController',
     templateUrl: 'templates/present.html'
+  }).when('/404', {
+    templateUrl: 'templates/404.html'
   }).when('/newUser', {
     templateUrl: 'templates/createUser.html'
   })
-  .otherwise({redirectTo: '/'});
+  .otherwise({redirectTo: '/new'});
 }])
 
 .run(function ($rootScope, $cookies, $cookieStore, $http, $location) {
   $rootScope.id = '';
-  $rootScope.userid = $cookieStore.get('userid') || null;
+  $rootScope.userid = $cookieStore.get('userid') || '';
   $rootScope.loggedIn = false;
-  if ($rootScope.userid) {
+  if (!!$rootScope.userid) {
     $http({
       url: '/user/' + $rootScope.userid,
       method: 'GET'
@@ -42,13 +50,12 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     })
     .error(function (data) {
       console.log('ERROR');
-      $rootScope.logout();
     });
   }
   $rootScope.logout = function () {
     $cookieStore.remove('userid');
     $location.url('/');
-    $rootScope.userid = '';
-    $rootScope.loggedIn = false;
+  $rootScope.userid = '';
+  $rootScope.loggedIn = false;
   };
 });

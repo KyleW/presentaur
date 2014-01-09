@@ -25,10 +25,6 @@ module.exports = function(){
 
     // Auth
     app.use(express.cookieParser());
-    app.use(function(req,res,next){
-      console.log(req.cookies.meetingId);
-      next();
-    });
     app.use(express.cookieSession({ secret: 'supersecret' }));
     app.use(express.session({ secret: process.env.SESSION_SECRET || Config.SESSION_SECRET }));
     app.use(passport.initialize());
@@ -120,8 +116,12 @@ module.exports = function(){
   app.get('/auth/google/return',
     passport.authenticate('google', {failureRedirect: '/login' }),
     function(req, res) {
-      if( req.session.lasturl === 'signup') { res.redirect('#/signup/' + req.cookies.meetingId ); }
-      else { res.redirect('#/dashboard/'+req.user._id); }
+      console.log('cookie.meetingid +_+_+_+_+_+_+ ', req.cookies.meetingId);
+      console.log('lasturl =======+++++++', req.session.lasturl);
+      if( req.session.lasturl === 'signup') {
+        console.log('________ should redirect to signup page logged in ----------');
+        res.redirect('#/signup/52cdc9c4fdb1f20000709ae0' ); }
+      else { res.redirect('#/dashboard/' + req.user._id); }
   });
 
 
@@ -131,7 +131,7 @@ module.exports = function(){
   app.get('/auth/linkedin/return',
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     function(req, res) {
-      if( req.session.lasturl === 'signup') { res.redirect('#/signup/' + meeting.id); }
+      if( req.session.lasturl === 'signup') { res.redirect('#/signup/' + req.session.meetingId); }
       else { res.redirect('#/dashboard/'+req.user._id); }
   });
 
