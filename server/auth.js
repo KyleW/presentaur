@@ -1,7 +1,6 @@
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-// var GoogleStrategy = require('passport-google').Strategy; // openID 2.0
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //OAuth 2.0
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 
@@ -33,39 +32,12 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// Google OpenId 
-// passport.use(new GoogleStrategy({
-//     returnURL: 'http://localhost:5000/auth/google/return',
-//     realm: 'http://localhost:5000'
-//     // returnURL: 'http://presentaur.herokuapp.com/auth/google/return',
-//     // realm: 'http://presentaur.herokuapp.com'
-//   },
-//   function(identifier, profile, done) {
-//     console.log("google profile");
-//     console.log(profile);
-//     // console.log("google profile");
-//     // console.log(profile);
-//     var newUser = {
-//       displayName: profile.displayName,
-//       name: profile.name,
-//       email: profile.emails[0].value.toLowerCase(),
-//       headline: null,
-//       pictureUrl: null
-//     };
-//     User.findOrCreate(newUser, function(err, user) {
-//       return done(err, user);
-//     });
-//   }
-// ));
 
 // Google OAuth 2.0
-
 passport.use(new GoogleStrategy({
     clientID: Config.GOOGLE_CLIENTID,
     clientSecret: Config.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/google/return"
-    // callbackURL: "http://presentaur.herokuapp.com/auth/google/return"
-
+    callbackURL: process.env.GOOGLE_CALLBACK || "http://localhost:5000/auth/google/return"
   },
   function(accessToken, refreshToken, profile, done) {
     var newUser = {
@@ -86,8 +58,7 @@ passport.use(new GoogleStrategy({
 passport.use(new LinkedInStrategy({
     consumerKey: Config.LINKEDIN_API_KEY,
     consumerSecret: Config.LINKEDIN_SECRET_KEY,
-    callbackURL: "http://localhost:5000/auth/linkedin/return",
-    // callbackURL: "http://presentaur.herokuapp.com/auth/linkedin/return",
+    callbackURL: process.env.LINKEDIN_CALLBACK || "http://localhost:5000/auth/linkedin/return",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline','picture-url']
   },
   function(token, tokenSecret, profile, done) {
