@@ -1,8 +1,14 @@
 // -- Controller for DJing/MCing a meeting.
 
-app.controller('DjController', function ($rootScope, $scope, $http, $location, socket, sharedMethods) {
+app.controller('DjController', function ($rootScope, $scope, $http, $location, $cookies, $cookieStore, socket, sharedMethods) {
   $rootScope.id = $location.path().split('/')[2];
   var room = $rootScope.id;
+
+  if (!$rootScope.userid) {
+    $location.url('/');
+    return;
+  }
+  $cookieStore.put('userid', $rootScope.userid);
 
   $http({
     url: '/meeting/' + $rootScope.id,
