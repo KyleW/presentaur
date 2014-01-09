@@ -33,9 +33,6 @@ h1, h2, h3, h4 {
 }
 
 .yellow {
-<<<<<<< HEAD
-  color: #FF9B4D;
-=======
   color: #FFC24D;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
@@ -48,7 +45,6 @@ h1, h2, h3, h4 {
 .black {
   color: #141E25;
   font-family: Helvetica, Arial, sans-serif;
->>>>>>> master
 }
 
 .accountbox {
@@ -131,8 +127,18 @@ input.submit {
   margin-top: 10px;
 }
 
+hr {
+  border: 1px solid #141E25;
+  margin-top: 30px;
+}
+
 .container {
   margin: 0 auto;
+}
+
+.eighty {
+  width: 80%;
+  color: #91E9FF;
 }
 
 .logo {
@@ -302,6 +308,10 @@ input.submit {
 .clickable {
   cursor: pointer;
   color: #141E25;
+  display: inline-block;
+}
+
+.edit {
   display: inline-block;
 }
 
