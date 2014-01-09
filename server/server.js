@@ -66,6 +66,12 @@ module.exports = function(){
         console.log('fullscreen was called for clients in room: ' + room);
       });
     });
+    socket.on('begin', function(){
+      socket.get('room', function(err, room){
+        io.sockets.in(room).emit('begin');
+        console.log('begin was called for clients in room: ' + room);
+      });
+    });
     socket.on('start over', function(){
       socket.get('room', function(err, room){
         io.sockets.in(room).emit('start over');
