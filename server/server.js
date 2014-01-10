@@ -14,7 +14,6 @@ var meeting = require('./meetingHelpers.js');
 var user = require('./userHelpers.js');
 var passport = require('passport');
 require ('./auth.js');
-require('./sockets.js');
 
 
 module.exports.server = server;
