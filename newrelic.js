@@ -1,5 +1,5 @@
 
-var config = require('./server/config.js');
+if(!process.env.DEPLOYED) {var Config = require('./config.js');}
 
 /**
  * New Relic agent configuration.
@@ -10,7 +10,7 @@ var config = require('./server/config.js');
 
 exports.config = {
   app_name : ['Presentaur'],
-  license_key : (process.env.NEWRELIC_KEY || config.NEWRELIC_KEY),
+  license_key : (process.env.NEWRELIC_KEY || Config.NEWRELIC_KEY),
   logging : {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
