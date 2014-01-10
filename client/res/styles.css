@@ -469,7 +469,18 @@ iframe.fullscreen {
 
 .leftCol {
   float:left;
-  width:40%;
+  clear:left;
+}
+
+.meetingName .leftCol {
+    width:40%;
+}
+
+.meetingControls .leftCol {
+    margin:0;
+    padding:0;
+    width:100px;
+    float:left;
 }
 
 .leftCol .dashboardCat {
@@ -479,14 +490,24 @@ iframe.fullscreen {
 }
 
 
-
 .rightCol {
   float:right;
-  width:60%;
+  clear: right;
 }
 
+.meetingName .rightCol {
+    width:60%;
+}
+
+.meetingControls .rightCol {
+  margin:0;
+  padding:0;
+  width:100px;
+  float:left;
+}
+
+
 .rightCol .dashboardVal {
-  clear: right;
   text-align: right;
   line-height:20px;
 }
@@ -521,30 +542,27 @@ iframe.fullscreen {
   padding: 0px 5px 5px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  font-size: 0.8em;
-  height:80px;
-}
-
-a .inactive {
-  color:gray;
+  height:95px;
 }
 
 .mcButton {
+  font-size: 0.85em;
+  border-radius: 5px;
+  display:inline-block;
   text-align: center;
-  margin-top:10px;
+  margin-top:7px;
   height:30px;
-  width:90%;
-  margin-left: 5%;
+  width:70px;
+  margin-left: 10px;
+  padding:3px;
+  border: 2px solid #FFC24D;
+  background-color: #FFC24D;
+  color: #141E25;
 }
 
-.mcButton a {
-  text-align:left;
-}
 
-.controlHeading {
-  color: #FF9B4D;
-  border-bottom:1px solid #FF9B4D;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+.inactive {
+  background-color:gray;
 }
 
 
