@@ -455,7 +455,7 @@ hr {
   padding: 0px 5px 10px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  height: 140px;
+  height: 160px;
   text-align: left;
   overflow: scroll;
 }
@@ -554,10 +554,21 @@ hr {
   color: #141E25;
 }
 
+.mcButton:hover {
+  background-color: #d68d00;
+  border: 2px solid #d68d00;
+}
 
 .inactive {
   background-color:gray;
   border: 2px solid gray;
 }
 
+.inactive:hover {
+  background-color:gray;
+  border: 2px solid gray;
+}
 
+.yellowhover:hover {
+  background-color: #ea9a00;
+}
