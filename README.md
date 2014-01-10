@@ -17,15 +17,30 @@ Presentaur is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
 <h2>Screen Shots</h2>
 <img width="50%" height="50%" src="http://i.imgur.com/2LR4Rab.png" title="Hosted by imgur.com"/>
 <br>
-<span style='margin-bottom: 5px;'>Main Screen</span>
+Main Screen: User can choose to log in through Google or LinkedIn.
+<br>
 <br>
 <img width="50%" height="50%" src="http://i.imgur.com/gwjAkDx.png" title="Hosted by imgur.com"/>
+<br>
+Dashboard View: Once logged in user is redirected to their dashboard view where they can create new Presentaurs, view Presentaurs in which they are speaking, hosting or both.
+<br>
+<br>
+<img width="50%" height="50%" src="http://i.imgur.com/UCjYUyH.png" title="Hosted by imgur.com"/>
+<br>
+Add Content View: Presenters who have received an invitation to speak are able to add their content url from this screen.
+<br>
+<br>
 <img width="50%" height="50%" src="http://i.imgur.com/xvqVYUf.png" title="Hosted by imgur.com"/>
+<br>
+Host / DJ Control View: From this screen the host of the Presentaur has the ability to control flow
+<br>
+<br>
 <img width="50%" height="50%" src="http://i.imgur.com/j3rLMJX.png" title="Hosted by imgur.com"/>
+<br>
+Audience View: The computer connected to the projector will see this page with the speaker's content url. When the Presentaur is started from the Host View, the content will increase to full screen.
 
 
-
-Team
+<b>Team</b>
 <br><a href='http://github.com/KyleW'>Kyle Warneck</a>
 <br><a href='http://github.com/ehannum'>Eric Hannum</a>
 <br><a href='http://github.com/brannonlucas'>Brannon Lucas</a>
