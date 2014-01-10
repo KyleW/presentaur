@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var url = require('url');
 var path = require('path');
+var io = require('socket.io').listen(server);
 require('../newrelic');
 
 // Server and DB helpers
@@ -13,10 +14,10 @@ var meeting = require('./meetingHelpers.js');
 var user = require('./userHelpers.js');
 var passport = require('passport');
 require ('./auth.js');
+require('./sockets.js');
+
 
 module.exports.server = server;
-
-
 
 var port = process.env.PORT || 3000;
 server.listen(port,function () {
@@ -33,6 +34,51 @@ app.configure(function(){
   app.use(passport.initialize());
   app.use(passport.session());
 });
+
+
+io.set('log level', 0);
+
+//Socket connections
+io.sockets.on('connection', function (socket) {
+
+  socket.on('dj join', function(room){
+    socket.set('room', room);
+    socket.join(room);
+  });
+
+  socket.on('presentation join', function(room){
+    socket.set('room', room);
+    socket.join(room);
+  });
+
+  socket.on('fade out', function(){
+    socket.get('room', function(err, room){
+      io.sockets.in(room).emit('fade out');
+    });
+  });
+
+  socket.on('fade in', function(){
+    socket.get('room', function(err, room){
+      io.sockets.in(room).emit('fade in');
+    });
+  });
+  socket.on('fullscreen', function(){
+    socket.get('room', function(err, room){
+      io.sockets.in(room).emit('fullscreen');
+    });
+  });
+  socket.on('begin', function(){
+    socket.get('room', function(err, room){
+      io.sockets.in(room).emit('begin');
+    });
+  });
+  socket.on('start over', function(){
+    socket.get('room', function(err, room){
+      io.sockets.in(room).emit('start over');
+    });
+  });
+});
+
 
 
 
