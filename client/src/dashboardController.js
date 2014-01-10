@@ -84,7 +84,6 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
   $scope.startTime = '';
   $scope.date = '';
   $scope.createMeeting = function () {
-    console.log($scope.date)
     $http({
       url: '/meeting/new',
       method: 'POST',
@@ -110,7 +109,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
   };
 
   $scope.parseDisplayTime = function (time) {
-    // convert html time input to something readable
+    // convert html time input to something readable and pretty
     time = time.split(':');
     if (time[0] > 12) {
       time[0] = time[0] - 12 + ':';
@@ -122,6 +121,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
     }
     return time.join('');
   };
+
   $scope.timeRemaining = '';
   $scope.countdown = function () {
     // for displaying time remaining for meeting/per speaker
