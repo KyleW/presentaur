@@ -1,41 +1,41 @@
 <div class="container eighty">
   <span class='sup'>
-    <h2>Add Your <br>
-      Presentation to <br>
+    <h2>Add Your <br />
+      Presentation to <br />
       <span style='font-style: italic; color: #91E9FF; font-weight: 100'>
         {{ meetingName }}
       </span>
      </h2>
   </span>
 
-  <form ng-submit="addPresenter()">
+  <form ng-submit="save()">
     <div class='acb'>
         <div ng-hide='loggedIn'>
           <span>Name</span>
-          <br>
-          <input type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
-          <br>
+          <br />
+          <input name="speakerName" type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
+          <br />
           <span>or login with:</span>
           <a class="orange" href="auth/google" ng-click="login(true)">Google</a> -
           <a class="orange" href="auth/linkedin" ng-click="login(true)">Linkedin</a>
-          <br>
+          <br />
         </div>
         <span ng-show="loggedIn">You will be presenting as
-        <br>
-        <br>
+        <br />
+        <br />
         <span class='yellow' style='font-size: 1.3em; font-family: Arial'>
-         {{username}}
+         {{username}} {{lastName}}
         </span>
       </span>
-      <br>
-      <br>
+      <br />
+      <br />
       <div>
         <span>Presentation URL</span>
-        <input type="url" placeholder="http://www.example.com" ng-model="speaker.url" ng-required="true" style="width:250px">
-        <br>
-        <br>
-        <br>
-        <input class='submit' type="submit" value="Sign Up">
+        <input name="url" type="url" placeholder="http://www.example.com" ng-model="speaker.url" ng-required="true" style="width:250px">
+        <br />
+        <br />
+        <br />
+        <input name="submit" class='submit' type="submit" value="Sign Up">
       </div>
     </div>
   </form>
@@ -49,12 +49,12 @@
       <span class='su'><span style='font-weight: bold'>Presenting: </span>{{ presenter.url }}</span>
     </span>
     <form class="edit" ng-show="editing" ng-submit="save()">
-      <input type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
+      <input name="edit" type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
     </form>
-    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && !editing" ng-click="edit()">
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && !editing" ng-click="edit()">
       Edit
     </h3>
-    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="presenter.user_id === userid && editing" ng-click="save(this)">
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && editing" ng-click="save(this)">
       Save
     </h3>
   </div>
