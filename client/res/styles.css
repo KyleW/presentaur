@@ -443,7 +443,7 @@ iframe.fullscreen {
   overflow: hidden;
   margin: 5px;
   color: #28465B;
-  width: 220px;
+  width: 240px;
 }
 
 .dashboardMeeting a {
@@ -459,10 +459,10 @@ iframe.fullscreen {
   background-color: #91E9FF;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 0 10px 10px 10px;
+  padding: 0px 5px 10px 10px;
   margin-left: 5px;
   margin-right: 5px;
-  height: 120px;
+  height: 140px;
   text-align: left;
 }
 
@@ -474,18 +474,21 @@ iframe.fullscreen {
 
 .leftCol .dashboardCat {
   clear:left;
+  font-weight: bold;
+  line-height:20px;
 }
 
 
 
 .rightCol {
   float:right;
-  width:55%;
+  width:60%;
 }
 
 .rightCol .dashboardVal {
   clear: right;
   text-align: right;
+  line-height:20px;
 }
 
 .speaking {
@@ -505,14 +508,12 @@ iframe.fullscreen {
 .dashboardName {
   font-size:1.4em;
   border-bottom: 2px solid #28465B;
-/*  margin-top:2px;*/
   padding:0;
-  margin-left: 5px;
-  margin-bottom: 5px;
+  margin-left: 0;
+  margin-bottom: 10px;
 }
 
 .meetingControls {
-  text-align: center;
   display: block;
   background-color: #141E25;
   border-bottom-left-radius: 5px;
@@ -521,7 +522,7 @@ iframe.fullscreen {
   margin-left: 5px;
   margin-right: 5px;
   font-size: 0.8em;
-  height:90px;
+  height:80px;
 }
 
 a .inactive {
@@ -529,7 +530,7 @@ a .inactive {
 }
 
 .mcButton {
-  text-align:center;
+  text-align: center;
   margin-top:10px;
   height:30px;
   width:90%;
