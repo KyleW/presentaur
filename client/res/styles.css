@@ -464,6 +464,7 @@ iframe.fullscreen {
   margin-right: 5px;
   height: 140px;
   text-align: left;
+  overflow: scroll;
 }
 
 
@@ -563,6 +564,7 @@ iframe.fullscreen {
 
 .inactive {
   background-color:gray;
+  border: 2px solid gray;
 }
 
 
