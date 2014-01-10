@@ -324,6 +324,13 @@ hr {
   opacity: 1;
 }
 
+.timer {
+  font-size: 6em;
+  font-family: monospace;
+  color: red;
+  line-height: 0;
+}
+
 .clickable {
   cursor: pointer;
   color: #141E25;
