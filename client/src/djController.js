@@ -17,7 +17,6 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
   .success(function (data) {
     sharedMethods.updateMeeting(data[0]);
     $scope.meeting = data[0];
-    $scope.current = data[0].current;
     $scope.speakers = data[0].speakers;
     $scope.queue = $scope.speakers.slice($scope.current);
     $scope.meetingName = data[0].meetingName;
@@ -25,6 +24,7 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
   .error(function (data) {
     console.log('ERROR');
   });
+  $scope.current = 0;
 
   //Socket info to connect to room unique to presentation
   socket.on('connect', function (data) {
@@ -73,16 +73,9 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
 
   $scope.fadeout = function () {
     $scope.current++;
-    sharedMethods.updateCurrent($scope.current);
     $scope.queue = $scope.speakers.slice($scope.current);
     socket.emit('fade out');
     $scope.fade = false;
-
-    $http({
-      url: '/meeting/new',
-      method: 'POST',
-      data: sharedMethods.getMeeting()
-    });
   };
   $scope.fadein = function () {
     if ($scope.current < $scope.speakers.length) {
@@ -90,23 +83,20 @@ app.controller('DjController', function ($rootScope, $scope, $http, $location, $
       $scope.fade = true;
     }
   };
-  $scope.fullscreen = function () {
-    socket.emit('fullscreen');
-    if (!$scope.started) {
-      $scope.started = true;
-      $scope.fade = false;
-    }
-  };
   $scope.begin = function () {
     $scope.fade = false;
     $scope.started = true;
     socket.emit('begin');
   };
+  $scope.rehearse = function () {
+    $scope.fade = false;
+    $scope.started = true;
+    socket.emit('rehearse');
+  };
   $scope.startOver = function () {
     $scope.current = 0;
     $scope.fade = true;
     $scope.started = false;
-    sharedMethods.updateCurrent(0);
     $scope.queue = $scope.speakers;
     socket.emit('start over');
 

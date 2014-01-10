@@ -18,16 +18,16 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     $scope.speaker = $scope.speakers[0];
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
     $scope.speakerName = $scope.speaker.name;
-    $scope.current = data[0].current;
     $scope.meetingName = data[0].meetingName;
     $scope.countdown();
   })
   .error(function (data) {
     console.log('ERROR');
   });
-  $scope.frameSize = 'windowed';
-  $scope.transition = 'fadein';
+  $scope.transition = 'fadeout';
   $scope.started = false;
+  $scope.rehearsal = false;
+  $scope.current = 0;
 
   //socket.io stuff
 
@@ -38,7 +38,6 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
 
   socket.on('fade out', function () {
     $scope.current++;
-    sharedMethods.updateCurrent($scope.current);
     if ($scope.current < $scope.speakers.length) {
       $scope.speaker = $scope.speakers[$scope.current];
       $scope.speakerName = $scope.speaker.name;
@@ -55,26 +54,22 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     $scope.transition = 'fadein';
   });
 
-  socket.on('fullscreen', function () {
-    $scope.frameSize = $scope.frameSize === 'windowed' ? 'fullscreen' : 'windowed';
-    if (!$scope.started) {
-      $scope.started = true;
-      $scope.transition = 'fadeout';
-    }
+  socket.on('begin', function () {
+    $scope.started = true;
+    $scope.transition = 'fadeout';
   });
 
-  socket.on('begin', function () {
-    $scope.frameSize = 'fullscreen';
+  socket.on('rehearse', function () {
     $scope.started = true;
+    $scope.rehearsal = true;
     $scope.transition = 'fadeout';
   });
 
   socket.on('start over', function () {
     $scope.current = 0;
-    $scope.frameSize = 'windowed';
-    $scope.transition = 'fadein';
-    sharedMethods.updateCurrent(0);
+    $scope.transition = 'fadeout';
     $scope.started = false;
+    $scope.rehearsal = false;
     $scope.speaker = $scope.speakers[0];
     $scope.speakerName = $scope.speaker.name;
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
@@ -82,7 +77,6 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
 
   $scope.timeRemaining = '';
   $scope.countdown = function () {
-    console.log($scope.date)
     // for displaying time remaining for meeting/per speaker
     var end = new Date($scope.date + ' ' + $scope.endTime);
     $interval(function () {
