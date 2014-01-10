@@ -53,7 +53,7 @@
         </svg>
       </a>
       <a ng-hide="!loggedIn" href="#/dashboard/{{userid}}" style="top:-12px;">My Presentaurs</a>
-      <div style="float:right;margin-top: 20px" ng-hide="!loggedIn">
+      <div style="float:right;margin-top: 20px; margin-right: 100px" ng-hide="!loggedIn">
         <span style="color:#91E9FF;">{{username}}</span>
         <a ng-click="logout()" style="cursor:pointer;">Log Out</a>
       </div>
@@ -62,4 +62,9 @@
   <div class="container" ng-view>
   </div>
 </body>
+
+<a href="http://hackreactor.com">
+  <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999" src="http://i.imgur.com/x86kKmF.png" alt="Built at Hack Reactor">
+</a>
+
 </html>
