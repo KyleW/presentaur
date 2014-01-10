@@ -1,20 +1,35 @@
 <div class="dashboard">
   <h1>Your Presentaurs</h1>
   <div class="container">
+
+
+
     <div ng-repeat="meeting in hosting" class="dashboardMeeting">
-      <div class="meetingName">
-        <span>Hosting</span><br />
-        <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+      <div class="meetingName hosting">
+        <div class="dashboardName">{{ meeting.meetingName }}</div>
+        <div class="leftCol">
+            <div class="dashboardCat">Your Role:</div>
+            <div class="dashboardCat">Speakers:</div>
+            <div class="dashboardCat">Date:</div>
+        </div>
+        <div class ="rightCol">
+            <div class="dashboardVal">Hosting</div>
+            <div class="dashboardVal">{{meeting.speakers.length}}</div>
+            <div class="dashboardVal">{{meeting.date}}</div>
+        </div>
       </div>
+
       <div class="meetingControls">
-        <a href="#/dj/{{meeting._id}}">Host</a>
-        <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
-        <a href="#/signup/{{meeting._id}}">Sign Up</a>
+        <div class="controlHeading">Plan your meeting</div>
+        <p><a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite Speakers</a></p>
+        <p><a href="#/signup/{{meeting._id}}">Add Content</a></p>
+        <div class="controlHeading">Run your meeting</div>
+        <p><a href="#/dj/{{meeting._id}}">DJ View</a></p>
+        <p><a href="#/present/{{meeting._id}}">Audience View</a></p>
       </div>
     </div>
+
+
     <div ng-repeat="meeting in both" class="dashboardMeeting">
       <div class="meetingName both">
         <span>Hosting/Speaking</span><br />
