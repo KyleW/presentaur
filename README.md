@@ -12,6 +12,9 @@ Presentaur is live on the web at: http://presentaur.herokuapp.com
 The Stack
 Presentaur is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
 
+Challenges
+
+
 Team
 <br><a href='http://github.com/KyleW'>Kyle Warneck</a>
 <br><a href='http://github.com/ehannum'>Eric Hannum</a>
