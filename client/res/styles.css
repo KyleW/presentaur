@@ -575,3 +575,7 @@ iframe.fullscreen {
   background-color:gray;
   border: 2px solid gray;
 }
+
+.yellowhover:hover {
+  background-color: #ea9a00;
+}
