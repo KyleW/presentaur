@@ -14,7 +14,10 @@ module.exports = {
     var meetingname = req.body.meetingName;
     var current = req.body.current || 0;
     var owner_id = req.body.owner_id;
-    var doc = {meetingName: meetingname, speakers: speakers, _id: id, current: current , owner_id: owner_id};
+    var date = req.body.date;
+    var startTime = req.body.startTime;
+    var endTime = req.body.endTime;
+    var doc = {meetingName: meetingname, speakers: speakers, _id: id, owner_id: owner_id, date: date, startTime: startTime, endTime: endTime};
 
     dbHelpers.db.collection('meetings', function (err, collection){
       collection.save(doc, {w:1}, function (err, result) {
