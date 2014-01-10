@@ -459,13 +459,12 @@ iframe.fullscreen {
   background-color: #91E9FF;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   margin-left: 5px;
   margin-right: 5px;
   height: 120px;
   text-align: left;
 }
-
 
 
 .leftCol {
@@ -489,8 +488,6 @@ iframe.fullscreen {
   text-align: right;
 }
 
-
-
 .speaking {
   background-color: #FFC24D;
 }
@@ -506,9 +503,10 @@ iframe.fullscreen {
 }
 
 .dashboardName {
-  font-size:1.6em;
+  font-size:1.4em;
   border-bottom: 2px solid #28465B;
-  margin-top:2px;
+/*  margin-top:2px;*/
+  padding:0;
   margin-left: 5px;
   margin-bottom: 5px;
 }
@@ -519,9 +517,23 @@ iframe.fullscreen {
   background-color: #141E25;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  /*padding: 5px 10px 5px 10px;*/
+  padding: 0px 5px 5px 10px;
   margin-left: 5px;
   margin-right: 5px;
+  font-size: 0.8em;
+  height:90px;
+}
+
+.mcButton {
+  text-align:center;
+  margin-top:10px;
+  height:30px;
+  width:90%;
+  margin-left: 5%;
+}
+
+.mcButton a {
+  text-align:left;
 }
 
 .controlHeading {

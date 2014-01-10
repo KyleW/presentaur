@@ -20,12 +20,18 @@
       </div>
 
       <div class="meetingControls">
-        <div class="controlHeading">Plan your meeting</div>
-        <p><a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite Speakers</a></p>
-        <p><a href="#/signup/{{meeting._id}}">Add Content</a></p>
-        <div class="controlHeading">Run your meeting</div>
-        <p><a href="#/dj/{{meeting._id}}">DJ View</a></p>
-        <p><a href="#/present/{{meeting._id}}">Audience View</a></p>
+        <div class="leftCol">
+          <div class="mcButton"><a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite Speakers</a></div>
+          <div class="mcButton"><a href="#/signup/{{meeting._id}}">Add Content</a></div>
+        </div>
+        <div class="rightCol">
+          <div class="mcButton"><a href="#/dj/{{meeting._id}}">Meeting Controls</a></div>
+          <div class="mcButton"><a href="#/present/{{meeting._id}}">Audience View</a></div>
+        </div>
+        <!-- <div class="controlHeading">Plan your meeting</div> -->
+        
+        <!-- <div class="controlHeading">Run your meeting</div> -->
+        
       </div>
     </div>
 
