@@ -32,7 +32,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
     $scope.speaker = {name: $rootScope.username + ' ' + $rootScope.lastName || '', url: '', user_id: $rootScope.userid};
   };
   $scope.speaker = {
-    name: $rootScope.username + ' ' + $rootScope.lastName,
+    name: '',
     url: '',
     user_id: $rootScope.userid
   };
@@ -41,19 +41,41 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
   $scope.edit = function () {
     $scope.editing = true;
   };
-  $scope.save = function () {
+  $scope.saveEdit = function (speaker) {
     $scope.editing = false;
+    var key = $scope.speakers.indexOf(speaker);
+    console.log(key);
 
     $http({
       url: '/meeting/' + $rootScope.id,
       method: 'GET'
     })
     .success(function (data) {
-      console.log(data);
       $scope.meeting = data[0];
       if (data[0].speakers) {
         $scope.speakers = data[0].speakers;
       }
+      $scope.speakers[key] = speaker;
+
+      sharedMethods.updateQueue($scope.speakers);
+      $scope.addPresenter();
+    })
+    .error(function (data) {
+      console.log('ERROR');
+    });
+  };
+  $scope.save = function () {
+    $http({
+      url: '/meeting/' + $rootScope.id,
+      method: 'GET'
+    })
+    .success(function (data) {
+      $scope.meeting = data[0];
+      if (data[0].speakers) {
+        $scope.speakers = data[0].speakers;
+      }
+      $scope.speaker.name = $rootScope.username ? $scope.speaker.name = $rootScope.username + ' ' + $rootScope.lastName : $scope.speaker.name;
+      !$scope.speaker.name && ($scope.speaker.name = 'Anonymous');
       $scope.speakers.push($scope.speaker);
 
       sharedMethods.updateQueue($scope.speakers);

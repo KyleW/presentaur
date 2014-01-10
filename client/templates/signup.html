@@ -13,7 +13,7 @@
         <div ng-hide='loggedIn'>
           <span>Name</span>
           <br />
-          <input name="speakerName" type="text" placeholder="Your name" ng-model="speaker.name" ng-required="true">
+          <input name="speakerName" type="text" placeholder="Your name" ng-model="speaker.name">
           <br />
           <span>or login with:</span>
           <a class="orange" href="auth/google" ng-click="login(true)">Google</a> -
@@ -48,13 +48,13 @@
     <span ng-hide="editing">
       <span class='su'><span style='font-weight: bold'>Presenting: </span>{{ presenter.url }}</span>
     </span>
-    <form class="edit" ng-show="editing" ng-submit="save()">
+    <form class="edit" ng-show="editing" ng-submit="saveEdit(this.presenter)">
       <input name="edit" type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
     </form>
     <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && !editing" ng-click="edit()">
       Edit
     </h3>
-    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && editing" ng-click="save(this)">
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && editing" ng-click="saveEdit(this.presenter)">
       Save
     </h3>
   </div>
