@@ -18,6 +18,22 @@ body {
   color: #141E25;
 }
 
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  color: #FF9B4D;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+h3 {
+  display: inline-block;
+}
+
+
+
+
 @media (max-width: 350px) {
   body {
     font-size: 0.8em;
@@ -31,15 +47,6 @@ body {
   margin: 0 auto;
   padding: 15px;
   border-radius: 3px;
-}
-
-h1, h2, h3, h4 {
-  color: #FF9B4D;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-}
-
-a {
-  text-decoration: none;
 }
 
 .yellow {
@@ -57,37 +64,8 @@ a {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.accountbox {
-  background-color: #F4F6FF;
-  padding: 1px 10px 10px 10px;
-  border-radius: 3px;
-  color: #141E25;
-}
 
-.loginbutton {
-  background-color: #C4FFD3;
-  border: 3px solid #141E25;
-  border-radius: 5px;
-  margin-top: 10px;
-  text-decoration: none;
-  padding: 5px;
-}
 
-.loginbutton:hover {
-  background-color: #A1D1AD;
-}
-
-.textcentered {
-  text-align: center;
-}
-
-.loginbuttons {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  margin-bottom: 15px;
-  left: -5px;
-}
 
 header {
   position: fixed;
@@ -122,9 +100,49 @@ header a {
   background-color: #141E25;
 }
 
-h3 {
-  display: inline-block;
+
+.container {
+  margin: 0 auto;
 }
+
+
+
+
+.accountbox {
+  background-color: #F4F6FF;
+  padding: 1px 10px 10px 10px;
+  border-radius: 3px;
+  color: #141E25;
+}
+
+.loginbutton {
+  background-color: #C4FFD3;
+  border: 3px solid #141E25;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.loginbutton:hover {
+  background-color: #A1D1AD;
+}
+
+.textcentered {
+  text-align: center;
+}
+
+.loginbuttons {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  margin-bottom: 15px;
+  left: -5px;
+}
+
+
+
+
 
 iframe {
   background-color: #FFF;
@@ -151,9 +169,7 @@ hr {
   margin-top: 30px;
 }
 
-.container {
-  margin: 0 auto;
-}
+
 
 .eighty {
   width: 80%;
@@ -201,65 +217,8 @@ hr {
   font-family: Arial;
 }
 
-.dashboard {
-  width: 80%;
-  height: 100%;
-  color: #FFC24D;
-  margin: 0 auto;
-}
 
-.dashboardMeeting {
-  text-align: center;
-  display: inline-block;
-  overflow: hidden;
-  margin: 5px;
-  color: #28465B;
-  width: 220px;
-}
 
-.dashboardMeeting a {
-  text-decoration: none;
-  color: #FFC24D;
-  padding: 10px;
-  line-height: 1.5em;
-}
-
-.meetingName {
-  display: block;
-  overflow: hidden;
-  background-color: #91E9FF;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
-  height: 150px;
-  text-align: left;
-}
-
-.speaking {
-  background-color: #FFC24D;
-}
-
-.both {
-  background-color: #C4FFD3;
-}
-
-.meetingName .name {
-  font-size: 1.2em;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
-}
-
-.meetingControls {
-  text-align: center;
-  display: block;
-  background-color: #141E25;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 5px 10px 5px 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 
 .dashboardNewMeeting {
   color: #91E9FF;
@@ -467,3 +426,108 @@ iframe.fullscreen {
 .su {
   color: #28465B;
 }
+
+
+/*Meeting Cards*/
+
+.dashboard {
+  width: 80%;
+  height: 100%;
+  color: #FFC24D;
+  margin: 0 auto;
+}
+
+.dashboardMeeting {
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  margin: 5px;
+  color: #28465B;
+  width: 220px;
+}
+
+.dashboardMeeting a {
+  text-decoration: none;
+  color: #FFC24D;
+  padding: 10px;
+  /*line-height: 1.5em;*/
+}
+
+.meetingName, .meetingCard {
+  display: block;
+  overflow: hidden;
+  background-color: #91E9FF;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 120px;
+  text-align: left;
+}
+
+
+
+.leftCol {
+  float:left;
+  width:40%;
+}
+
+.leftCol .dashboardCat {
+  clear:left;
+}
+
+
+
+.rightCol {
+  float:right;
+  width:55%;
+}
+
+.rightCol .dashboardVal {
+  clear: right;
+  text-align: right;
+}
+
+
+
+.speaking {
+  background-color: #FFC24D;
+}
+
+.both {
+  background-color: #C4FFD3;
+}
+
+
+.meetingName .name {
+  font-size: 1.2em;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+.dashboardName {
+  font-size:1.6em;
+  border-bottom: 2px solid #28465B;
+  margin-top:2px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.meetingControls {
+  text-align: center;
+  display: block;
+  background-color: #141E25;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /*padding: 5px 10px 5px 10px;*/
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.controlHeading {
+  color: #FF9B4D;
+  border-bottom:1px solid #FF9B4D;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+
