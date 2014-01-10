@@ -1,11 +1,12 @@
-<div style='padding-left: 20px'>
-  <div class="effects" ng-class="transition">
-    <div class="speakerinfo">
-      <!-- <img src="../res/bod.jpg" class="portrait"> placeholder, replace with image from google or whatever auth stuff -->
-      <h1 class="speakername">{{speakerName}}</h1>
-    </div>
+<div class="effects" ng-class="transition">
+  <div class="speakerinfo">
+    <!-- <img src="../res/bod.jpg" class="portrait"> placeholder, replace with image from google or whatever auth stuff -->
+    <h1 class="speakername" ng-show="started">{{speakerName}}</h1>
+    <h1 class="speakername" ng-hide="started">{{meetingName}}</h1>
   </div>
-  <h2>{{meetingName}}</h2>
-  <iframe ng-src="{{presentation}}" ng-class="frameSize" allowfullscreen mozallowfullscreen webkitallowfullscreen msallowfullscreen oallowfullscreen></iframe>
-  <h2>Rehearsal Mode</h2>
 </div>
+<h2>{{meetingName}}</h2>
+<iframe ng-src="{{presentation}}" allowfullscreen mozallowfullscreen webkitallowfullscreen msallowfullscreen oallowfullscreen></iframe>
+<h2>Rehearsal Mode</h2>
+<h3>Time remaining:</h3><br />
+<h1 class="timer" ng-show="rehearsal">{{timeRemaining}}</h1>

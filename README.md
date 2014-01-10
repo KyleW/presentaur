@@ -35,7 +35,7 @@ Add Content View: Presenters who have received an invitation to speak are able t
 Host / DJ Control View: From this screen the host of the Presentaur has the ability to control flow
 <br>
 <br>
-<img width="50%" height="50%" src="http://i.imgur.com/j3rLMJX.png" title="Hosted by imgur.com"/>
+<img width="50%" height="50%" src="http://i.imgur.com/SQVuzLn.png" title="Hosted by imgur.com"/>
 <br>
 Audience View: The computer connected to the projector will see this page with the speaker's content url. When the Presentaur is started from the Host View, the content will increase to full screen.
 
