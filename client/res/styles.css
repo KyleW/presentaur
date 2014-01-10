@@ -34,7 +34,7 @@ h3 {
 
 @media (max-width: 350px) {
   body {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 }
 
@@ -332,16 +332,17 @@ hr {
 
 @media (max-width: 350px) {
   .speakers {
-    height: 400px;
+    height: 350px;
     overflow-y: auto;
     width: 90%;
     max-width: 500px;
-    margin: 0 auto;  }
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 350px) and (max-width: 500px) {
   .speakers {
-    height: 500px;
+    height: 400px;
     overflow-y: auto;
     width: 90%;
     max-width: 500px;
