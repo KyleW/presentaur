@@ -6,7 +6,9 @@
         <span>Hosting</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{meeting.startTime}}</span> - 
+        <span>{{meeting.endTime}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
@@ -20,7 +22,9 @@
         <span>Hosting/Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{meeting.startTime}}</span> - 
+        <span>{{meeting.endTime}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
@@ -34,7 +38,9 @@
         <span>Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{meeting.startTime}}</span> - 
+        <span>{{meeting.endTime}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/signup/{{meeting._id}}">Edit</a><br /><a>&nbsp;</a>
@@ -46,11 +52,11 @@
   <h2 class="orange">Create a New Presentaur</h2>
   <form ng-submit="createMeeting()">
     <span>Name</span><br>
-    <input ng-model="meetingName" type="text" name="name"><br>
+    <input ng-model="meetingName" type="text" name="name" required><br>
     <span>Date</span><br>
     <input type="date"><br />
-    <span>Duration</span><br>
-    <input type="number">mins.<br />
+    <span>Time</span><br />
+    <input type="time"> to <input type="time"><br />
     <input class="submit" type="submit" value="Create">
   </form>
 </div>
