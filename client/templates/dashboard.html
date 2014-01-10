@@ -1,52 +1,103 @@
 <div class="dashboard">
   <h1>Your Presentaurs</h1>
   <div class="container">
+
+
+    <!-- MEETINGS- HOSTING -->
     <div ng-repeat="meeting in hosting" class="dashboardMeeting">
-      <div class="meetingName">
-        <span>Hosting</span><br />
-        <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>{{meeting.speakers.length}} speakers</span><br />
-        <span>{{meeting.date}}</span><br />
-        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
-        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
+      <div class="meetingName hosting">
+        <div class="dashboardName">{{ meeting.meetingName }}</div>
+        <div class="leftCol">
+            <div class="dashboardCat">Your Role:</div>
+            <div class="dashboardCat">Speakers:</div>
+            <div class="dashboardCat">Date:</div>
+            <div class="dashboardCat">Start Time:</div>
+            <div class="dashboardCat">End Time:</div>
+        </div>
+        <div class ="rightCol">
+            <div class="dashboardVal">Hosting</div>
+            <div class="dashboardVal">{{meeting.speakers.length}}</div>
+            <div class="dashboardVal">{{meeting.date}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.startTime)}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.endTime)}}</div>
+        </div>
       </div>
       <div class="meetingControls">
-        <a href="#/dj/{{meeting._id}}">Host</a>
-        <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
-        <a href="#/signup/{{meeting._id}}">Sign Up</a>
+        <div class="leftCol">
+          <div class="mcButton"><a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite Speakers</a></div>
+          <div class="mcButton"><a href="#/signup/{{meeting._id}}">Add Content</a></div>
+        </div>
+        <div class="rightCol">
+          <div class="mcButton"><a href="#/dj/{{meeting._id}}">Meeting<br>Controls</a></div>
+          <div class="mcButton"><a href="#/present/{{meeting._id}}">Audience<br>View</a></div>
+        </div>
       </div>
     </div>
+
+
+    <!-- MEETINGS- SPEAKING AND HOSTING -->
     <div ng-repeat="meeting in both" class="dashboardMeeting">
       <div class="meetingName both">
-        <span>Hosting/Speaking</span><br />
-        <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>{{meeting.speakers.length}} speakers</span><br />
-        <span>{{meeting.date}}</span><br />
-        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
-        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
+        <div class="dashboardName">{{ meeting.meetingName }}</div>
+        <div class="leftCol">
+            <div class="dashboardCat">Your Role:</div>
+            <div class="dashboardCat">Speakers:</div>
+            <div class="dashboardCat">Date:</div>
+            <div class="dashboardCat">Start Time:</div>
+            <div class="dashboardCat">End Time:</div>
+        </div>
+        <div class ="rightCol">
+            <div class="dashboardVal">Hosting/Speaking</div>
+            <div class="dashboardVal">{{meeting.speakers.length}}</div>
+            <div class="dashboardVal">{{meeting.date}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.startTime)}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.endTime)}}</div>
+        </div>
       </div>
       <div class="meetingControls">
-        <a href="#/dj/{{meeting._id}}">Host</a>
-        <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
-        <a href="#/signup/{{meeting._id}}">Edit</a>
+        <div class="leftCol">
+          <div class="mcButton"><a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite Speakers</a></div>
+          <div class="mcButton"><a href="#/signup/{{meeting._id}}">Add Content</a></div>
+        </div>
+        <div class="rightCol">
+          <div class="mcButton"><a href="#/dj/{{meeting._id}}">Meeting Controls</a></div>
+          <div class="mcButton"><a href="#/present/{{meeting._id}}">Audience View</a></div>
+        </div>
       </div>
     </div>
+
+
+    <!-- MEETINGS- SPEAKING-->
     <div ng-repeat="meeting in speaking" class="dashboardMeeting">
       <div class="meetingName speaking">
-        <span>Speaking</span><br />
-        <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>{{meeting.speakers.length}} speakers</span><br />
-        <span>{{meeting.date}}</span><br />
-        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
-        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
+        <div class="dashboardName">{{ meeting.meetingName }}</div>
+        <div class="leftCol">
+            <div class="dashboardCat">Your Role:</div>
+            <div class="dashboardCat">Speakers:</div>
+            <div class="dashboardCat">Date:</div>
+            <div class="dashboardCat">Start Time:</div>
+            <div class="dashboardCat">End Time:</div>
+        </div>
+        <div class ="rightCol">
+            <div class="dashboardVal">Speaking</div>
+            <div class="dashboardVal">{{meeting.speakers.length}}</div>
+            <div class="dashboardVal">{{meeting.date}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.startTime)}}</div>
+            <div class="dashboardVal">{{parseDisplayTime(meeting.endTime)}}</div>
+        </div>
       </div>
       <div class="meetingControls">
-        <a href="#/signup/{{meeting._id}}">Edit</a><br /><a>&nbsp;</a>
+        <div class="leftCol">
+          <div class="mcButton"><a class="inactive" href="#">Invite</a></div>
+          <div class="mcButton"><a href="#/signup/{{meeting._id}}">Add Content</a></div>
+        </div>
+        <div class="rightCol">
+          <div class="mcButton"><a class="inactive" href="#">Meeting Controls</a></div>
+          <div class="mcButton"><a class="inactive" href="#">Audience View</a></div>
+        </div>
       </div>
     </div>
-  </div>
+
 </div>
 <div class="dashboardNewMeeting">
   <h2 class="orange">Create a New Presentaur</h2>
