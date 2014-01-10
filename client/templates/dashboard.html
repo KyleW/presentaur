@@ -7,8 +7,8 @@
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>{{meeting.date}}</span><br />
-        <span>{{meeting.startTime}}</span> - 
-        <span>{{meeting.endTime}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
@@ -23,8 +23,8 @@
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>{{meeting.date}}</span><br />
-        <span>{{meeting.startTime}}</span> - 
-        <span>{{meeting.endTime}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
@@ -39,8 +39,8 @@
         <span class="name">{{ meeting.meetingName }}</span><br />
         <span>speakers: {{meeting.speakers.length}}</span><br />
         <span>{{meeting.date}}</span><br />
-        <span>{{meeting.startTime}}</span> - 
-        <span>{{meeting.endTime}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/signup/{{meeting._id}}">Edit</a><br /><a>&nbsp;</a>
@@ -54,9 +54,9 @@
     <span>Name</span><br>
     <input ng-model="meetingName" type="text" name="name" required><br>
     <span>Date</span><br>
-    <input type="date"><br />
+    <input type="date" ng-model="date"><br />
     <span>Time</span><br />
-    <input type="time"> to <input type="time"><br />
+    <input type="time" ng-model="startTime"> to <input type="time" ng-model="endTime"><br />
     <input class="submit" type="submit" value="Create">
   </form>
 </div>
