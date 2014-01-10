@@ -12,7 +12,17 @@ Presentaur is live on the web at: http://presentaur.herokuapp.com
 The Stack
 Presentaur is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
 
-Challenges
+<h2>Challenges</h2>
+
+<h2>Screen Shots</h2>
+<img width="50%" height="50%" src="http://i.imgur.com/2LR4Rab.png" title="Hosted by imgur.com"/>
+<br>
+<span style='margin-bottom: 5px;'>Main Screen</span>
+<br>
+<img width="50%" height="50%" src="http://i.imgur.com/gwjAkDx.png" title="Hosted by imgur.com"/>
+<img width="50%" height="50%" src="http://i.imgur.com/xvqVYUf.png" title="Hosted by imgur.com"/>
+<img width="50%" height="50%" src="http://i.imgur.com/j3rLMJX.png" title="Hosted by imgur.com"/>
+
 
 
 Team
