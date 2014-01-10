@@ -16,6 +16,8 @@ module.exports = function(){
   var passport = require('passport');
   var auth = require ('./auth.js');
 
+  io.set('log level', 0);
+
 
   server.listen(process.env.PORT || 3000);
 
