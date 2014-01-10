@@ -62,11 +62,10 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
       for (var i = 0; i < $scope.speaking.length; i++) {
         for (var j = 0; j < $scope.hosting.length; j++) {
           if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
+            $scope.hosting.splice(j + 1, 1);
             $scope.both.push($scope.speaking.splice(i, 1)[0]);
-            $scope.hosting.splice(j-1, 1);
             i--;
             j--;
-            break;
           }
         }
       }
@@ -96,9 +95,10 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
       }
     })
     .success(function (data) {
-      $rootScope.id = data._id;
-      sharedMethods.createMeeting($scope.meetingName, $rootScope.id);
       $scope.meetingName = '';
+      $scope.endTime = '';
+      $scope.startTime = '';
+      $scope.date = '';
 
       $scope.getUserMeetings();
     })
