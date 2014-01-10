@@ -29,7 +29,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
       data: sharedMethods.getMeeting()
     });
 
-    $scope.speaker = {name: $rootScope.username + ' ' + $rootScope.lastName || '', url: '', user_id: $rootScope.userid};
+    $scope.speaker = {name: '', url: '', user_id: $rootScope.userid};
   };
   $scope.speaker = {
     name: '',
@@ -44,7 +44,6 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
   $scope.saveEdit = function (speaker) {
     $scope.editing = false;
     var key = $scope.speakers.indexOf(speaker);
-    console.log(key);
 
     $http({
       url: '/meeting/' + $rootScope.id,
