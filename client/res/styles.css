@@ -561,10 +561,17 @@ iframe.fullscreen {
   color: #141E25;
 }
 
+.mcButton:hover {
+  background-color: #d68d00;
+  border: 2px solid #d68d00;
+}
 
 .inactive {
   background-color:gray;
   border: 2px solid gray;
 }
 
-
+.inactive:hover {
+  background-color:gray;
+  border: 2px solid gray;
+}
