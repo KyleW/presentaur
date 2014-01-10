@@ -5,13 +5,15 @@
       <div class="meetingName">
         <span>Hosting</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.speakers.length}} speakers</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
         <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
+        <a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
         <a href="#/signup/{{meeting._id}}">Sign Up</a>
       </div>
     </div>
@@ -19,13 +21,15 @@
       <div class="meetingName both">
         <span>Hosting/Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.speakers.length}} speakers</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/dj/{{meeting._id}}">Host</a>
         <a href="#/present/{{meeting._id}}">View</a><br />
-        <a href="mailto:?subject=You've been invited to present at {{meeting.meetingName}}&body=To submit your content visit:%0A%0A http://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
+        <a href="mailto:?subject=Your presentation at {{meeting.meetingName}}, {{meeting.date}}&body=PRESENTAUR%0A%0A You've been invited to speak at {{meeting.meetingName}} on {{meeting.date}} beginning at {{parseDisplayTime(meeting.startTime)}}. To submit your content visit: %0A%0Ahttp://presentaur.herokuapp.com/#/signup/{{meeting._id}}" target="_blank">Invite</a>
         <a href="#/signup/{{meeting._id}}">Edit</a>
       </div>
     </div>
@@ -33,8 +37,10 @@
       <div class="meetingName speaking">
         <span>Speaking</span><br />
         <span class="name">{{ meeting.meetingName }}</span><br />
-        <span>speakers: {{meeting.speakers.length}}</span><br />
-        <span>date: {{meeting.date}}</span><br />
+        <span>{{meeting.speakers.length}} speakers</span><br />
+        <span>{{meeting.date}}</span><br />
+        <span>{{parseDisplayTime(meeting.startTime)}}</span> - 
+        <span>{{parseDisplayTime(meeting.endTime)}}</span><br />
       </div>
       <div class="meetingControls">
         <a href="#/signup/{{meeting._id}}">Edit</a><br /><a>&nbsp;</a>
@@ -46,11 +52,11 @@
   <h2 class="orange">Create a New Presentaur</h2>
   <form ng-submit="createMeeting()">
     <span>Name</span><br>
-    <input ng-model="meetingName" type="text" name="name"><br>
+    <input ng-model="meetingName" type="text" name="name" required><br>
     <span>Date</span><br>
-    <input type="date"><br />
-    <span>Duration</span><br>
-    <input type="number">mins.<br />
+    <input type="date" ng-model="date"><br />
+    <span>Time</span><br />
+    <input type="time" ng-model="startTime"> to <input type="time" ng-model="endTime"><br />
     <input class="submit" type="submit" value="Create">
   </form>
 </div>
