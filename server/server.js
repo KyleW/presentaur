@@ -62,9 +62,10 @@ io.sockets.on('connection', function (socket) {
       io.sockets.in(room).emit('fade in');
     });
   });
-  socket.on('fullscreen', function(){
+  socket.on('rehearse', function(){
     socket.get('room', function(err, room){
-      io.sockets.in(room).emit('fullscreen');
+      io.sockets.in(room).emit('rehearse');
+      // console.log('fullscreen was called for clients in room: ' + room);
     });
   });
   socket.on('begin', function(){

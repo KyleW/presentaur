@@ -131,7 +131,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
       var seconds = end.getSeconds() - now.getSeconds() + 60;
       var minutes = end.getMinutes() - now.getMinutes();
       var hours = end.getHours() - now.getHours();
-      $scope.timeRemaining = ('0' + hours).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + seconds).substr(-2);
+      $scope.timeRemaining = hours + 'h' + ('0' + minutes).substr(-2) + 'm' + ('0' + seconds).substr(-2) + 's';
       console.log($scope.timeRemaining);
     }, 1000); // ...ish
   };

@@ -14,17 +14,11 @@ app.factory('sharedMethods', [function () {
     getQueue: function () {
       return meeting.speakers;
     },
-    updateCurrent: function (num) {
-      meeting.current = num;
-    },
     getMeeting: function () {
       return meeting;
     },
     updateMeeting: function (updated) {
       meeting = updated;
-    },
-    createMeeting: function (name, id) {
-      meeting = {_id: id, meetingName: name, speakers: [], current: 0};
     }
   };
 }]);

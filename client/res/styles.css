@@ -32,11 +32,9 @@ h3 {
 }
 
 
-
-
 @media (max-width: 350px) {
   body {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 }
 
@@ -147,6 +145,11 @@ header a {
 iframe {
   background-color: #FFF;
   z-index: 40;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 form {
@@ -283,6 +286,18 @@ hr {
   opacity: 1;
 }
 
+.timer {
+  font-size: 6em;
+  font-family: monospace;
+  color: red;
+  line-height: 0;
+  z-index: 9999;
+  position: absolute;
+  bottom: 10px;
+  left: 10%;
+  text-shadow: 2px 2px #000;
+}
+
 .clickable {
   cursor: pointer;
   color: #141E25;
@@ -291,29 +306,6 @@ hr {
 
 .edit {
   display: inline-block;
-}
-
-iframe.windowed {
-  -webkit-transform: scale(0.5);
-  -moz-transform: scale(0.5);
-  -ms-transform: scale(0.5);
-  -o-transform: scale(0.5);
-  transform: scale(0.5);
-  margin-left: -250px;
-  margin-right: -250px;
-  margin-top: -200px;
-  margin-bottom: -200px;
-  border: 2px solid #333;
-  width: 1024px;
-  height: 768px;
-}
-
-iframe.fullscreen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .djcontainer {
@@ -340,16 +332,17 @@ iframe.fullscreen {
 
 @media (max-width: 350px) {
   .speakers {
-    height: 400px;
+    height: 350px;
     overflow-y: auto;
     width: 90%;
     max-width: 500px;
-    margin: 0 auto;  }
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 350px) and (max-width: 500px) {
   .speakers {
-    height: 500px;
+    height: 400px;
     overflow-y: auto;
     width: 90%;
     max-width: 500px;
