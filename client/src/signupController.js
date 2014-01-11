@@ -29,13 +29,13 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
       data: sharedMethods.getMeeting()
     });
 
-    $scope.speaker = {name: '', url: '', user_id: $rootScope.userid, userPic: $rootScope.userPic || '/res/bod.jpg'};
+    $scope.speaker = {name: '', url: '', user_id: $rootScope.userid, userPic: $rootScope.userPic || 'http://www.b2match.com/assets/fallback/default.png'};
   };
   $scope.speaker = {
     name: '',
     url: '',
     user_id: $rootScope.userid,
-    userPic: $rootScope.userPic || '/res/bod.jpg'
+    userPic: $rootScope.userPic || 'http://www.b2match.com/assets/fallback/default.png'
   };
 
   $scope.editing = false;

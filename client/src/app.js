@@ -59,6 +59,6 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
     $location.url('/');
     $rootScope.userid = '';
     $rootScope.username = '';
-    $rootScope.userPic = '/res/bod.jpg';
+    $rootScope.userPic = 'http://www.b2match.com/assets/fallback/default.png';
   };
 });
