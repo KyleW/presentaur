@@ -24,7 +24,7 @@
         <br />
         <br />
         <span class='yellow' style='font-size: 1.3em; font-family: Arial'>
-         {{username}} {{lastName}}
+         {{displayName}}
         </span>
       </span>
       <br />
@@ -40,21 +40,22 @@
     </div>
   </form>
 
-  <div class='presenters' ng-repeat="presenter in speakers">
+  <div class='presenters' ng-repeat="speaker in speakers">
+    <!-- <img ng-src="{{speaker.userPic}}" alt="{{speaker.name}}"> -->
     <h3>
-      <span class='su'>Name: {{ presenter.name }}</span>
+      <span class='su'>Name: {{ speaker.name }}</span>
     </h3>
     <br />
     <span ng-hide="editing">
-      <span class='su'><span style='font-weight: bold'>Presenting: </span>{{ presenter.url }}</span>
+      <span class='su'><span style='font-weight: bold'>Presenting: </span>{{ speaker.url }}</span>
     </span>
-    <form class="edit" ng-show="editing" ng-submit="saveEdit(this.presenter)">
-      <input name="edit" type="url" ng-model="presenter.url" ng-model="speaker.url" ng-required="true" style="width:250px">
+    <form class="edit" ng-show="editing && speaker.name === displayName" ng-submit="saveEdit(this.speaker)">
+      <input name="edit" type="url" ng-model="speaker.url" ng-model="speaker.url" ng-required="true" style="width:250px">
     </form>
-    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && !editing" ng-click="edit()">
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && speaker.user_id === userid && !editing" ng-click="edit()">
       Edit
     </h3>
-    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && presenter.user_id === userid && editing" ng-click="saveEdit(this.presenter)">
+    <h3 class="submit" style="cursor: pointer; margin: 0; margin-left: 40px" ng-show="userid && speaker.user_id === userid && editing" ng-click="saveEdit(this.speaker)">
       Save
     </h3>
   </div>

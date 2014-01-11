@@ -15,6 +15,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
     $scope.meeting = data[0];
     if (data[0].speakers) {
       $scope.speakers = data[0].speakers;
+      console.log(data[0])
     }
     $scope.meetingName = data[0].meetingName;
   })
@@ -29,7 +30,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
       data: sharedMethods.getMeeting()
     });
 
-    $scope.speaker = {name: '', url: '', user_id: $rootScope.userid};
+    $scope.speaker = {name: '', url: '', user_id: $rootScope.userid, userPic: $rootScope.userPic || '/res/bod.jpg'};
   };
   $scope.speaker = {
     name: '',
@@ -73,7 +74,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
       if (data[0].speakers) {
         $scope.speakers = data[0].speakers;
       }
-      $scope.speaker.name = $rootScope.username ? $scope.speaker.name = $rootScope.username + ' ' + $rootScope.lastName : $scope.speaker.name;
+      $scope.speaker.name = $rootScope.username ? $scope.speaker.name = $rootScope.displayName : $scope.speaker.name;
       !$scope.speaker.name && ($scope.speaker.name = 'Anonymous');
       $scope.speakers.push($scope.speaker);
 

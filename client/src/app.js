@@ -36,9 +36,11 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
       method: 'GET'
     })
     .success(function (data) {
+      console.log(data);
       $rootScope.user = data[0];
       $rootScope.username = data[0].name.givenName;
-      $rootScope.lastName = data[0].name.familyName;
+      $rootScope.displayName = data[0].displayName;
+      $rootScope.userPic = data[0].pictureUrl;
     })
     .error(function (data) {
       console.log('ERROR');

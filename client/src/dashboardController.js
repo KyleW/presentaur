@@ -63,7 +63,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
       // for (var i = 0; i < $scope.speaking.length; i++) {
       //   for (var j = 0; j < $scope.hosting.length; j++) {
       //     if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
-      //       $scope.hosting.splice(j+1, 1); // Everything is terrible.
+      //       $scope.hosting.splice(j, 1); // Everything is terrible.
       //       $scope.both.push($scope.speaking.splice(i, 1)[0]);
       //       i--;
       //       j--;
