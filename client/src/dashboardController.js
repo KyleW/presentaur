@@ -6,8 +6,8 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
     $location.url('/');
     return;
   }
-    $rootScope.userid = $location.path().split('/')[2];
-    $cookies.userid = $rootScope.userid;
+  $rootScope.userid = $location.path().split('/')[2];
+  $cookies.userid = $rootScope.userid;
   delete $cookies.login;
   $rootScope.loggedIn = true;
   if ($cookies.submit) {
@@ -39,7 +39,7 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
     $location.url('/');
   });
 
-  $scope.both = [];
+  // $scope.both = [];
 
   $scope.getUserMeetings = function () {
     $http({
@@ -47,33 +47,44 @@ app.controller('DashboardController', function ($rootScope, $scope, $http, $loca
       method: 'GET'
     })
     .success(function (data) {
-      console.log(data);
+      $scope.both = [];
       $scope.hosting = data;
+
+      $http({
+        url: '/meeting/speaker/' + $rootScope.userid,
+        method: 'GET'
+      })
+      .success(function (data) {
+        $scope.speaking = data;
+        var userId = $rootScope.userid;
+        for(var i = 0; i < $scope.speaking.length; i++){
+          var speaking = $scope.speaking[i].owner_id;
+          if(speaking === userId){
+            $scope.both.push($scope.speaking.splice(i, 1)[0]);
+            i--;
+          }
+        }
+
+        for(var j = 0; j < $scope.both.length; j++){
+          var both = $scope.both[j]._id;
+          for(h = 0; h < $scope.hosting.length; h++){
+          var hosting = $scope.hosting[h]._id;
+            if(both === hosting){
+              var temp = $scope.hosting.splice(h, 1);
+              h--;
+            }
+          }
+        }
+
+      })
+      .error(function (data) {
+        console.log('ERROR');
+      });
     })
     .error(function (data) {
       console.log('ERROR');
     });
 
-    $http({
-      url: '/meeting/speaker/' + $rootScope.userid,
-      method: 'GET'
-    })
-    .success(function (data) {
-      $scope.speaking = data;
-      // for (var i = 0; i < $scope.speaking.length; i++) {
-      //   for (var j = 0; j < $scope.hosting.length; j++) {
-      //     if ($scope.hosting[j].owner_id === $scope.speaking[i].owner_id) {
-      //       $scope.hosting.splice(j, 1); // Everything is terrible.
-      //       $scope.both.push($scope.speaking.splice(i, 1)[0]);
-      //       i--;
-      //       j--;
-      //     }
-      //   }
-      // }
-    })
-    .error(function (data) {
-      console.log('ERROR');
-    });
   };
 
   $scope.getUserMeetings();
