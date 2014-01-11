@@ -53,8 +53,9 @@
         </svg>
       </a>
       <a ng-hide="!loggedIn" href="#/dashboard/{{userid}}" style="top:-12px;">My Presentaurs</a>
-      <div style="float:right;margin-top: 20px; margin-right: 150px" ng-hide="!loggedIn">
-        <span class='yellow' style='font-family: Helvetica; font-weight: 100;'>{{username}}</span>
+      <div style="float:right;margin-top: 8px; margin-right: 150px" ng-hide="!loggedIn">
+        <span class='yellow'>{{username}}</span>
+        <img src="{{userPic}}" style="width:35px; vertical-align:middle">
         <a ng-click="logout()" style="cursor:pointer;">Log Out</a>
       </div>
     </div>
