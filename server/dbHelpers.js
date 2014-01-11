@@ -16,10 +16,10 @@ MongoClient.connect(mongoUri, function(err, presDb) {
 
   module.exports.db = presDb;
   module.exports.db.createCollection('meetings', function(err, collection) {
-    if(err){console.log("error creating meetings collection: ", err);}
+    if(err){console.error("error creating meetings collection: ", err);}
   });
   module.exports.db.createCollection('users', function(err, collection) {
-    if(err){console.log("error creating users collection: ", err);}
+    if(err){console.error("error creating users collection: ", err);}
   });
 });
 
