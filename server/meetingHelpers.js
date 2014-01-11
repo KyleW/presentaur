@@ -65,10 +65,12 @@ module.exports = {
 
   findBySpeaker: function(req, res){
     var speaker_id = req.params.id;
+    console.log(req.params.id);
     dbHelpers.db.collection('meetings', function(err, collection){
       collection.find({'speakers.user_id': speaker_id}).toArray(function(err, result){
         if(err) { console.log("Looking for speakers in meeting failed ", err); }
         else {
+          console.log(JSON.stringify(result));
           res.send(JSON.stringify(result));
         }
       });
