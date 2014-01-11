@@ -16,6 +16,7 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     $scope.date = data[0].date;
     $scope.speakers = sharedMethods.getQueue();
     $scope.speaker = $scope.speakers[0];
+    $scope.speakerPic = $scope.speaker.userPic;
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
     $scope.speakerName = $scope.speaker.name;
     $scope.meetingName = data[0].meetingName;
@@ -41,11 +42,13 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     if ($scope.current < $scope.speakers.length) {
       $scope.speaker = $scope.speakers[$scope.current];
       $scope.speakerName = $scope.speaker.name;
+      $scope.speakerPic = $scope.speaker.userPic;
       $timeout(function () {
         $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
       }, 1000);
     } else {
       $scope.speakerName = '';
+      $scope.started = false;
     }
     $scope.transition = 'fadeout';
   });
@@ -72,6 +75,7 @@ app.controller('PresentController', function ($rootScope, $scope, $sce, $locatio
     $scope.rehearsal = false;
     $scope.speaker = $scope.speakers[0];
     $scope.speakerName = $scope.speaker.name;
+    $scope.speakerPic = $scope.speaker.userPic;
     $scope.presentation = $sce.trustAsResourceUrl($scope.speaker.url);
   });
 

@@ -1,6 +1,6 @@
 <div class="effects" ng-class="transition">
   <div class="speakerinfo">
-    <!-- <img src="../res/bod.jpg" class="portrait"> placeholder, replace with image from google or whatever auth stuff -->
+    <img src="{{speakerPic}}" class="portrait" ng-show="started">
     <h1 class="speakername" ng-show="started">{{speakerName}}</h1>
     <h1 class="speakername" ng-hide="started" style="font-size:3.5em;">{{meetingName}}</h1>
   </div>
