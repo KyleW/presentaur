@@ -91,6 +91,10 @@ app.get('/favicon.ico', function (req, res) {
   res.sendfile(url.resolve(__dirname, '/favicon.ico'));
 });
 
+app.get('/res/bod.jpg', function (req, res) {
+  res.sendfile(url.resolve(__dirname, './client/res/bod.jpg'));
+});
+
 
 // Meetings
 app.post('/meeting/new', meeting.create);
