@@ -39,7 +39,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'btford.socket-io'])
       console.log(data);
       $rootScope.user = data[0];
       $rootScope.username = data[0].name.givenName;
-      $rootScope.displayName = data[0].name.displayName;
+      $rootScope.displayName = data[0].displayName;
       $rootScope.userPic = data[0].pictureUrl;
     })
     .error(function (data) {

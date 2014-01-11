@@ -15,6 +15,7 @@ app.controller('SignupController', function ($rootScope, $scope, $http, $locatio
     $scope.meeting = data[0];
     if (data[0].speakers) {
       $scope.speakers = data[0].speakers;
+      console.log(data[0])
     }
     $scope.meetingName = data[0].meetingName;
   })
