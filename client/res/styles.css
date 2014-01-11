@@ -271,7 +271,8 @@ hr {
 }
 
 .portrait {
-  width: 25%;
+  width: 20%;
+  border-radius: 20px;
 }
 
 .speakername {
