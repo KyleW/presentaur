@@ -7,7 +7,7 @@ Using Presentaur, a meeting owner can create an event in advance and share a lin
 
 Once the meeting begins, the meeting owner enters DJ mode. The meeting owner sees all the speakers as a playlist. The owner can move between speakers, reorder speakers and see how much time is left in the meeting with a couple of clicks. The interface even works on a tablet or phone. And all without needing to find an adapter for a laptop or change the settings on a projector.
 
-Presentaur is live on the web at: http://presentaur.herokuapp.com
+Presentaur is live on the web at: http://www.presentaur.com
 
 The Stack
 Presentaur is built on a MEAN stack, uses Sockets.io and is deployed on Heroku.
